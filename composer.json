@@ -1,0 +1,26 @@
+{
+    "name": "eko/certificationy",
+    "type": "library",
+    "description": "A Symfony Console application to train on certification",
+    "keywords": ["symfony", "certification", "quizz"],
+    "homepage": "http://github.com/eko/Certificationy",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vincent Composieux",
+            "email": "vincent.composieux@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/console": ">=2.5"
+    },
+    "autoload": {
+        "psr-4": { "Certificationy\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
