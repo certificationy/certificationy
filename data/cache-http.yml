@@ -8,7 +8,7 @@ questions:
             - {value: <include src="http://..." />, correct: false}
             - {value: <esi src="http://..." />, correct: false}
     -
-        question: 'What is the Twig tag to render an ESI?'
+        question: 'What is the Twig function to render an ESI?'
         answers:
             - {value: cache_esi(), correct: false}
             - {value: esi_cache(), correct: false}
