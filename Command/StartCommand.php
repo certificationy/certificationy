@@ -96,14 +96,13 @@ class StartCommand extends Command
             $results[] = array(
                 $question->getQuestion(),
                 implode(', ', $correctAnswers),
-                implode(', ', $answers),
                 $isCorrect ? '<info>✔</info>' : '<error>✗</error>'
             );
         }
 
         $tableHelper = $this->getHelperSet()->get('table');
         $tableHelper
-            ->setHeaders(array('Question', 'Correct answer', 'Your answer', 'Result'))
+            ->setHeaders(array('Question', 'Correct answer', 'Result'))
             ->setRows($results)
         ;
 
