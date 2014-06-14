@@ -87,7 +87,7 @@ class Question
         $answers = array();
 
         foreach ($this->getAnswers() as $answer) {
-            if ($answer->getIsCorrect()) {
+            if ($answer->isCorrect()) {
                 $answers[] = $answer->getValue();
             }
         }
