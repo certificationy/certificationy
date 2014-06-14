@@ -5,6 +5,9 @@ Certificationy
 
 This is a Symfony Console application to train on Symfony certification.
 
+# How it looks?
+![Certificationy application](http://vincent.composieux.fr/assets/img/blog/certificationy-console.png "Certificationy application")
+
 # Installation
 
 ## Using Phar
