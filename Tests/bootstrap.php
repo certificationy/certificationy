@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 
 /*
@@ -10,11 +9,8 @@
  * file that was distributed with this source code.
  */
 
-require __DIR__.'/vendor/autoload.php';
-
-use Certificationy\Command\StartCommand;
-use Symfony\Component\Console\Application;
-
-$application = new Application();
-$application->add(new StartCommand());
-$application->run();
+if (file_exists($file = __DIR__.'/autoload.php')) {
+    require_once $file;
+} elseif (file_exists($file = __DIR__.'/autoload.php.dist')) {
+    require_once $file;
+}

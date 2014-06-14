@@ -1,0 +1,8 @@
+category: PHP
+questions:
+    -
+        question: 'What is the short open tag for PHP?'
+        answers:
+            - {value: <!, correct: false}
+            - {value: <%, correct: false}
+            - {value: <?, correct: true}

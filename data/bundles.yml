@@ -1,0 +1,9 @@
+category: Bundles
+questions:
+    -
+        question: 'What is the method name in the Kernel class to enable bundles?'
+        answers:
+            - {value: enable(), correct: false}
+            - {value: enableBundles(), correct: false}
+            - {value: register(), correct: false}
+            - {value: registerBundles(), correct: true}
