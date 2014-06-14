@@ -13,7 +13,9 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Certificationy\Command\StartCommand;
-use Certificationy\Application\Certificationy as Application;
+use Symfony\Component\Console\Application;
 
-$application = new Application();
+$application = new Application('Certificationy', '1.0.0-dev');
+$application->add($command = new StartCommand());
+$application->setDefaultCommand($command->getName());
 $application->run();
