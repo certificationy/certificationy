@@ -3,7 +3,7 @@
     "type": "library",
     "description": "A Symfony Console application to train on certification",
     "keywords": ["symfony", "certification", "quizz"],
-    "homepage": "http://github.com/eko/Certificationy",
+    "homepage": "http://github.com/eko/certificationy",
     "license": "MIT",
     "authors": [
         {

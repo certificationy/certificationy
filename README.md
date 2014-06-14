@@ -1,6 +1,8 @@
 Certificationy
 ==============
 
+[![Build Status](https://secure.travis-ci.org/eko/certificationy.png?branch=master)](http://travis-ci.org/eko/certificationy)
+
 This is a Symfony Console application to train on Symfony certification.
 
 Installation
