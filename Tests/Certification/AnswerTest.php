@@ -30,7 +30,7 @@ class AnswerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('my first value', $correctAnswer->getValue());
         $this->assertEquals('my second value', $wrongAnswer->getValue());
 
-        $this->assertTrue($correctAnswer->getIsCorrect());
-        $this->assertFalse($wrongAnswer->getIsCorrect());
+        $this->assertTrue($correctAnswer->isCorrect());
+        $this->assertFalse($wrongAnswer->isCorrect());
     }
 }

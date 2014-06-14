@@ -55,7 +55,7 @@ class Answer
      *
      * @return boolean
      */
-    public function getIsCorrect()
+    public function isCorrect()
     {
         return $this->correct;
     }
