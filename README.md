@@ -10,7 +10,8 @@ This is a Symfony Console application to train on Symfony certification.
 ## Using Phar
 
 ```
-$ wget https://github.com/eko/certificationy/raw/master/bin/certificationy.phar
+$ curl -s http://box-project.org/installer.php | php
+$ php box.phar build
 $ php certificationy.phar [--number=5]
 ```
 

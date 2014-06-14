@@ -1,0 +1,14 @@
+{
+    "finder": [
+    {
+        "name": ["*.php", "*.yml"],
+        "exclude": ["Tests"],
+        "in": [".", "data", "Certification", "Command", "vendor"]
+    }
+    ],
+    "files": ["composer.json", "LICENSE"],
+    "main": "certificationy.php",
+    "output": "certificationy.phar",
+    "stub": true,
+    "chmod": "0755"
+}

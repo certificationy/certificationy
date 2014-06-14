@@ -158,7 +158,7 @@ class StartCommand extends Command
         $data = array();
 
         foreach ($files as $file) {
-            $fileData = Yaml::parse($file->getRealpath());
+            $fileData = Yaml::parse($file->getContents());
 
             $category = $fileData['category'];
             array_walk($fileData['questions'], function (&$item, $key) use ($category) {
