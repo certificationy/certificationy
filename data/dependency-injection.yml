@@ -1,2 +1,9 @@
 category: Dependency Injection
-questions: []
+questions:
+    -
+        question: 'Which line allows to inject the my.custom.service?'
+        answers:
+            - {value: <argument id="my.custom.service" />,                 correct: false}
+            - {value: <argument type="argument" id="my.custom.service" />, correct: false}
+            - {value: <argument type="service" id="my.custom.service" />,  correct: true}
+            - {value: <service id="my.custom.service" />,                  correct: false}

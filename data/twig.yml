@@ -1,2 +1,9 @@
 category: Twig
-questions: []
+questions:
+    -
+        question: 'How to render flash messages of key "success" in a template?'
+        answers:
+            - {value: "{{ app.session.flashbag('success') }}",                                               correct: false}
+            - {value: "{{ app.session.flashbag.get('success') }}",                                           correct: false}
+            - {value: "{% for message in app.session.flashbag('success') %} {{ message }} {% endfor %}",     correct: false}
+            - {value: "{% for message in app.session.flashbag.get('success') %} {{ message }} {% endfor %}", correct: true}

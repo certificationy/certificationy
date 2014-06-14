@@ -1,2 +1,9 @@
 category: Miscellaneous
-questions: []
+questions:
+    -
+        question: 'Which controller/action allows to render a template without a specific controller?'
+        answers:
+            - {value: FrameworkBundle:Controller:template, correct: false}
+            - {value: FrameworkBundle:Template:action,     correct: false}
+            - {value: FrameworkBundle:Template:render,     correct: false}
+            - {value: FrameworkBundle:Template:template,   correct: true}

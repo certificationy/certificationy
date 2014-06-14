@@ -1,2 +1,16 @@
 category: Controllers
-questions: []
+questions:
+    -
+        question: 'How to perform a redirection on example.org in a controller?'
+        answers:
+            - {value: return $this->redirect($this->generateUrl('http://www.example.org')), correct: false}
+            - {value: return $this->redirectUrl('http://www.example.org'),                  correct: false}
+            - {value: return $this->redirect('http://www.example.org'),                     correct: true}
+            - {value: return $this->generateUrl('http://www.example.org'),                  correct: false}
+    -
+        question: 'Which method(s) can be used to retrieve a service in a controller?'
+        answers:
+            - {value: return $this->get('service.name'),                 correct: true}
+            - {value: return $this->getContainer('service.name'),        correct: false}
+            - {value: return $this->getContainer()->get('service.name'), correct: false}
+            - {value: return $this->container->get('service.name'),      correct: true}

@@ -1,2 +1,16 @@
 category: Command lines
-questions: []
+questions:
+    -
+        question: 'What is the console command to create a new bundle?'
+        answers:
+            - {value: php app/console bundle:generate, correct: true}
+            - {value: php app/console generate:bundle, correct: false}
+            - {value: php app/console create:bundle,   correct: false}
+            - {value: php app/console bundle:create,   correct: false}
+    -
+        question: 'Which argument can be passed to the router:debug command?'
+        answers:
+            - {value: No argument can be passed, correct: false}
+            - {value: A regexp search filter,    correct: false}
+            - {value: A route limit,             correct: false}
+            - {value: A route name,              correct: true}

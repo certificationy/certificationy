@@ -1,2 +1,23 @@
 category: Automated tests
-questions: []
+questions:
+    -
+        question: 'Using PHPUnit, which method names are used to share test setup code?'
+        answers:
+            - {value: setUp(),       correct: true}
+            - {value: __construct(), correct: false}
+            - {value: shutdown(),    correct: false}
+            - {value: tearDown(),    correct: true}
+    -
+        question: 'How to disable constructor when mocking an object?'
+        answers:
+            - {value: $this->getMock('My\Class')->disableOriginalConstructor()->getMock(),        correct: false}
+            - {value: $this->disableOriginalConstructor('My\Class'),                              correct: false}
+            - {value: $this->getMockBuilder('My\Class')->disableOriginalConstructor()->getMock(), correct: true}
+            - {value: $this->getMockBuilder('My\Class')->getMock()->disableConstructor(),         correct: false}
+    -
+        question: 'Which Symfony class offers method to test commands?'
+        answers:
+            - {value: Symfony\Component\Console\Tester\Command,           correct: false}
+            - {value: Symfony\Component\Console\Tester\CommandTester,     correct: true}
+            - {value: Symfony\Component\Console\Tester\CommandUnitTester, correct: false}
+            - {value: Symfony\Component\Console\Tester\CommandUnit,       correct: false}

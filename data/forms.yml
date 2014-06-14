@@ -1,2 +1,9 @@
 category: Forms
-questions: []
+questions:
+    -
+        question: 'Inside a form type, how to add a "date" field type in an input field?'
+        answers:
+            - {value: Add an option 'render' => 'input',       correct: false}
+            - {value: Add an option 'widget' => 'text',        correct: false}
+            - {value: Add an option 'widget' => 'single_text', correct: true}
+            - {value: Add an option 'widget' => 'input',       correct: false}

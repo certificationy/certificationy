@@ -1,2 +1,9 @@
 category: Architecture
-questions: []
+questions:
+    -
+        question: 'Where are publicly located bundles assets?'
+        answers:
+            - {value: web/assets/<bundle name>,         correct: false}
+            - {value: web/assets/bundles/<bundle name>, correct: false}
+            - {value: web/bundles/<bundle name>,        correct: true}
+            - {value: web/<bundle name>,                correct: false}

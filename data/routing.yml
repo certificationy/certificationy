@@ -1,2 +1,9 @@
 category: Routing
-questions: []
+questions:
+    -
+        question: 'Using XML or YAML, how to declare a route for a specific domain/host?'
+        answers:
+            - {value: Add a "domain" attribute,    correct: false}
+            - {value: Add a "host" attribute,      correct: true}
+            - {value: Add a "path" attribute,      correct: false}
+            - {value: Add a "subdomain" attribute, correct: false}
