@@ -13,8 +13,7 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Certificationy\Command\StartCommand;
-use Symfony\Component\Console\Application;
+use Certificationy\Application\Certificationy as Application;
 
 $application = new Application();
-$application->add(new StartCommand());
 $application->run();

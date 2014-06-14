@@ -16,7 +16,7 @@ Start answering questions
 -------------------------
 
 ```
-$ php certificationy.php start [--number=5]
+$ php certificationy.php [--number=5]
 ```
 
 Please, add your questions!
