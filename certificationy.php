@@ -12,7 +12,6 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-use Certificationy\Command\StartCommand;
 use Certificationy\Application\Certificationy as Application;
 
 $application = new Application();
