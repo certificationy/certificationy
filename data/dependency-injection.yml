@@ -7,3 +7,24 @@ questions:
             - {value: <argument type="argument" id="my.custom.service" />, correct: false}
             - {value: <argument type="service" id="my.custom.service" />,  correct: true}
             - {value: <service id="my.custom.service" />,                  correct: false}
+    -
+        question: 'Which types of injection are available in the component?'
+        answers:
+            - {value: constructor, correct: true}
+            - {value: property,    correct: true}
+            - {value: method,      correct: false}
+            - {value: call,        correct: false}
+    -
+        question: 'Using XML, which of these lines are correct to inject a service?'
+        answers:
+            - {value: <service id="my.service" />,                                                      correct: false}
+            - {value: <argument type="service" id="my.service" />,                                      correct: true}
+            - {value: <method setter="setService"><argument type="service" id="my.service" /></method>, correct: false}
+            - {value: <call method="setService"><argument type="service" id="my.service" /></call>,     correct: true}
+    -
+        question: 'Which of these methods are available in ContainerInterface?'
+        answers:
+            - {value: setScope($name),   correct: false}
+            - {value: getScope($name),   correct: false}
+            - {value: addScope($name),   correct: true}
+            - {value: enterScope($name), correct: true}

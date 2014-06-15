@@ -6,4 +6,4 @@ questions:
             - {value: schemes="https",  correct: true}
             - {value: https="true",     correct: false}
             - {value: protocol="https", correct: false}
-            - {value: ensure="https", correct: false}
+            - {value: ensure="https",   correct: false}

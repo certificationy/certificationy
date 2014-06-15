@@ -7,3 +7,24 @@ questions:
             - {value: Add an option 'widget' => 'text',        correct: false}
             - {value: Add an option 'widget' => 'single_text', correct: true}
             - {value: Add an option 'widget' => 'input',       correct: false}
+    -
+        question: 'Which method allows you to handle the request on a form instance?'
+        answers:
+            - {value: $form->bindRequest($request),   correct: false}
+            - {value: $form->handleRequest($request), correct: true}
+            - {value: $form->handle($request),        correct: false}
+            - {value: $form->request($request),       correct: false}
+    -
+        question: 'From a Form instance, which method can you call to obtain a FormView instance?'
+        answers:
+            - {value: $form->getView(),    correct: false}
+            - {value: $form->renderView(), correct: false}
+            - {value: $form->view(),       correct: false}
+            - {value: $form->createView(), correct: true}
+    -
+        question: 'In a Twig template, which function render a form field?'
+        answers:
+            - {value: "{{ form_item(form.field) }}",   correct: false}
+            - {value: "{{ form_render(form.field) }}", correct: false}
+            - {value: "{{ form_widget(form.field) }}", correct: true}
+            - {value: "{{ form_view(form.field) }}",   correct: false}

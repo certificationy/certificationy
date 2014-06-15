@@ -7,3 +7,10 @@ questions:
             - {value: web/assets/bundles/<bundle name>, correct: false}
             - {value: web/bundles/<bundle name>,        correct: true}
             - {value: web/<bundle name>,                correct: false}
+    -
+        question: 'What is the Symfony mail service transport parameter name?'
+        answers:
+            - {value: mailer.transport,   correct: true}
+            - {value: mailer.transporter, correct: false}
+            - {value: mail.transport,     correct: false}
+            - {value: mail.transporter,   correct: false}

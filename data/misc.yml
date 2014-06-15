@@ -7,3 +7,17 @@ questions:
             - {value: FrameworkBundle:Template:action,     correct: false}
             - {value: FrameworkBundle:Template:render,     correct: false}
             - {value: FrameworkBundle:Template:template,   correct: true}
+    -
+        question: 'Which helper is not available in the Console component?'
+        answers:
+            - {value: QuestionHelper, correct: false}
+            - {value: TableHelper,    correct: false}
+            - {value: FileHelper,     correct: true}
+            - {value: DialogHelper,   correct: false}
+    -
+        question: 'What is the LoggerInterface correct namespace?'
+        answers:
+            - {value: Psr\LoggerInterface,                        correct: false}
+            - {value: Psr\Log\LoggerInterface,                    correct: true}
+            - {value: Symfony\Bridge\Monolog\LoggerInterface,     correct: false}
+            - {value: Symfony\Bridge\Monolog\Log\LoggerInterface, correct: false}
