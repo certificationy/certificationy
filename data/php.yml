@@ -6,3 +6,24 @@ questions:
             - {value: <!, correct: false}
             - {value: <%, correct: false}
             - {value: <?, correct: true}
+    -
+        question: 'Which of these operators is non-associative?'
+        answers:
+            - {value: !,    correct: false}
+            - {value: **,   correct: false}
+            - {value: <,    correct: true}
+            - {value: and,  correct: false}
+    -
+        question: 'If function foo() is defined in the namespace myapp\utils\bar and your code is in namespace myapp, what is the correct way to import the bar namespace so you can use the foo() function?'
+        answers:
+            - {value: use bar,                  correct: false}
+            - {value: use myapp\utils\bar,      correct: true}
+            - {value: use utils\bar,            correct: false}
+            - {value: use myapp\utils\bar\foo;, correct: false}
+    -
+        question: 'Which web services are supported natively in PHP?'
+        answers:
+            - {value: SOAP and XML-RPC, correct: true}
+            - {value: REST and SOAP,    correct: false}
+            - {value: Corba and XML-RPC,correct: false}
+            - {value: XML-RPC and REST, correct: false}
