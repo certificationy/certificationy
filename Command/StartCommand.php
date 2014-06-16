@@ -81,7 +81,6 @@ class StartCommand extends Command
 
         // Results
         $results = array();
-        $errorCount = 0;
 
         foreach($questions as $i => $question) {
             $answers = $set->getAnswer($i);
@@ -90,7 +89,7 @@ class StartCommand extends Command
             $isCorrect      = $question->areCorrectAnswers($answers);
 
             if (!$isCorrect) {
-                $errorCount++;
+                $set->addError();
             }
 
             $results[] = array(
@@ -109,7 +108,7 @@ class StartCommand extends Command
         $tableHelper->render($output);
 
         $output->writeln(
-            sprintf('<comment>Results</comment>: <error>errors: %s</error> - <info>correct: %s</info>', $errorCount, (count($questions) - $errorCount))
+            sprintf('<comment>Results</comment>: <error>errors: %s</error> - <info>correct: %s</info>', $set->getErrors(), (count($questions) - $set->getErrors()))
         );
     }
 

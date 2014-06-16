@@ -29,6 +29,11 @@ class Set
     protected $answers;
 
     /**
+     * @var integer
+     */
+    protected $errors;
+
+    /**
      * Constructor
      *
      * @param array $questions
@@ -36,6 +41,7 @@ class Set
     public function __construct(array $questions)
     {
         $this->questions = $questions;
+        $this->errors    = 0;
     }
 
     /**
@@ -79,5 +85,24 @@ class Set
     public function getAnswers()
     {
         return $this->answers;
+    }
+
+    /**
+     * Add an error
+     *
+     */
+    public function addError()
+    {
+        $this->errors++;
+    }
+
+    /**
+     * Returns user errors
+     *
+     * @return integer $errors
+     */
+    public function getErrors()
+    {
+        return $this->errors;
     }
 }
