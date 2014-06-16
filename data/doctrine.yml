@@ -8,7 +8,7 @@ questions:
             - {value: php app/console database:create:entity,   correct: false}
             - {value: php app/console doctrine:create:entity,   correct: false}
     -
-        question: 'What is the command to update the database from entities'
+        question: 'What is the command to update the database from entities?'
         answers:
             - {value: php app/console doctrine:schema:update, correct: true}
             - {value: php app/console doctrine:entity:update, correct: false}
