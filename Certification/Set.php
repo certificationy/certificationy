@@ -39,6 +39,18 @@ class Set
     }
 
     /**
+     * Returns a question
+     *
+     * @param integer $key
+     *
+     * @return Question|null
+     */
+    public function getQuestion($key)
+    {
+        return isset($this->questions[$key]) ? $this->questions[$key] : null;
+    }
+
+    /**
      * Returns questions
      *
      * @return array
@@ -51,8 +63,8 @@ class Set
     /**
      * Add a user answer
      *
-     * @param integer $key
-     * @param array   $answer
+     * @param integer $key    An identifier
+     * @param array   $answer A user answers array
      */
     public function addAnswer($key, $answer)
     {
@@ -64,7 +76,7 @@ class Set
      *
      * @param integer $key
      *
-     * @return null
+     * @return array|null
      */
     public function getAnswer($key)
     {
@@ -79,5 +91,51 @@ class Set
     public function getAnswers()
     {
         return $this->answers;
+    }
+
+    /**
+     * Returns if given question key user answers are correct
+     *
+     * @param integer $key
+     *
+     * @return boolean
+     */
+    public function isCorrect($key)
+    {
+        $question = $this->getQuestion($key);
+        $answers  = $this->getAnswer($key);
+
+        return $question->areCorrectAnswers($answers);
+    }
+
+    /**
+     * Returns valid questions set number
+     *
+     * @return integer
+     */
+    public function getValidNumber()
+    {
+        $count = 0;
+
+        foreach ($this->getQuestions() as $key => $question) {
+            $question = $this->getQuestion($key);
+            $answers  = $this->getAnswer($key);
+
+            if ($question->areCorrectAnswers($answers)) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
+     * Returns errors questions set number
+     *
+     * @return integer
+     */
+    public function getErrorsNumber()
+    {
+        return count($this->getQuestions()) - $this->getValidNumber();
     }
 }

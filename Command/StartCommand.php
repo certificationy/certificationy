@@ -11,8 +11,7 @@
 
 namespace Certificationy\Command;
 
-use Certificationy\Certification\Answer;
-use Certificationy\Certification\Question;
+use Certificationy\Certification\Loader;
 use Certificationy\Certification\Set;
 
 use Symfony\Component\Console\Command\Command;
@@ -20,8 +19,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class StartCommand
@@ -52,16 +49,27 @@ class StartCommand extends Command
         $number = $input->getOption('number');
         $output->writeln(sprintf('Starting a new set of <info>%s</info> questions', $number));
 
-        $set = $this->prepareSet($number);
+        $set = Loader::init($number);
 
-        $questionHelper = $this->getHelperSet()->get('question');
+        $this->askQuestions($set, $input, $output);
 
-        // Ask questions
-        $questions = $set->getQuestions();
+        $this->displayResults($set, $output);
+    }
+
+    /**
+     * Ask questions
+     *
+     * @param Set             $set    A Certificationy questions Set instance
+     * @param InputInterface  $input  A Symfony Console input instance
+     * @param OutputInterface $output A Symfony Console output instance
+     */
+    protected function askQuestions(Set $set, InputInterface $input, OutputInterface $output)
+    {
+        $questionHelper = $this->getHelper('question');
 
         $questionCount = 1;
 
-        foreach($questions as $i => $question) {
+        foreach($set->getQuestions() as $i => $question) {
             $choiceQuestion = new ChoiceQuestion(
                 sprintf(
                     'Question <comment>#%d</comment> [<info>%s</info>] %s',
@@ -76,31 +84,31 @@ class StartCommand extends Command
             $key = $questionHelper->ask($input, $output, $choiceQuestion);
             $set->addAnswer($i, $key);
 
-            $output->writeln('<comment>✎ You answer</comment>: ' . implode(', ', $key) . "\n");
+            $output->writeln('<comment>✎ Your answer</comment>: ' . implode(', ', $key) . "\n");
         }
+    }
 
-        // Results
+    /**
+     * Returns results
+     *
+     * @param Set             $set    A Certificationy questions Set instance
+     * @param OutputInterface $output A Symfony Console output instance
+     */
+    protected function displayResults(Set $set, OutputInterface $output)
+    {
         $results = array();
-        $errorCount = 0;
 
-        foreach($questions as $i => $question) {
-            $answers = $set->getAnswer($i);
-
-            $correctAnswers = $question->getCorrectAnswersValues();
-            $isCorrect      = $question->areCorrectAnswers($answers);
-
-            if (!$isCorrect) {
-                $errorCount++;
-            }
+        foreach($set->getQuestions() as $key => $question) {
+            $isCorrect = $set->isCorrect($key);
 
             $results[] = array(
                 $question->getQuestion(),
-                implode(', ', $correctAnswers),
+                implode(', ', $question->getCorrectAnswersValues()),
                 $isCorrect ? '<info>✔</info>' : '<error>✗</error>'
             );
         }
 
-        $tableHelper = $this->getHelperSet()->get('table');
+        $tableHelper = $this->getHelper('table');
         $tableHelper
             ->setHeaders(array('Question', 'Correct answer', 'Result'))
             ->setRows($results)
@@ -109,65 +117,7 @@ class StartCommand extends Command
         $tableHelper->render($output);
 
         $output->writeln(
-            sprintf('<comment>Results</comment>: <error>errors: %s</error> - <info>correct: %s</info>', $errorCount, (count($questions) - $errorCount))
+            sprintf('<comment>Results</comment>: <error>errors: %s</error> - <info>correct: %s</info>', $set->getErrorsNumber(), $set->getValidNumber())
         );
-    }
-
-    /**
-     * Returns a new set of randomized questions
-     *
-     * @param integer $number
-     *
-     * @return Set
-     */
-    protected function prepareSet($number)
-    {
-        $data    = $this->prepareFromYaml();
-        $dataMax = count($data) - 1;
-
-        $questions = array();
-
-        for ($i = 0; $i < $number; $i++) {
-            do {
-                $random = rand(0, $dataMax);
-            } while (isset($questions[$random]) && count($questions) < $dataMax);
-
-            $item = $data[$random];
-
-            $answers = array();
-
-            foreach ($item['answers'] as $dataAnswer) {
-                $answers[] = new Answer($dataAnswer['value'], $dataAnswer['correct']);
-            }
-
-            $questions[$random] = new Question($item['question'], $item['category'], $answers);
-        }
-
-        return new Set($questions);
-    }
-
-    /**
-     * Prepares data from Yaml files and returns an array of questions
-     *
-     * @return array
-     */
-    protected function prepareFromYaml()
-    {
-        $files = Finder::create()->files()->in(__DIR__ . '/../data/')->name('*.yml');
-
-        $data = array();
-
-        foreach ($files as $file) {
-            $fileData = Yaml::parse($file->getContents());
-
-            $category = $fileData['category'];
-            array_walk($fileData['questions'], function (&$item, $key) use ($category) {
-                $item['category'] = $category;
-            });
-
-            $data = array_merge($data, $fileData['questions']);
-        }
-
-        return $data;
     }
 }

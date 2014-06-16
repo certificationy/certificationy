@@ -55,6 +55,11 @@ class SetTest extends \PHPUnit_Framework_TestCase
         foreach ($this->set->getQuestions() as $question) {
             $this->assertInstanceOf('Certificationy\Certification\Question', $question);
         }
+
+        $this->assertInstanceOf('Certificationy\Certification\Question', $this->set->getQuestion(0));
+
+        $this->assertEquals('my first question', $this->set->getQuestion(0)->getQuestion());
+        $this->assertEquals('my second question', $this->set->getQuestion(1)->getQuestion());
     }
 
     /**
