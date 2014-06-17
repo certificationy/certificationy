@@ -21,9 +21,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 
 /**
- * Class StartCommand
+ * Class CategoryCommand
  *
- * This is the command to start a new questions set
+ * This is the command to list categories
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */

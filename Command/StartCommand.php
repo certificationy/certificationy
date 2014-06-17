@@ -51,7 +51,7 @@ class StartCommand extends Command
         $number = $input->getOption('number');
         $output->writeln(sprintf('Starting a new set of <info>%s</info> questions', $number));
 
-        $set = Loader::init($number);
+        $set = Loader::init($number, $input->getArgument('categories'));
 
         $this->askQuestions($set, $input, $output);
 

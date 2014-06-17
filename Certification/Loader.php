@@ -24,6 +24,7 @@ class Loader
      * Returns a new set of randomized questions
      *
      * @param integer $number
+     * @param array $categories
      *
      * @return Set
      */
@@ -71,7 +72,7 @@ class Loader
             $fileData = Yaml::parse($file->getContents());
 
             $category = $fileData['category'];
-            if (count($categories) > 0 && in_array($category, $categories)) {
+            if (count($categories) == 0 || in_array($category, $categories)) {
                 array_walk($fileData['questions'], function (&$item, $key) use ($category) {
                     $item['category'] = $category;
                 });
