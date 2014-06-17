@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Certificationy\Application;
 
 use Symfony\Component\Console\Application;
@@ -38,7 +39,6 @@ class Certificationy extends Application
     protected function getDefaultCommands()
     {
         $defaultCommands = parent::getDefaultCommands();
-
         $defaultCommands[] = new StartCommand();
 
         return $defaultCommands;
@@ -65,10 +65,10 @@ class Certificationy extends Application
         return new InputDefinition(array(
             new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
 
-            new InputOption('--help',           '-h', InputOption::VALUE_NONE, 'Display this help message.'),
-            new InputOption('--version',        '-V', InputOption::VALUE_NONE, 'Display this application version.'),
-            new InputOption('--ansi',           '',   InputOption::VALUE_NONE, 'Force ANSI output.'),
-            new InputOption('--no-ansi',        '',   InputOption::VALUE_NONE, 'Disable ANSI output.'),
+            new InputOption('--help',    '-h', InputOption::VALUE_NONE, 'Display this help message.'),
+            new InputOption('--version', '-V', InputOption::VALUE_NONE, 'Display this application version.'),
+            new InputOption('--ansi',    null, InputOption::VALUE_NONE, 'Force ANSI output.'),
+            new InputOption('--no-ansi', null, InputOption::VALUE_NONE, 'Disable ANSI output.'),
         ));
     }
 }
