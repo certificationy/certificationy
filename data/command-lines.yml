@@ -14,3 +14,10 @@ questions:
             - {value: A regexp search filter,    correct: false}
             - {value: A route limit,             correct: false}
             - {value: A route name,              correct: true}
+    -
+        question: 'What is the command to check the syntax of a Twig template?'
+        answers:
+            - {value: php app/console twig:lint,     correct: true}
+            - {value: php app/console twig:check,    correct: false}
+            - {value: php app/console twig:validate, correct: false}
+            - {value: php app/console twig:syntax,   correct: false}

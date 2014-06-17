@@ -1,9 +1,28 @@
 category: Twig
 questions:
     -
-        question: 'How to render flash messages of key "success" in a template?'
+        question: 'Using Twig, how to render flash messages of key "success" in a template?'
         answers:
             - {value: "{{ app.session.flashbag('success') }}",                                               correct: false}
             - {value: "{{ app.session.flashbag.get('success') }}",                                           correct: false}
             - {value: "{% for message in app.session.flashbag('success') %} {{ message }} {% endfor %}",     correct: false}
             - {value: "{% for message in app.session.flashbag.get('success') %} {{ message }} {% endfor %}", correct: true}
+    -
+        question: 'Using Twig, how to render a text string in uppercase? ("test" must become "TEST")'
+        answers:
+            - {value: "{{ 'my string'|uppercase }}",  correct: false}
+            - {value: "{{ 'my string'|upper }}",      correct: true}
+            - {value: "{{ 'my string'|capitalize }}", correct: false}
+            - {value: "{{ 'my string'|big }}",        correct: false}
+    -
+        question: 'Using Twig, syntax {% block example '' %} is equivalent to {% block example %}{% endblock %}'
+        answers:
+            - {value: Yes, correct: true}
+            - {value: No,  correct: false}
+    -
+        question: 'Using Twig, how to declare a variable in a template?'
+        answers:
+            - {value: "{{ var myVariable = 'example' }}",  correct: false}
+            - {value: "{% var myVariable = 'example' %}",  correct: false}
+            - {value: "{{ set myVariable = 'example' }}",  correct: false}
+            - {value: "{% set myVariable = 'example' %}",  correct: true}

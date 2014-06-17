@@ -14,3 +14,10 @@ questions:
             - {value: mailer.transporter, correct: false}
             - {value: mail.transport,     correct: false}
             - {value: mail.transporter,   correct: false}
+    -
+        question: 'What is the path to set session cookie_lifetime parameter in a project configuration?'
+        answers:
+            - {value: framework.session.cookie_lifetime,    correct: true}
+            - {value: framework.session.cookie.lifetime,    correct: false}
+            - {value: framework.parameters.cookie_lifetime, correct: false}
+            - {value: framework.cookie_lifetime,            correct: false}
