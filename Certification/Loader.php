@@ -44,7 +44,7 @@ class Loader
             $answers = array();
 
             foreach ($item['answers'] as $dataAnswer) {
-                $answers[] = new Answer($dataAnswer['value'], $dataAnswer['correct']);
+                $answers[] = new Answer($dataAnswer['value'], array_key_exists('correct', $dataAnswer) ? $dataAnswer['correct'] : false);
             }
 
             shuffle($answers);
