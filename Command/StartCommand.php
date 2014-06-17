@@ -15,6 +15,7 @@ use Certificationy\Certification\Loader;
 use Certificationy\Certification\Set;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,6 +39,8 @@ class StartCommand extends Command
             ->setName('start')
             ->setDescription('Starts a new question set')
             ->addOption('number', null, InputOption::VALUE_OPTIONAL, 'How many questions do you want?', 20)
+            ->addOption('list', 'l', InputOption::VALUE_NONE, 'List categories')
+            ->addArgument('categories', InputArgument::IS_ARRAY, 'Which categories do you want (separate multiple with a space)', array())
         ;
     }
 
@@ -46,10 +49,15 @@ class StartCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($input->getOption('list')) {
+            $output->writeln(Loader::getCategories());
+            return ;
+        }
+        
         $number = $input->getOption('number');
         $output->writeln(sprintf('Starting a new set of <info>%s</info> questions', $number));
 
-        $set = Loader::init($number);
+        $set = Loader::init($number, $input->getArgument('categories'));
 
         $this->askQuestions($set, $input, $output);
 
