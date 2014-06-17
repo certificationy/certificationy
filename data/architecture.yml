@@ -21,3 +21,10 @@ questions:
             - {value: framework.session.cookie.lifetime,    correct: false}
             - {value: framework.parameters.cookie_lifetime, correct: false}
             - {value: framework.cookie_lifetime,            correct: false}
+    -
+        question: 'Which design pattern implements the EventDispatcher component?'
+        answers:
+            - {value: adapter, correct: false}
+            - {value: decorator, correct: false}
+            - {value: interpreter, correct: false}
+            - {value: observer, correct:  true}            
