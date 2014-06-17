@@ -1,0 +1,525 @@
+category: Battery 1 cordoval
+# i put this here but we can organize it once it is all typed in
+questions:
+    -
+        question: 'Where are publicly located bundles assets?'
+        answers:
+            - {value: web/assets/<bundle name>,         correct: false}
+            - {value: web/assets/bundles/<bundle name>, correct: false}
+            - {value: web/bundles/<bundle name>,        correct: true}
+            - {value: web/<bundle name>,                correct: false}
+
+1. In twig, what do you use if you want to optimize the size of the generated HTML content?
+    a. spaceless
+    b. gzip
+    c. operators
+
+the spaceless tag
+answer is b
+really ?
+twig supports gzip ?
+don't look up
+let's go to the next one
+alright great
+This tag is not meant to "optimize" the size of the generated HTML content but merely to avoid extra whitespace between HTML tags to avoid browser rendering quirks under some circumstances.
+Ah cool.
+i thought gzip was on the response level
+okay
+
+2. In Twig, which other Twig function works as the old raw tag, for when you want to display code and not be parsed?
+    a. spaceless
+    b. raw2
+    c. escape with some special parameters
+    d. noparse
+    e. verbatim
+    f. raw tag
+
+hmm
+e ?
+you mean a function that works the same as the old raw tag right ?
+but verbatim is a tag, not a function...
+yeah a tag
+ok correct
+next
+okay
+
+3. In Twig, the batch function:
+    a. is used to fill strings with random characters in a batch
+    b. renders a vector out of an element value given
+    c. is used to parse a string and output the string characters in an for loop
+    d. returns a list of lists with a given number of items out of the set
+
+d
+:)
+
+ok 4
+is it all about twig ?
+twig is a big component
+on the test
+okay
+you should be thankful i am stressing twig now
+(Y)
+
+4. In Twig, when compiling a node tree how can you change the default compiler on your $twig object
+
+
+free answer
+i don't think that answer
+i don't know*
+$twig->setCompiler($compiler)
+:)
+Ah so easy
+never used twig as an independant component
+always used it as  a service
+so far
+alright
+
+5. In Twig which loader can you use to load templates from a database and the filesystem simultaneously?
+    a. I can implement Twig_LoaderInterface, Twig_ExistsLoaderInterface into a combined loader and load everything at once
+    b. I can implement DatabaseTwigLoader extending Twig_LoaderInterface and Twig_ExistsLoaderInterface
+    and load templates using TwigMainLoader
+    c. I can do as b but use the Twig_Loader_Chain to chain loaders
+    and set it to the Context
+    d. I can do as c but rather than setting the loaders into Context I initialize Twig_Environment with the chain loader
+    e. is not currently possible but there is a PR for that
+
+d?
+:)
+correct
+awesome
+i didn't know this one
+but assumed it would work like the chain router
+from cmf
+
+6. in Twig, name which one is not a method of the Twig_Filter class:
+    a. needsLoader()
+    b. needsEnvironment()
+    c. needsContext()
+    d. getSafe() and getPreEscape()
+    e. b and d
+
+a
+correct
+a filter only needs the string and context
+doesn't need to know where the template came from
+or was loaded from
+:)
+
+7. In Twig, a visitor priority varies between:
+    a. -255 to 255
+    b. -70 to 70
+    c. 0 - 40
+    d. -10 to 10
+    e. it is fixed
+
+d
+
+8. In Twig, all these classes Escaper, Optimizer, SafeAnalysis, Sandbox share common methods :
+    a. setArguments, getArguments
+    b. isValid()
+    c. setPriority(), getPriority()
+    d. a combination of a and c
+    e. none of the above
+
+d?
+not sure
+incorrect
+e.
+those classes are Visitors
+hmm okay, so no common methods like that
+they all implement enterNode and leaveNode
+and getPriority
+because they are visitors
+i see
+even safeanalysis
+is a visitor ?
+yeah
+oh okay
+
+9. In Twig this statement is valid:
+    a. first and last functions work in the same way as the random filter
+    b. first and last functions are great to extract the first and the last element of an array
+    c. random filter when used without arguments is like mt_rand
+    d. random function when passed a string splits the string and outputs a single character
+    e. when random function receives a number it treats it as the top value of the random series it outputs
+
+a is invalid
+all others are valid
+no
+ah wait wait
+hah
+c
+ci si valid
+because all others say function
+while they are filters
+not functions
+stop, you had your chance
+wait
+ah no wait
+a. first and last functions work in the same way as the random filter
+first and last are filters
+yes you're right
+random() is a function
+they work similarly to random however random is a function and it outputs random values out of an array or such
+b. first and last functions are great to extract the first and the last element of an array
+but how do they work similarly ?
+they are not functions
+c. random filter when used without arguments is like mt_rand
+random is a function, but it does work like mt_rand
+d. random function when passed a string splits the string and outputs a single character
+correct
+e. when random function receives a number it treats it as the top value of the random series it outputs
+correct
+d and e
+so this was a trick question
+must pay attention to all choices before making up my mind
+correct
+this test is very similar to the real one
+(Y)
+
+
+10. in Twig, suppose you have an object person
+    a. If person has a property address-main, I can access it with person.getAddressMain()
+    b. If person has a property address_main, I better access it with person.['address_main']
+    c. a and b are possible
+    d. I have to create a special getter for accessing the property above
+    e. no, the [] operand works in any situation
+    f. get_attribute(person, 'address-main') does it
+    g. none of the above, Twig comes with a special function for this
+
+i think its a
+but it could be c
+but i think its a
+When the attribute contains special characters (like - that would be interpreted as the minus operator), use the attribute function instead to access the variable attribute.
+{# equivalent to the non-working foo.data-foo #}
+{{ attribute(foo, 'data-foo') }}
+oh
+because it's - instead of _ in a
+i see now
+so you can't do person.address-main
+cause that's like person.address - main
+?
+correct
+so is it g
+none of the above ?
+right
+
+11. In Twig, what is the correct order:
+    For convenience sake foo.bar does the following things on the PHP layer:
+    https://gist.github.com/cordoval/e8a98fe50481dcdace25
+    a
+    b
+    c
+    or d?
+
+
+c
+?
+or b
+hmm
+correct
+c
+okay so my reasoning is correct
+
+12. In Twig:
+    a. you can chain filters with filters and functions with functions but not mix them
+    b. you can chain anything
+    c. you can access global vars only provided by Symfony on TwigBundle
+    d. there is only three global vars that come by default _self, _superglobals, _charset
+
+d is incorrect
+and b is incorrect
+hmmm
+so a or c
+e. if you want to use the c twig extension you have to change only a thing in your composer.json
+f. Twig is not anymore on PEAR
+ah
+should i choose 1 answer ?
+or many ?
+g. Twig version 1.12.2 onwards are secure
+h. Twig 1.13 has a buggy C extension
+a. you can chain filters with filters and functions with functions but not mix them
+you can so it is false
+you can chain filters with functions ?
+how do you chain functions? i never saw that
+only filters
+have an example ?
+date()|date
+yes but that's not chaining functions
+that's chaining a filter after a function
+but you can't do
+date()|something()|else()
+can you ?
+date(random())
+okay so that's considered chaining
+alright
+b. you can chain anything seems to be correct
+c. you can access global vars only provided by Symfony on TwigBundle
+is incorrect
+d. there is only three global vars that come by default _self, _superglobals, _charset
+it is not _superglobals but _context
+e. if you want to use the c twig extension you have to change only a thing in your composer.json
+is a php extension so it is not installable with composer.json
+f. Twig is not anymore on PEAR
+is true
+g. Twig version 1.12.2 onwards are secure
+is false
+1.12.3 have serious security issues
+http://pear.twig-project.org/
+h. Twig 1.13 has a buggy C extension
+is correct
+it was very buggy
+crashed the C extension
+a lot
+let me remind you you can't access the internet
+yes i know, i just checked that now
+cause i was sure i saw it the other day
+on pear
+well it is discontinued
+it will not happen anymore
+alright
+enough with Twig
+that was intense
+that's exactly the type of question at the exam
+right ?
+you shall see it yourself when you take it
+
+13. In Symfony:
+    1. Symfony\Bundle\SecurityBundle\Security\FirewallContext services are publicly created that correspond to each context you create under your security.yml, a context is called an authenticator
+    2. Symfony\Bundle\SecurityBundle\Security\FirewallContext services are privately created that correspond to each context you create under your security.yml, a context is also known as per each firewall
+    3. Symfony\Bundle\SecurityBundle\Security\FirewallContext services are synthetically created that correspond to each context you create under your security.yml, each context is liked to an authenticator
+    4. Symfony\Bundle\SecurityBundle\Security\FirewallContext services are publicly created that correspond to each context you create under your security.yml, a context is related to each FirewallContext directly but is overall handled by a generic Symfony\Bundle\SecurityBundle\Security\Firewall object
+
+4
+:)
+;)
+
+14. Metadata\Driver\DriverChain is a class:
+    a. that comes within FrameworkBundle
+    b. that comes with the FrameworkExtraBundle
+    c. It is not found in the Symfony Standard Edition
+    d. It is a class with license issues
+    e. It is deprecated but it is in Symfony core
+
+not a and not b
+i don't think e
+so c or d
+d is correct
+c is not correct
+it is the meta-data library from johaness
+license problems because of generic naming ?
+no because it is * http://www.apache.org/licenses/LICENSE-2.0
+not compatible with symfony's license
+ok
+
+15. In Symfony:
+    a. SecureRandom class at the heart of security component has only one public nextBytes method
+    b. RoleHierarchy also at the heart of security component implements RoleHierarchyInterface which obliges this class to implement buildRoleMap
+    c. There are only two classes named ResponseListener in the whole of Symofony and they implement EventSubscriberInterface
+    d. There is a ResponseListener under RememberMe feature and this acts by setting a cookie on every response the app sends back to the user
+    e. About the other ResponseListener found under HttpKernel complaint with RFC 2616 means most importantly that it ensures certain dimensions on header length are kept
+    f. in Symfony Symfony\Component\Security\Core\Encoder\EncoderFactory getEncoder does create an encoder everytime for security reasons
+
+should i comment on each
+or choose one correct ?
+say which ones are true
+say you don't know if you don't
+or skip
+so i can explain
+okay
+1)don't know
+b)true
+c)false
+d)false
+e)true
+f)true
+a is true
+b is false
+that gerRole is private , the interface method is getReachableRoles
+c is true
+d is false because it does that but not on every response
+only when it detects the remember attribute on the request
+yes casues its a cookie
+it can last
+e is false
+it ensures it contains certain headers
+so more than just checking lengths which i think is a made up
+yes RFC2616 is much more than that
+oh wow already 2 hours
+no wonder the exam is 3 or 4
+
+16. in Symfony:
+    a. GetSetMethodNormalizer is broken by design
+    b. one can load normalizers and/or encoders by tagging them as serializer.normalizer and serializer.encoder respectiv    ely true makes the serializer available in the container and loads 3 encoders and 1 default normalizer
+    d. JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface
+    e. NormalizerInterface has methods normalize and supportsNormalization
+    f. DenormalizerInterface has methods denormalize and supportsDenormalization but their methods have less arguments       than the normalizer
+
+a)don't know
+b)true)
+c)don't know
+d)true
+e)false
+f)don't know
+g. going from object to array is called normalizing, and from an array to JSON is called decoding
+g)false
+a is true
+The GetSetMethodNormalizer is broken by design. As soon as you have a circular object graph, an infinite loop is created when calling the getters. You're encouraged to add your own normalizers that fit your use-case.
+oops that's true
+b is true
+c is false, it does but it is only 2 encoders and no normalizers
+d is true
+e is true
+f is false, is the other way, the denormalizer method needs more arguments
+g is false
+think it as this
+Object is high in hierarchy
+then comes an array
+then a json string
+so going up means industry
+we normalize from array to object
+and we encode from json string to array
+(Y)
+we serialize because channels don't support objects
+so that is lower rank
+deserialization goes up in the chain until object
+is reached
+then we move them back up to objects
+right
+with normalization
+yes
+from array to object
+yes
+once json is decoded to array
+yes
+think enygma
+json is the papers with the letters
+object is the meaning
+array is in the process of decrypting
+we decode the letters
+and normalize the arrays to get the idea
+(Y)
+we denormalize an idea into an array and then encode it into a secret paper with letters
+alright
+next
+
+
+17. in Symfony:
+    a. you can inject a container parameter into a ContainerAware Command
+    b. Descriptors are objects to render documentation on Symfony Console Apps
+    c. Symfony Console component needs the PHP globals internally to work
+    d. Symfony natively supports multiple file uploading by default
+    e. you can only import strings with the IniFileLoader from a .ini file
+
+a)false. you can't but you can retrieve it from $this->container
+b)true
+c)false
+d)true
+e)true
+d is false
+is not by default
+oh i see
+how do you enable it ?
+'multiple' => true
+on your form type field options
+yes but it supports it by default
+you just need to enable it
+d. Symfony natively supports multiple file uploading by default
+multiple is false by default
+
+18. In Symfony:
+    a. There is a lesser known templating component with which you can build your own templating system not php and not     twig
+    b. This component is heavily used by Twig
+    c. Symfony has 27 components to this date
+    d. Syfmony Translator component follows the same architecture for loaders than Twig does
+
+
+a)false
+b)false
+c)true)
+d)false
+a is true
+b is true in Symfony
+c is true
+d is true $translator->addLoader('array', new ArrayLoader());
+oh
+what's that templating component
+?
+/Users/cordoval/Sites/project/vendor/symfony/symfony/src/Symfony/Component/Templating
+ahh i didn't understand the question
+of course you can build your own with the component
+i thought there was already another templating engine
+other than twig and php implemented
+alright
+
+19. in Symfony:
+    a. There is a component that is only 6 classes, has no folder structure and is very simple. That is the Yaml    component.
+    b. There is a component that is only 10 classes, has no folder structure and is very simple. That is the Yaml component
+    c. The Dispatcher component is only 8 classes and the latest version passes also the dispatcher and the name of the event to the listener
+    d. In Symfony, all the instances of the event_dispatcher are container aware by default unless you register a new event_dispatcher that does inject your services
+    e. src/Symfony/Bundle/FrameworkBundle/Resources/config shows xml configuration for each service how the FrameworkBundle hooks special services of Symfony, it is also in charge to set the environment services, for instance test.client
+
+a)true
+b)false
+3)true
+d)false
+a is false
+b is true
+e)true
+c is true
+d is true
+e is true
+event dispatcher is container aware ?
+:)
+Symfony is not the best framework sometimes between us :)
+heh
+it still works
+alright
+for some our use cases yeah
+so yaml component has 10 classes ?
+that's too big
+6 plus 4 exception classes
+20.
+this part is the practical one
+alright
+should be better
+paste here a gist with a subscriber implementation of what you remember of a subscriber doing the following
+a. taking the response from the event and setting a cookie
+b. write a twig filter and use a global twig parameter into that filter
+c. use an annotation in an action with the ParameterConverter correctly
+all those 3 are snippets
+all those inside 1 subscriber ?
+no
+those are separate snippets
+you cannot look up anything
+send me the gists please
+you have 5 minutes only
+like this
+...
+?
+yeah
+send it quick 3 minutes
+when we write a twig filter
+we must implement it as part of a class
+a twig extension
+you want me to write the extension
+?
+you want me to implement a custom twig filter or simply use an existing one within a template ?
+yeah, the extension
+
+ah sorry
+
+should be it
+ok that is half a point
+ok
+we are done
+okay
+why half a point ?
+because it was ok but not perfect
+what are mistakes
+i see
+extending classes
+oh twig extension
+and also tags, namespaces, and also configuration directives
+forgot to extend
+and usage

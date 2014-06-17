@@ -9,6 +9,10 @@
         {
             "name": "Vincent Composieux",
             "email": "vincent.composieux@gmail.com"
+        },
+        {
+            "name": "Luis Cordova",
+            "email": "cordoval@gmail.com"
         }
     ],
     "require": {
