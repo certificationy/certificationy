@@ -37,7 +37,8 @@ class StartCommand extends Command
         $this
             ->setName('start')
             ->setDescription('Starts a new question set')
-            ->addOption('number', null, InputOption::VALUE_OPTIONAL, 'How many questions do you want?', 20)
+            ->addOption('number', null, InputOption::VALUE_REQUIRED, 'How many questions do you want?', 20)
+            ->addOption('show-multiple-choice', null, InputOption::VALUE_OPTIONAL, 'Should we tell you when the question is multiple choice?', true)
         ;
     }
 
@@ -66,25 +67,33 @@ class StartCommand extends Command
     protected function askQuestions(Set $set, InputInterface $input, OutputInterface $output)
     {
         $questionHelper = $this->getHelper('question');
-
+        $showMultipleChoice = $input->getOption('show-multiple-choice');
         $questionCount = 1;
 
-        foreach($set->getQuestions() as $i => $question) {
+        foreach ($set->getQuestions() as $i => $question) {
             $choiceQuestion = new ChoiceQuestion(
                 sprintf(
-                    'Question <comment>#%d</comment> [<info>%s</info>] %s',
+                    'Question <comment>#%d</comment> [<info>%s</info>] %s'.
+                    ($showMultipleChoice === true ? "\n" . 'This question is <comment>'.($question->isMultipleChoice() === true ? 'IS' : 'NOT')."</comment> multiple choice." : ""),
                     $questionCount++, $question->getCategory(), $question->getQuestion()
                 ),
                 $question->getAnswersLabels()
             );
 
-            $choiceQuestion->setMultiselect(true);
+            $multiSelect = $showMultipleChoice === true ? $question->isMultipleChoice() : true;
+            $choiceQuestion->setMultiselect($multiSelect);
             $choiceQuestion->setErrorMessage('Answer %s is invalid.');
 
-            $key = $questionHelper->ask($input, $output, $choiceQuestion);
-            $set->addAnswer($i, $key);
+            $answer = $questionHelper->ask($input, $output, $choiceQuestion);
+            if ($multiSelect === true) {
+                $answers = $answer;
+                $answer  = implode(', ', $answer);
+            } else {
+                $answers = [$answer];
+            }
+            $set->addAnswer($i, $answers);
 
-            $output->writeln('<comment>✎ Your answer</comment>: ' . implode(', ', $key) . "\n");
+            $output->writeln('<comment>✎ Your answer</comment>: ' . $answer . "\n");
         }
     }
 
@@ -98,7 +107,7 @@ class StartCommand extends Command
     {
         $results = array();
 
-        foreach($set->getQuestions() as $key => $question) {
+        foreach ($set->getQuestions() as $key => $question) {
             $isCorrect = $set->isCorrect($key);
 
             $results[] = array(
