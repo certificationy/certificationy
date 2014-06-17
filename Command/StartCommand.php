@@ -74,7 +74,7 @@ class StartCommand extends Command
             $choiceQuestion = new ChoiceQuestion(
                 sprintf(
                     'Question <comment>#%d</comment> [<info>%s</info>] %s'.
-                    ($showMultipleChoice === true ? "\n" . 'This question is <comment>'.($question->isMultipleChoice() === true ? 'IS' : 'NOT')."</comment> multiple choice." : ""),
+                    ($showMultipleChoice === true ? "\n" . 'This question <comment>'.($question->isMultipleChoice() === true ? 'IS' : 'IS NOT')."</comment> multiple choice." : ""),
                     $questionCount++, $question->getCategory(), $question->getQuestion()
                 ),
                 $question->getAnswersLabels()
