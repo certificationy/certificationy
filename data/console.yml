@@ -1,0 +1,22 @@
+category: Console
+questions:
+    -
+        question: 'Which helper is not available in the Console component?'
+        answers:
+            - {value: QuestionHelper, correct: false}
+            - {value: TableHelper,    correct: false}
+            - {value: FileHelper,     correct: true}
+            - {value: DialogHelper,   correct: false}
+    -
+        question: 'Which event is not available in the Console Component?'
+        answers:
+            - {value: ConsoleEvents::COMMAND, correct: false}
+            - {value: ConsoleEvents::TERMINATE, correct: false}
+            - {value: ConsoleEvents::EXCEPTION, correct: false}
+            - {value: ConsoleEvents::LAUNCH, correct: true}
+    -
+        question: 'How to launch Console application in interactive mode?'
+        answers:
+            - {value: php app/console -s , correct: true}
+            - {value: php app/console --interactive, correct: false}
+            - {value: no one, correct: false}
