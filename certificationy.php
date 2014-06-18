@@ -13,6 +13,10 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Certificationy\Application\Certificationy as Application;
+use Certificationy\Command\CategoryCommand;
+use Certificationy\Command\StartCommand;
 
 $application = new Application();
+$application->add(new StartCommand());
+$application->add(new CategoryCommand());
 $application->run();

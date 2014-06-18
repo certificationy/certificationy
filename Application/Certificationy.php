@@ -11,6 +11,7 @@
 
 namespace Certificationy\Application;
 
+use Certificationy\Command\CategoryCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -28,32 +29,33 @@ class Certificationy extends Application
     /**
      * {@inheritdoc}
      */
-    protected function getCommandName(InputInterface $input)
+    /*protected function getCommandName(InputInterface $input)
     {
         return 'start';
-    }
+    }*/
 
     /**
      * {@inheritdoc}
      */
-    protected function getDefaultCommands()
+    /*protected function getDefaultCommands()
     {
         $defaultCommands = parent::getDefaultCommands();
         $defaultCommands[] = new StartCommand();
+        $defaultCommands[] = new CategoryCommand();
 
         return $defaultCommands;
-    }
+    }*/
 
     /**
      * {@inheritdoc}
      */
-    public function getDefinition()
+    /*public function getDefinition()
     {
         $inputDefinition = parent::getDefinition();
         $inputDefinition->setArguments();
 
         return $inputDefinition;
-    }
+    }*/
     
     /**
      * Gets the default input definition.
