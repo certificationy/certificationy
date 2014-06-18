@@ -40,3 +40,10 @@ questions:
             - {value: matches,   correct: false}
             - {value: in,        correct: false}
             - {value: contains,  correct: true}
+    -
+        question: 'Using Twig, what syntax used to execute statements?'
+        answers:
+            - {value: "{% %}",  correct: true}
+            - {value: "{{ }}",  correct: false}
+            - {value: "{# #}",  correct: false}
+            - {value: "{ }",    correct: false}
