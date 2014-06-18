@@ -1,7 +1,7 @@
 category: Validation
 questions:
     -
-        question: 'Which interface you must implement on your object to use group validation?'
+        question: 'In order to use validation group, which interface will you implement on your object?'
         answers:
             - {value: Symfony\Component\Validator\GroupValidationInterface,         correct: false}
             - {value: Symfony\Component\Validator\GroupValidationProviderInterface, correct: false}

@@ -24,7 +24,7 @@ questions:
     -
         question: 'Which design pattern implements the EventDispatcher component?'
         answers:
-            - {value: adapter, correct: false}
-            - {value: decorator, correct: false}
-            - {value: interpreter, correct: false}
-            - {value: observer, correct:  true}            
+            - {value: Adapter,     correct: false}
+            - {value: Decorator,   correct: false}
+            - {value: Interpreter, correct: false}
+            - {value: Observer,    correct: true}

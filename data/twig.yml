@@ -27,16 +27,16 @@ questions:
             - {value: "{{ set myVariable = 'example' }}",  correct: false}
             - {value: "{% set myVariable = 'example' %}",  correct: true}
     -
-        question: 'Which method in class Twig_Extension return list of functions to add to the existing list?'
+        question: 'In class \Twig_Extension, which method returns list of functions?'
         answers:
-            - {value: getExtensions(),  correct: false}
-            - {value: getFunctions(),  correct: true}
-            - {value: getOperators(),  correct: false}
+            - {value: getExtensions(),    correct: false}
+            - {value: getFunctions(),     correct: true}
+            - {value: getOperators(),     correct: false}
             - {value: getFunctionList(),  correct: false}
     -
-        question: 'Which comparison operator is not available in Twig'
+        question: 'Using Twig, which comparison operator is not available?'
         answers:
-            - {value: ends with,  correct: false}
-            - {value: matches,  correct: false}
-            - {value: in,  correct: false}
+            - {value: ends with, correct: false}
+            - {value: matches,   correct: false}
+            - {value: in,        correct: false}
             - {value: contains,  correct: true}
