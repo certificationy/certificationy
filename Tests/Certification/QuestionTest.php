@@ -89,4 +89,26 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
             array()
         ));
     }
+
+    /**
+     * Tests isMultipleChoice() method
+     */
+    public function testIsMultipleChoice()
+    {
+        $multipleChoiceAnswers = array(
+            new Answer('my first answer', true),
+            new Answer('my second answer', true),
+            new Answer('my third answer', false)
+        );
+        $nonMultipleChoiceAnswers = array(
+            new Answer('my first answer', true),
+            new Answer('my second answer', false),
+            new Answer('my third answer', false)
+        );
+
+        $multipleChoiceQuestion = new Question('my question', 'my category', $multipleChoiceAnswers);
+        $this->assertTrue($multipleChoiceQuestion->isMultipleChoice());
+        $nonMultipleChoiceQuestion = new Question('my question', 'my category', $nonMultipleChoiceAnswers);
+        $this->assertFalse($nonMultipleChoiceQuestion->isMultipleChoice());
+    }
 }

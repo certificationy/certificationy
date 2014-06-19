@@ -23,11 +23,11 @@ class Loader
     /**
      * Returns a new set of randomized questions
      *
-     * @param integer $number
+     * @param int $number
      *
      * @return Set
      */
-    static public function init($number)
+    public static function init($number)
     {
         $data    = self::prepareFromYaml();
         $dataMax = count($data) - 1;
@@ -60,7 +60,7 @@ class Loader
      *
      * @return array
      */
-    static protected function prepareFromYaml()
+    protected static function prepareFromYaml()
     {
         $files = Finder::create()->files()->in(__DIR__ . '/../data/')->name('*.yml');
 
