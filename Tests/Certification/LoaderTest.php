@@ -10,7 +10,10 @@
 
 namespace Certificationy\Tests;
 
+use Certificationy\Certification\Answer;
 use Certificationy\Certification\Loader;
+use Certificationy\Certification\Question;
+use Certificationy\Certification\Set;
 
 /**
  * LoaderTest
@@ -24,7 +27,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testInitialization()
     {
-        $set = Loader::init(5);
+        $set = Loader::init(5, array());
 
         $this->assertInstanceOf('Certificationy\Certification\Set', $set, 'Should return an instance of set');
 
@@ -32,4 +35,16 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($set->getAnswers());
     }
+    
+    public function testCanGetCategoryList()
+    {
+        $this->assertTrue(is_array(Loader::getCategories()));
+    }
+    
+    public function testWant20QuestionsButOnly1QuestionIsAvailelbeInTheCategory()
+    {
+        $set = Loader::init(20, array('Twig'));
+        $this->assertCount(1, $set->getQuestions());
+    }
+    
 }

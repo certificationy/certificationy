@@ -121,8 +121,10 @@ class Set
             $question = $this->getQuestion($key);
             $answers  = $this->getAnswer($key);
 
-            if ($question->areCorrectAnswers($answers)) {
-                $count++;
+            if ($answers !== null) {
+                if ($question->areCorrectAnswers($answers)) {
+                    $count++;
+                }
             }
         }
 
