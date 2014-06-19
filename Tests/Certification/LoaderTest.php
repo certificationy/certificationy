@@ -10,10 +10,7 @@
 
 namespace Certificationy\Tests;
 
-use Certificationy\Certification\Answer;
 use Certificationy\Certification\Loader;
-use Certificationy\Certification\Question;
-use Certificationy\Certification\Set;
 
 /**
  * LoaderTest
@@ -39,12 +36,6 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
     public function testCanGetCategoryList()
     {
         $this->assertTrue(is_array(Loader::getCategories()));
-    }
-    
-    public function testWant20QuestionsButOnly1QuestionIsAvailelbeInTheCategory()
-    {
-        $set = Loader::init(20, array('Twig'));
-        $this->assertCount(1, $set->getQuestions());
     }
     
 }

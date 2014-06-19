@@ -19,7 +19,7 @@ namespace Certificationy\Certification;
 class Set
 {
     /**
-     * @var array
+     * @var Question[]
      */
     protected $questions;
 
@@ -31,7 +31,7 @@ class Set
     /**
      * Constructor
      *
-     * @param array $questions
+     * @param Question[] $questions
      */
     public function __construct(array $questions)
     {
@@ -41,7 +41,7 @@ class Set
     /**
      * Returns a question
      *
-     * @param integer $key
+     * @param int $key
      *
      * @return Question|null
      */
@@ -53,7 +53,7 @@ class Set
     /**
      * Returns questions
      *
-     * @return array
+     * @return Question[]
      */
     public function getQuestions()
     {
@@ -63,8 +63,8 @@ class Set
     /**
      * Add a user answer
      *
-     * @param integer $key    An identifier
-     * @param array   $answer A user answers array
+     * @param int   $key    An identifier
+     * @param array $answer A user answers array
      */
     public function addAnswer($key, $answer)
     {
@@ -74,7 +74,7 @@ class Set
     /**
      * Returns a user answers by question key
      *
-     * @param integer $key
+     * @param int $key
      *
      * @return array|null
      */
@@ -96,9 +96,9 @@ class Set
     /**
      * Returns if given question key user answers are correct
      *
-     * @param integer $key
+     * @param int $key
      *
-     * @return boolean
+     * @return bool
      */
     public function isCorrect($key)
     {
@@ -111,7 +111,7 @@ class Set
     /**
      * Returns valid questions set number
      *
-     * @return integer
+     * @return int
      */
     public function getValidNumber()
     {
@@ -134,7 +134,7 @@ class Set
     /**
      * Returns errors questions set number
      *
-     * @return integer
+     * @return int
      */
     public function getErrorsNumber()
     {

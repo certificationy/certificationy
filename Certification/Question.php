@@ -34,6 +34,11 @@ class Question
     protected $answers;
 
     /**
+     * @var bool
+     */
+    protected $multipleChoice;
+
+    /**
      * Constructor
      *
      * @param string $question
@@ -42,9 +47,10 @@ class Question
      */
     public function __construct($question, $category, array $answers)
     {
-        $this->question = $question;
-        $this->category = $category;
-        $this->answers  = $answers;
+        $this->question       = $question;
+        $this->category       = $category;
+        $this->answers        = $answers;
+        $this->multipleChoice = count($this->getCorrectAnswersValues()) > 1 ? true : false;
     }
 
     /**
@@ -100,7 +106,7 @@ class Question
      *
      * @param array $answers
      *
-     * @return boolean
+     * @return bool
      */
     public function areCorrectAnswers(array $answers)
     {
@@ -137,5 +143,15 @@ class Question
         }
 
         return $answers;
+    }
+
+    /**
+     * Returns whether multiple answers are correct for this question
+     *
+     * @return bool
+     */
+    public function isMultipleChoice()
+    {
+        return $this->multipleChoice;
     }
 }

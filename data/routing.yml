@@ -7,3 +7,10 @@ questions:
             - {value: Add a "host" attribute,      correct: true}
             - {value: Add a "path" attribute,      correct: false}
             - {value: Add a "subdomain" attribute, correct: false}
+    -
+        question: 'What variable you can use as controller argument for getting the name of the route that was matched?'
+        answers:
+            - {value: $_route,            correct: true}
+            - {value: $_controller,       correct: false}
+            - {value: $_method,           correct: false}
+            - {value: $_action,           correct: false}

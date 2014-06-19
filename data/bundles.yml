@@ -14,3 +14,10 @@ questions:
             - {value: build(),       correct: true}
             - {value: boot(),        correct: false}
             - {value: bootstrap(),   correct: false}
+    -
+        question: 'Which of these bundles comes with the Symfony Standard Edition?'
+        answers:
+            - {value: SensioFrameworkExtraBundle, correct: true}
+            - {value: DoctrineFixturesBundle,     correct: true}
+            - {value: DoctrineMigrationBundle,    correct: true}
+            - {value: SensioDoctrineBundle,       correct: false}

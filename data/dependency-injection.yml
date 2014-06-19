@@ -12,8 +12,8 @@ questions:
         answers:
             - {value: constructor, correct: true}
             - {value: property,    correct: true}
-            - {value: method,      correct: false}
-            - {value: call,        correct: false}
+            - {value: method,      correct: true}
+            - {value: constant,    correct: false}
     -
         question: 'Using XML, which of these lines are correct to inject a service?'
         answers:

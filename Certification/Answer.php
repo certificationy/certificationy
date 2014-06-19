@@ -24,15 +24,15 @@ class Answer
     protected $value;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $correct;
 
     /**
      * Constructor
      *
-     * @param string  $value
-     * @param boolean $correct
+     * @param string $value
+     * @param bool   $correct
      */
     public function __construct($value, $correct)
     {
@@ -53,7 +53,7 @@ class Answer
     /**
      * Returns if answer is correct
      *
-     * @return boolean
+     * @return bool
      */
     public function isCorrect()
     {

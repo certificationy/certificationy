@@ -40,6 +40,7 @@ class StartCommand extends Command
             ->setDescription('Starts a new question set')
             ->addOption('number', null, InputOption::VALUE_OPTIONAL, 'How many questions do you want?', 20)
             ->addOption('list', 'l', InputOption::VALUE_NONE, 'List categories')
+			->addOption('show-multiple-choice', null, InputOption::VALUE_OPTIONAL, 'Should we tell you when the question is multiple choice?', true)
             ->addArgument('categories', InputArgument::IS_ARRAY, 'Which categories do you want (separate multiple with a space)', array())
         ;
     }
@@ -74,25 +75,31 @@ class StartCommand extends Command
     protected function askQuestions(Set $set, InputInterface $input, OutputInterface $output)
     {
         $questionHelper = $this->getHelper('question');
-
+        $showMultipleChoice = $input->getOption('show-multiple-choice');
         $questionCount = 1;
 
         foreach($set->getQuestions() as $i => $question) {
             $choiceQuestion = new ChoiceQuestion(
                 sprintf(
-                    'Question <comment>#%d</comment> [<info>%s</info>] %s',
+                    'Question <comment>#%d</comment> [<info>%s</info>] %s'.
+                    ($showMultipleChoice === true ? "\n" . 'This question <comment>'.($question->isMultipleChoice() === true ? 'IS' : 'IS NOT')."</comment> multiple choice." : ""),
                     $questionCount++, $question->getCategory(), $question->getQuestion()
                 ),
                 $question->getAnswersLabels()
             );
 
-            $choiceQuestion->setMultiselect(true);
+            $multiSelect = $showMultipleChoice === true ? $question->isMultipleChoice() : true;
+            $choiceQuestion->setMultiselect($multiSelect);
             $choiceQuestion->setErrorMessage('Answer %s is invalid.');
 
-            $key = $questionHelper->ask($input, $output, $choiceQuestion);
-            $set->addAnswer($i, $key);
+            $answer = $questionHelper->ask($input, $output, $choiceQuestion);
 
-            $output->writeln('<comment>✎ Your answer</comment>: ' . implode(', ', $key) . "\n");
+            $answers = true === $multiSelect ? $answer : array($answer);
+            $answer  = true === $multiSelect ? implode(', ', $answer) : $answer;
+
+            $set->addAnswer($i, $answers);
+
+            $output->writeln('<comment>✎ Your answer</comment>: ' . $answer . "\n");
         }
     }
 
