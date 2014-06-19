@@ -85,12 +85,10 @@ class StartCommand extends Command
             $choiceQuestion->setErrorMessage('Answer %s is invalid.');
 
             $answer = $questionHelper->ask($input, $output, $choiceQuestion);
-            if ($multiSelect === true) {
-                $answers = $answer;
-                $answer  = implode(', ', $answer);
-            } else {
-                $answers = [$answer];
-            }
+
+            $answers = true === $multiSelect ? $answer : array($answer);
+            $answer  = true === $multiSelect ? implode(', ', $answer) : $answer;
+
             $set->addAnswer($i, $answers);
 
             $output->writeln('<comment>✎ Your answer</comment>: ' . $answer . "\n");
