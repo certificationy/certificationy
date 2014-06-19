@@ -28,3 +28,10 @@ questions:
             - {value: "{{ form_render(form.field) }}", correct: false}
             - {value: "{{ form_widget(form.field) }}", correct: true}
             - {value: "{{ form_view(form.field) }}",   correct: false}
+    -
+        question: 'Using Form factory, how to define a CSRF provider?'
+        answers:
+            - {value: $formFactory->addExtension(new CsrfExtension($csrfProvider));,     correct: true}
+            - {value: $formFactory->setExtension(new CsrfExtension($csrfProvider));,     correct: false}
+            - {value: $formFactory->addCsrfExtension(new CsrfExtension($csrfProvider));, correct: false}
+            - {value: $formFactory->addExtension(new Csrf($csrfProvider));,              correct: false}

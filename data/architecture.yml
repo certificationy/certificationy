@@ -28,3 +28,10 @@ questions:
             - {value: Decorator,   correct: false}
             - {value: Interpreter, correct: false}
             - {value: Observer,    correct: true}
+    -
+        question: 'What is the right parameter path to set a version number for assets?'
+        answers:
+            - {value: "framework.templating.assets_version: v2 }",        correct: true}
+            - {value: "framework.templating.assets_version_number: v2 }", correct: false}
+            - {value: "framework.twig.assets_version: v2 }",              correct: false}
+            - {value: "framework.twig.assets_version_number: v2 }",       correct: false}

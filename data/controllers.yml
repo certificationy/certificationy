@@ -21,3 +21,10 @@ questions:
             - {value: Symfony\Component\FrameworkBundle\Controller, correct: false}
             - {value: Symfony\Bundle\HttpBundle\Controller,         correct: false}
             - {value: Symfony\Component\MvcBundle\Controller,       correct: false}
+    -
+        question: 'Which of these annotations can be used in a controller?'
+        answers:
+            - {value: @Cache,          correct: true}
+            - {value: @ParamConverter, correct: true}
+            - {value: @Security,       correct: true}
+            - {value: @Post,           correct: false}
