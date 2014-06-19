@@ -28,3 +28,17 @@ questions:
             - {value: getScope($name),   correct: false}
             - {value: addScope($name),   correct: true}
             - {value: enterScope($name), correct: true}
+    -
+        question: 'Using YML, which line allows to inject proxy of the service?'
+        answers:
+            - {value: "proxy_service: true", correct: false}
+            - {value: "lazy: true",          correct: true}
+            - {value: "proxy: enabled",      correct: false}
+            - {value: "proxy: true",         correct: false}
+    -
+        question: 'Which method from CompilerPassInterface can modify the container here before it is dumped to PHP code?'
+        answers:
+            - {value: modify(),             correct: false}
+            - {value: processContainer(),   correct: false}
+            - {value: process(),            correct: true}
+            - {value: modifyContainer(),    correct: false}

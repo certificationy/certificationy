@@ -35,3 +35,31 @@ questions:
             - {value: "framework.templating.assets_version_number: v2 }", correct: false}
             - {value: "framework.twig.assets_version: v2 }",              correct: false}
             - {value: "framework.twig.assets_version_number: v2 }",       correct: false}
+    -
+        question: 'Which method from EventSubscriberInterface return array of events that subscriber wants to listen to?'
+        answers:
+            - {value: "getEvents()",                     correct: false}
+            - {value: "getSubscribedEvents()",           correct: true}
+            - {value: "getSubscribed()",                 correct: false}
+            - {value: "getSubscribedEventsList()",       correct: false}
+    -
+        question: 'Which method from EventDispatcherInterface forwarding an event to all registered listeners?'
+        answers:
+            - {value: "dispatch()",          correct: true}
+            - {value: "send()",              correct: false}
+            - {value: "fire()",              correct: false}
+            - {value: "sendOff()",           correct: false}
+    -
+        question: 'Which method allows to prevent any other Event listeners from being called?'
+        answers:
+            - {value: "stopPropagation()",   correct: true}
+            - {value: "preventDefault()",    correct: false}
+            - {value: "stop()",              correct: false}
+            - {value: "off()",               correct: false}
+    -
+        question: 'Is it possible to detect if an Event was stopped during runtime?'
+        answers:
+            - {value: "no",                  correct: false}
+            - {value: "yes",                 correct: true}
+            - {value: "yes, but not always", correct: false}
+            - {value: "yes, but only once",  correct: false}
