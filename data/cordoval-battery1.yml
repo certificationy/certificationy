@@ -2,46 +2,20 @@ category: Battery 1 cordoval
 # i put this here but we can organize it once it is all typed in
 questions:
     -
-        question: 'Where are publicly located bundles assets?'
+        question: 'In twig, what do you use if you want to optimize the size of the generated HTML content?'
         answers:
-            - {value: web/assets/<bundle name>,         correct: false}
-            - {value: web/assets/bundles/<bundle name>, correct: false}
-            - {value: web/bundles/<bundle name>,        correct: true}
-            - {value: web/<bundle name>,                correct: false}
+            - {value: spaceless,                        correct: false}
+            - {value: gzip,                             correct: true}
+            - {value: operators,                        correct: false}
 
-1. In twig, what do you use if you want to optimize the size of the generated HTML content?
-    a. spaceless
-    b. gzip
-    c. operators
-
-the spaceless tag
-answer is b
-really ?
-twig supports gzip ?
-don't look up
-let's go to the next one
-alright great
-This tag is not meant to "optimize" the size of the generated HTML content but merely to avoid extra whitespace between HTML tags to avoid browser rendering quirks under some circumstances.
-Ah cool.
-i thought gzip was on the response level
-okay
-
-2. In Twig, which other Twig function works as the old raw tag, for when you want to display code and not be parsed?
-    a. spaceless
-    b. raw2
-    c. escape with some special parameters
-    d. noparse
-    e. verbatim
-    f. raw tag
-
-hmm
-e ?
-you mean a function that works the same as the old raw tag right ?
-but verbatim is a tag, not a function...
-yeah a tag
-ok correct
-next
-okay
+    -   question: 'In Twig, which other Twig tag works as the old raw tag, for when you want to display code and not be parsed?'
+        answers:
+            - {value: spaceless,                           correct: false}
+            - {value: raw2,                                correct: false}
+            - {value: escape with some special parameters, correct: false}
+            - {value: noparse,                             correct: false}
+            - {value: verbatim,                            correct: true}
+            - {value: raw,                                 correct: false}
 
 3. In Twig, the batch function:
     a. is used to fill strings with random characters in a batch
