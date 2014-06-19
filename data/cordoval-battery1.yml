@@ -201,53 +201,53 @@ questions:
     e. NormalizerInterface has methods normalize and supportsNormalization
     f. DenormalizerInterface has methods denormalize and supportsDenormalization but their methods have less arguments       than the normalizer
 
-a)don't know
-b)true)
-c)don't know
-d)true
-e)false
-f)don't know
-g. going from object to array is called normalizing, and from an array to JSON is called decoding
-g)false
-a is true
-The GetSetMethodNormalizer is broken by design. As soon as you have a circular object graph, an infinite loop is created when calling the getters. You're encouraged to add your own normalizers that fit your use-case.
-oops that's true
-b is true
-c is false, it does but it is only 2 encoders and no normalizers
-d is true
-e is true
-f is false, is the other way, the denormalizer method needs more arguments
-g is false
-think it as this
-Object is high in hierarchy
-then comes an array
-then a json string
-so going up means industry
-we normalize from array to object
-and we encode from json string to array
-(Y)
-we serialize because channels don't support objects
-so that is lower rank
-deserialization goes up in the chain until object
-is reached
-then we move them back up to objects
-right
-with normalization
-yes
-from array to object
-yes
-once json is decoded to array
-yes
-think enygma
-json is the papers with the letters
-object is the meaning
-array is in the process of decrypting
-we decode the letters
-and normalize the arrays to get the idea
-(Y)
-we denormalize an idea into an array and then encode it into a secret paper with letters
-alright
-next
+#a)don't know
+#b)true)
+#c)don't know
+#d)true
+#e)false
+#f)don't know
+#g. going from object to array is called normalizing, and from an array to JSON is called decoding
+#g)false
+#a is true
+#The GetSetMethodNormalizer is broken by design. As soon as you have a circular object graph, an infinite loop is created when calling the getters. You're encouraged to add your own normalizers that fit your use-case.
+#oops that's true
+#b is true
+#c is false, it does but it is only 2 encoders and no normalizers
+#d is true
+#e is true
+#f is false, is the other way, the denormalizer method needs more arguments
+#g is false
+#think it as this
+#Object is high in hierarchy
+#then comes an array
+#then a json string
+#so going up means industry
+#we normalize from array to object
+#and we encode from json string to array
+#(Y)
+#we serialize because channels don't support objects
+#so that is lower rank
+#deserialization goes up in the chain until object
+#is reached
+#then we move them back up to objects
+#right
+#with normalization
+#yes
+#from array to object
+#yes
+#once json is decoded to array
+#yes
+#think enygma
+#json is the papers with the letters
+#object is the meaning
+#array is in the process of decrypting
+#we decode the letters
+#and normalize the arrays to get the idea
+#(Y)
+#we denormalize an idea into an array and then encode it into a secret paper with letters
+#alright
+#next
 
 
 17. in Symfony:
@@ -257,21 +257,47 @@ next
     d. Symfony natively supports multiple file uploading by default
     e. you can only import strings with the IniFileLoader from a .ini file
 
-a)false. you can't but you can retrieve it from $this->container
-b)true
-c)false
-d)true
-e)true
-d is false
-is not by default
-oh i see
-how do you enable it ?
-'multiple' => true
-on your form type field options
-yes but it supports it by default
-you just need to enable it
-d. Symfony natively supports multiple file uploading by default
-multiple is false by default
+    -
+        question: 'Can you inject a container parameter into a ContainerAware command?'
+        answers:
+            - {value: 'Yes', correct: false}
+            - {value: 'No',  correct: true}
+    -
+        question: 'Descriptors are objects to render documentation on Symfony Console Apps?'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'Does the Symfony Console component needs PHP globals internals variables to work?'
+        answers:
+            - {value: 'Yes', correct: false}
+            - {value: 'No',  correct: true}
+    -
+        question: 'Does the Symfony Form component supports multiple file uploading by default?'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'Using the IniFileLoader class, from a .ini file, you can import only strings.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+
+#a)false. you can't but you can retrieve it from $this->container
+#b)true
+#c)false
+#d)true
+#e)true
+#d is false
+#is not by default
+#oh i see
+#how do you enable it ?
+#'multiple' => true
+#on your form type field options
+#yes but it supports it by default
+#you just need to enable it
+#d. Symfony natively supports multiple file uploading by default
+#multiple is false by default
 
 18. In Symfony:
     a. There is a lesser known templating component with which you can build your own templating system not php and not     twig
