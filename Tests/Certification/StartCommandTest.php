@@ -10,7 +10,6 @@
 
 namespace Certificationy\Tests;
 
-
 use Certificationy\Certification\Loader;
 use Certificationy\Command\StartCommand;
 use Symfony\Component\Console\Application;

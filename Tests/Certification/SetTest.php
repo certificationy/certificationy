@@ -75,5 +75,4 @@ class SetTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('my first answer', $this->set->getAnswer(0));
         $this->assertEquals('my second answer', $this->set->getAnswer(1));
     }
-    
 }
