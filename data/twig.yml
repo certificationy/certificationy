@@ -15,7 +15,7 @@ questions:
             - {value: "{{ 'my string'|capitalize }}", correct: false}
             - {value: "{{ 'my string'|big }}",        correct: false}
     -
-        question: 'Using Twig, syntax {% block example '' %} is equivalent to {% block example %}{% endblock %}'
+        question: 'Using Twig, syntax {% block example '''' %} is equivalent to {% block example %}{% endblock %}'
         answers:
             - {value: Yes, correct: true}
             - {value: No,  correct: false}
