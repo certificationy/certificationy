@@ -15,6 +15,7 @@ use Certificationy\Certification\Loader;
 use Certificationy\Certification\Set;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,8 +38,10 @@ class StartCommand extends Command
         $this
             ->setName('start')
             ->setDescription('Starts a new question set')
-            ->addOption('number', null, InputOption::VALUE_REQUIRED, 'How many questions do you want?', 20)
-            ->addOption('show-multiple-choice', null, InputOption::VALUE_OPTIONAL, 'Should we tell you when the question is multiple choice?', true)
+            ->addOption('number', null, InputOption::VALUE_OPTIONAL, 'How many questions do you want?', 20)
+            ->addOption('list', 'l', InputOption::VALUE_NONE, 'List categories')
+			->addOption('show-multiple-choice', null, InputOption::VALUE_OPTIONAL, 'Should we tell you when the question is multiple choice?', true)
+            ->addArgument('categories', InputArgument::IS_ARRAY, 'Which categories do you want (separate multiple with a space)', array())
         ;
     }
 
@@ -47,10 +50,15 @@ class StartCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($input->getOption('list')) {
+            $output->writeln(Loader::getCategories());
+            return ;
+        }
+        
         $number = $input->getOption('number');
-        $output->writeln(sprintf('Starting a new set of <info>%s</info> questions', $number));
 
-        $set = Loader::init($number);
+        $set = Loader::init($number, $input->getArgument('categories'));
+        $output->writeln(sprintf('Starting a new set of <info>%s</info> questions', count($set->getQuestions())));
 
         $this->askQuestions($set, $input, $output);
 
@@ -70,7 +78,7 @@ class StartCommand extends Command
         $showMultipleChoice = $input->getOption('show-multiple-choice');
         $questionCount = 1;
 
-        foreach ($set->getQuestions() as $i => $question) {
+        foreach($set->getQuestions() as $i => $question) {
             $choiceQuestion = new ChoiceQuestion(
                 sprintf(
                     'Question <comment>#%d</comment> [<info>%s</info>] %s'.
@@ -105,7 +113,7 @@ class StartCommand extends Command
     {
         $results = array();
 
-        foreach ($set->getQuestions() as $key => $question) {
+        foreach($set->getQuestions() as $key => $question) {
             $isCorrect = $set->isCorrect($key);
 
             $results[] = array(
