@@ -27,3 +27,11 @@ questions:
             - {value: REST and SOAP,    correct: false}
             - {value: Corba and XML-RPC,correct: false}
             - {value: XML-RPC and REST, correct: false}
+    -
+        question: 'The ______ keyword is used to indicate an incomplete class or method, which must be further extended and/or implemented in order to be used.'
+        answers:
+            - {value: final,      correct: false}
+            - {value: protected,  correct: false}
+            - {value: incomplete, correct: true}
+            - {value: abstract,   correct: false}
+            - {value: implements, correct: false}
