@@ -23,13 +23,14 @@ class Loader
     /**
      * Returns a new set of randomized questions
      *
-     * @param int $number
+     * @param integer $number
+     * @param array $categories
      *
      * @return Set
      */
-    public static function init($number)
+    static public function init($number, array $categories)
     {
-        $data    = self::prepareFromYaml();
+        $data    = self::prepareFromYaml($categories);
         $dataMax = count($data) - 1;
 
         $questions = array();
@@ -44,7 +45,7 @@ class Loader
             $answers = array();
 
             foreach ($item['answers'] as $dataAnswer) {
-                $answers[] = new Answer($dataAnswer['value'], array_key_exists('correct', $dataAnswer) ? $dataAnswer['correct'] : false);
+                $answers[] = new Answer($dataAnswer['value'], $dataAnswer['correct']);
             }
 
             shuffle($answers);
@@ -58,9 +59,10 @@ class Loader
     /**
      * Prepares data from Yaml files and returns an array of questions
      *
+     * @param array $categories : List of categories which should be included, empty array = all
      * @return array
      */
-    protected static function prepareFromYaml()
+    static protected function prepareFromYaml(array $categories)
     {
         $files = Finder::create()->files()->in(__DIR__ . '/../data/')->name('*.yml');
 
@@ -70,13 +72,32 @@ class Loader
             $fileData = Yaml::parse($file->getContents());
 
             $category = $fileData['category'];
-            array_walk($fileData['questions'], function (&$item, $key) use ($category) {
-                $item['category'] = $category;
-            });
+            if (count($categories) == 0 || in_array($category, $categories)) {
+                array_walk($fileData['questions'], function (&$item, $key) use ($category) {
+                    $item['category'] = $category;
+                });
 
-            $data = array_merge($data, $fileData['questions']);
+                $data = array_merge($data, $fileData['questions']);
+            }
         }
 
         return $data;
+    }
+    
+    /**
+     * Get list of all categories
+     * 
+     * @return array
+     */
+    static public function getCategories()
+    {
+        $files = self::prepareFromYaml(array());
+        $categories = array();
+        foreach($files as $file) {
+            $categories[] = $file['category'];
+        }
+        
+        return array_unique($categories);
+        
     }
 }

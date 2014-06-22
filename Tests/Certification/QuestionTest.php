@@ -38,7 +38,8 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
         $this->answers = array(
             new Answer('my first answer', true),
             new Answer('my second answer', true),
-            new Answer('my third answer', false)
+            new Answer('my third answer', false),
+            new Answer('my fourth answer', false)
         );
 
         $this->question = new Question('my question', 'my category', $this->answers);
@@ -55,7 +56,7 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->answers, $this->question->getAnswers());
 
         $this->assertEquals(
-            array('my first answer', 'my second answer', 'my third answer'),
+            array('my first answer', 'my second answer', 'my third answer', 'my fourth answer'),
             $this->question->getAnswersLabels()
         );
         $this->assertEquals(
@@ -83,6 +84,10 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($this->question->areCorrectAnswers(
             array('my second answer')
+        ));
+        
+        $this->assertFalse($this->question->areCorrectAnswers(
+            array('my second answer', 'my third answer')
         ));
 
         $this->assertFalse($this->question->areCorrectAnswers(

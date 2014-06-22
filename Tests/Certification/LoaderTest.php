@@ -24,7 +24,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testInitialization()
     {
-        $set = Loader::init(5);
+        $set = Loader::init(5, array());
 
         $this->assertInstanceOf('Certificationy\Certification\Set', $set, 'Should return an instance of set');
 
@@ -32,4 +32,10 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($set->getAnswers());
     }
+    
+    public function testCanGetCategoryList()
+    {
+        $this->assertTrue(is_array(Loader::getCategories()));
+    }
+    
 }
