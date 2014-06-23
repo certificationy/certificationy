@@ -1,5 +1,5 @@
-category: Battery 1 cordoval
-# i put this here but we can organize it once it is all typed in
+category: Cordoval's drill warmup
+
 questions:
     -
         question: 'In twig, what do you use if you want to optimize the size of the generated HTML content?'
@@ -106,63 +106,9 @@ questions:
             - {value: 'you can access global vars only provided by Symfony on TwigBundle', correct: false}
             - {value: 'there is only three global vars that come by default _self, _superglobals, _charset', correct: false}
             - {value: 'if you want to use the c twig extension you have to change only a thing in your composer.json', correct: false}
-            - {value: 'Twig is not anymore on PEAR', correct: false}
+            - {value: 'Twig is not anymore on PEAR', correct: true}
             - {value: 'Twig version 1.12.2 onwards are secure', correct: false}
-            - {value: 'Twig 1.13 has a buggy C extension', correct: false}
-
-#d is incorrect
-#and b is incorrect
-#hmmm
-#so a or c
-#ah
-#should i choose 1 answer ?
-#or many ?
-#
-#a. you can chain filters with filters and functions with functions but not mix them
-#you can so it is false
-#you can chain filters with functions ?
-#how do you chain functions? i never saw that
-#only filters
-#have an example ?
-#date()|date
-#yes but that's not chaining functions
-#that's chaining a filter after a function
-#but you can't do
-#date()|something()|else()
-#can you ?
-#date(random())
-#okay so that's considered chaining
-#alright
-#b. you can chain anything seems to be correct
-#c. you can access global vars only provided by Symfony on TwigBundle
-#is incorrect
-#d. there is only three global vars that come by default _self, _superglobals, _charset
-#it is not _superglobals but _context
-#e. if you want to use the c twig extension you have to change only a thing in your composer.json
-#is a php extension so it is not installable with composer.json
-#f. Twig is not anymore on PEAR
-#is true
-#g. Twig version 1.12.2 onwards are secure
-#is false
-#1.12.3 have serious security issues
-#http://pear.twig-project.org/
-#h. Twig 1.13 has a buggy C extension
-#is correct
-#it was very buggy
-#crashed the C extension
-#a lot
-#let me remind you you can't access the internet
-#yes i know, i just checked that now
-#cause i was sure i saw it the other day
-#on pear
-#well it is discontinued
-#it will not happen anymore
-#alright
-#enough with Twig
-#that was intense
-#that's exactly the type of question at the exam
-#right ?
-#you shall see it yourself when you take it
+            - {value: 'Twig 1.13 has a buggy C extension', correct: true}
 
     -
         question: 'In Symfony:'
@@ -194,60 +140,12 @@ questions:
     -
         question: 'in Symfony:'
         answers:
-            - {value: 'GetSetMethodNormalizer is broken by design', correct: false}
-            - {value: 'one can load normalizers and/or encoders by tagging them as serializer.normalizer and serializer.encoder respectiv    ely true makes the serializer available in the container and loads 3 encoders and 1 default normalizer', correct: false}
+            - {value: 'GetSetMethodNormalizer is broken by design', correct: true}
+            - {value: 'one can load normalizers and/or encoders by tagging them as serializer.normalizer and serializer.encoder respectively true makes the serializer available in the container and loads 3 encoders and 1 default normalizer', correct: true}
             - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: false}
-            - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: false}
-            - {value: 'NormalizerInterface has methods normalize and supportsNormalization', correct: false}
+            - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: true}
+            - {value: 'NormalizerInterface has methods normalize and supportsNormalization', correct: true}
             - {value: 'DenormalizerInterface has methods denormalize and supportsDenormalization but their methods have less arguments than the normalizer', correct: false}
-
-#a)don't know
-#b)true)
-#c)don't know
-#d)true
-#e)false
-#f)don't know
-#g. going from object to array is called normalizing, and from an array to JSON is called decoding
-#g)false
-#a is true
-#The GetSetMethodNormalizer is broken by design. As soon as you have a circular object graph, an infinite loop is created when calling the getters. You're encouraged to add your own normalizers that fit your use-case.
-#oops that's true
-#b is true
-#c is false, it does but it is only 2 encoders and no normalizers
-#d is true
-#e is true
-#f is false, is the other way, the denormalizer method needs more arguments
-#g is false
-#think it as this
-#Object is high in hierarchy
-#then comes an array
-#then a json string
-#so going up means industry
-#we normalize from array to object
-#and we encode from json string to array
-#(Y)
-#we serialize because channels don't support objects
-#so that is lower rank
-#deserialization goes up in the chain until object
-#is reached
-#then we move them back up to objects
-#right
-#with normalization
-#yes
-#from array to object
-#yes
-#once json is decoded to array
-#yes
-#think enygma
-#json is the papers with the letters
-#object is the meaning
-#array is in the process of decrypting
-#we decode the letters
-#and normalize the arrays to get the idea
-#(Y)
-#we denormalize an idea into an array and then encode it into a secret paper with letters
-#alright
-#next
 
     -
         question: 'Can you inject a container parameter into a ContainerAware command?'
@@ -300,68 +198,23 @@ questions:
         answers:
             - {value: 'Yes', correct: false}
             - {value: 'No',  correct: true}
+    -
         question: 'There is a component that is only 10 classes, has no folder structure and is very simple. That is the Yaml component.'
         answers:
             - {value: 'Yes', correct: true}
             - {value: 'No',  correct: false}
+    -
         question: 'The Dispatcher component is only 8 classes and the latest version passes also the dispatcher and the name of the event to the listener.'
         answers:
             - {value: 'Yes', correct: true}
             - {value: 'No',  correct: false}
+    -
         question: 'In Symfony, all the instances of the event_dispatcher are container aware by default unless you register a new event_dispatcher that does inject your services.'
         answers:
             - {value: 'Yes', correct: true}
             - {value: 'No',  correct: false}
+    -
         question: 'src/Symfony/Bundle/FrameworkBundle/Resources/config shows xml configuration for each service how the FrameworkBundle hooks special services of Symfony, it is also in charge to set the environment services, for instance test.client.'
         answers:
             - {value: 'Yes', correct: true}
             - {value: 'No',  correct: false}
-
-for some our use cases yeah
-so yaml component has 10 classes ?
-that's too big
-6 plus 4 exception classes
-20.
-this part is the practical one
-alright
-should be better
-paste here a gist with a subscriber implementation of what you remember of a subscriber doing the following
-a. taking the response from the event and setting a cookie
-b. write a twig filter and use a global twig parameter into that filter
-c. use an annotation in an action with the ParameterConverter correctly
-all those 3 are snippets
-all those inside 1 subscriber ?
-no
-those are separate snippets
-you cannot look up anything
-send me the gists please
-you have 5 minutes only
-like this
-...
-?
-yeah
-send it quick 3 minutes
-when we write a twig filter
-we must implement it as part of a class
-a twig extension
-you want me to write the extension
-?
-you want me to implement a custom twig filter or simply use an existing one within a template ?
-yeah, the extension
-
-ah sorry
-
-should be it
-ok that is half a point
-ok
-we are done
-okay
-why half a point ?
-because it was ok but not perfect
-what are mistakes
-i see
-extending classes
-oh twig extension
-and also tags, namespaces, and also configuration directives
-forgot to extend
-and usage
