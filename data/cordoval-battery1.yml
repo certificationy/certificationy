@@ -194,12 +194,12 @@ questions:
     -
         question: 'in Symfony:'
         answers:
-            - {value:
-    a. GetSetMethodNormalizer is broken by design
-    b. one can load normalizers and/or encoders by tagging them as serializer.normalizer and serializer.encoder respectiv    ely true makes the serializer available in the container and loads 3 encoders and 1 default normalizer
-    d. JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface
-    e. NormalizerInterface has methods normalize and supportsNormalization
-    f. DenormalizerInterface has methods denormalize and supportsDenormalization but their methods have less arguments       than the normalizer
+            - {value: 'GetSetMethodNormalizer is broken by design', correct: false}
+            - {value: 'one can load normalizers and/or encoders by tagging them as serializer.normalizer and serializer.encoder respectiv    ely true makes the serializer available in the container and loads 3 encoders and 1 default normalizer', correct: false}
+            - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: false}
+            - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: false}
+            - {value: 'NormalizerInterface has methods normalize and supportsNormalization', correct: false}
+            - {value: 'DenormalizerInterface has methods denormalize and supportsDenormalization but their methods have less arguments than the normalizer', correct: false}
 
 #a)don't know
 #b)true)
@@ -249,14 +249,6 @@ questions:
 #alright
 #next
 
-
-17. in Symfony:
-    a. you can inject a container parameter into a ContainerAware Command
-    b. Descriptors are objects to render documentation on Symfony Console Apps
-    c. Symfony Console component needs the PHP globals internally to work
-    d. Symfony natively supports multiple file uploading by default
-    e. you can only import strings with the IniFileLoader from a .ini file
-
     -
         question: 'Can you inject a container parameter into a ContainerAware command?'
         answers:
@@ -283,70 +275,48 @@ questions:
             - {value: 'Yes', correct: true}
             - {value: 'No',  correct: false}
 
-#a)false. you can't but you can retrieve it from $this->container
-#b)true
-#c)false
-#d)true
-#e)true
-#d is false
-#is not by default
-#oh i see
-#how do you enable it ?
-#'multiple' => true
-#on your form type field options
-#yes but it supports it by default
-#you just need to enable it
-#d. Symfony natively supports multiple file uploading by default
-#multiple is false by default
+    -
+        question: 'There is a lesser known templating component with which you can build your own templating system not php and not twig.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'In Symfony there is a lesser known templating component that is heavily used by Twig.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'Symfony has 27 components to this date.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'Syfmony Translator component follows the same architecture for loaders than Twig does.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'There is a component that is only 6 classes, has no folder structure and is very simple. That is the Yaml component.'
+        answers:
+            - {value: 'Yes', correct: false}
+            - {value: 'No',  correct: true}
+        question: 'There is a component that is only 10 classes, has no folder structure and is very simple. That is the Yaml component.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+        question: 'The Dispatcher component is only 8 classes and the latest version passes also the dispatcher and the name of the event to the listener.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+        question: 'In Symfony, all the instances of the event_dispatcher are container aware by default unless you register a new event_dispatcher that does inject your services.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+        question: 'src/Symfony/Bundle/FrameworkBundle/Resources/config shows xml configuration for each service how the FrameworkBundle hooks special services of Symfony, it is also in charge to set the environment services, for instance test.client.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
 
-18. In Symfony:
-    a. There is a lesser known templating component with which you can build your own templating system not php and not     twig
-    b. This component is heavily used by Twig
-    c. Symfony has 27 components to this date
-    d. Syfmony Translator component follows the same architecture for loaders than Twig does
-
-
-a)false
-b)false
-c)true)
-d)false
-a is true
-b is true in Symfony
-c is true
-d is true $translator->addLoader('array', new ArrayLoader());
-oh
-what's that templating component
-?
-/Users/cordoval/Sites/project/vendor/symfony/symfony/src/Symfony/Component/Templating
-ahh i didn't understand the question
-of course you can build your own with the component
-i thought there was already another templating engine
-other than twig and php implemented
-alright
-
-19. in Symfony:
-    a. There is a component that is only 6 classes, has no folder structure and is very simple. That is the Yaml    component.
-    b. There is a component that is only 10 classes, has no folder structure and is very simple. That is the Yaml component
-    c. The Dispatcher component is only 8 classes and the latest version passes also the dispatcher and the name of the event to the listener
-    d. In Symfony, all the instances of the event_dispatcher are container aware by default unless you register a new event_dispatcher that does inject your services
-    e. src/Symfony/Bundle/FrameworkBundle/Resources/config shows xml configuration for each service how the FrameworkBundle hooks special services of Symfony, it is also in charge to set the environment services, for instance test.client
-
-a)true
-b)false
-3)true
-d)false
-a is false
-b is true
-e)true
-c is true
-d is true
-e is true
-event dispatcher is container aware ?
-:)
-Symfony is not the best framework sometimes between us :)
-heh
-it still works
-alright
 for some our use cases yeah
 so yaml component has 10 classes ?
 that's too big
