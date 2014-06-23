@@ -18,6 +18,6 @@ questions:
         question: 'Which of these bundles comes with the Symfony Standard Edition?'
         answers:
             - {value: SensioFrameworkExtraBundle, correct: true}
-            - {value: DoctrineFixturesBundle,     correct: true}
-            - {value: DoctrineMigrationBundle,    correct: true}
+            - {value: DoctrineFixturesBundle,     correct: false}
+            - {value: DoctrineMigrationBundle,    correct: false}
             - {value: SensioDoctrineBundle,       correct: false}
