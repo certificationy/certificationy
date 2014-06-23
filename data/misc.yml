@@ -1,16 +1,55 @@
 category: Miscellaneous
 questions:
     -
-        question: 'Which controller/action allows to render a template without a specific controller?'
-        answers:
-            - {value: FrameworkBundle:Controller:template, correct: false}
-            - {value: FrameworkBundle:Template:action,     correct: false}
-            - {value: FrameworkBundle:Template:render,     correct: false}
-            - {value: FrameworkBundle:Template:template,   correct: true}
-    -
         question: 'What is the LoggerInterface correct namespace?'
         answers:
             - {value: Psr\LoggerInterface,                        correct: false}
             - {value: Psr\Log\LoggerInterface,                    correct: true}
             - {value: Symfony\Bridge\Monolog\LoggerInterface,     correct: false}
             - {value: Symfony\Bridge\Monolog\Log\LoggerInterface, correct: false}
+    -
+        question: 'Metadata\Driver\DriverChain is a class:'
+        answers:
+            - {value: 'that comes within FrameworkBundle', correct: false}
+            - {value: 'that comes with the FrameworkExtraBundle', correct: false}
+            - {value: 'that\'s not found in the Symfony Standard Edition', correct: false}
+            - {value: 'that has license issues', correct: true}
+            - {value: 'that\'s deprecated but is in the Symfony core', correct: false}
+    -
+        question: 'In Symfony:'
+        answers:
+            - {value: 'SecureRandom class at the heart of security component has only one public nextBytes method', correct: true}
+            - {value: 'RoleHierarchy also at the heart of security component implements RoleHierarchyInterface which obliges this class to implement buildRoleMap', correct: false}
+            - {value: 'There are only two classes named ResponseListener in the whole of Symofony and they implement EventSubscriberInterface', correct: true}
+            - {value: 'There is a ResponseListener under RememberMe feature and this acts by setting a cookie on every response the app sends back to the user', correct: false}
+            - {value: 'About the other ResponseListener found under HttpKernel complaint with RFC 2616 means most importantly that it ensures certain dimensions on header length are kept', correct: false}
+            - {value: 'in Symfony Symfony\Component\Security\Core\Encoder\EncoderFactory getEncoder does create an encoder everytime for security reasons', correct: false}
+    -
+        question: 'in Symfony:'
+        answers:
+            - {value: 'GetSetMethodNormalizer is broken by design', correct: true}
+            - {value: 'one can load normalizers and/or encoders by tagging them as serializer.normalizer and serializer.encoder respectively true makes the serializer available in the container and loads 3 encoders and 1 default normalizer', correct: true}
+            - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: false}
+            - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: true}
+            - {value: 'NormalizerInterface has methods normalize and supportsNormalization', correct: true}
+            - {value: 'DenormalizerInterface has methods denormalize and supportsDenormalization but their methods have less arguments than the normalizer', correct: false}
+    -
+        question: 'Using the IniFileLoader class, from a .ini file, you can import only strings.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'There is a lesser known templating component that allows for different implementations besides php and twig.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'In Symfony there is a lesser known templating component that is heavily used by Twig.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
+    -
+        question: 'src/Symfony/Bundle/FrameworkBundle/Resources/config contains xml configuration for each service of the FrameworkBundle and how it hooks with special services of Symfony, it is also in charge to set the environment services, for instance test.client.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}

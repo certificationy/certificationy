@@ -35,3 +35,8 @@ questions:
             - {value: $formFactory->setExtension(new CsrfExtension($csrfProvider));,     correct: false}
             - {value: $formFactory->addCsrfExtension(new CsrfExtension($csrfProvider));, correct: false}
             - {value: $formFactory->addExtension(new Csrf($csrfProvider));,              correct: false}
+    -
+        question: 'Does the Symfony Form component supports multiple file uploading by default?'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}

@@ -1,0 +1,7 @@
+category: Translation
+questions:
+    -
+        question: 'The Translator component follows the same architecture for loaders as Twig does.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}
