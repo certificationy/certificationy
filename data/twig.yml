@@ -47,3 +47,100 @@ questions:
             - {value: "{{ }}",  correct: false}
             - {value: "{# #}",  correct: false}
             - {value: "{ }",    correct: false}
+    -
+        question: 'In twig, what do you use if you want to optimize the size of the generated HTML content?'
+        answers:
+            - {value: spaceless,                        correct: false}
+            - {value: gzip,                             correct: true}
+            - {value: operators,                        correct: false}
+    -
+        question: 'In Twig, which other Twig tag works as the old raw tag, for when you want to display code and not be parsed?'
+        answers:
+            - {value: spaceless,                           correct: false}
+            - {value: raw2,                                correct: false}
+            - {value: escape with some special parameters, correct: false}
+            - {value: noparse,                             correct: false}
+            - {value: verbatim,                            correct: true}
+            - {value: raw,                                 correct: false}
+    -
+        question: 'In Twig, the batch function:'
+        answers:
+            - {value: 'is used to fill strings with random characters in a batch', correct: false}
+            - {value: 'renders a vector out of an element value given',            correct: false}
+            - {value: 'is used to parse a string and output the string characters in an for loop', correct: false}
+            - {value: 'returns a list of lists with a given number of items out of the set', correct: true}
+    -
+        question: 'In Twig, when compiling a node tree how can you change the default compiler on your $twig object'
+        answers:
+            - {value: '$twig->setCompiler($compiler)', correct: true}
+            - {value: '$twig->load($compiler)', correct: false}
+            - {value: '$twig->compile($compiler)', correct: false}
+            - {value: '$twig->compileWith($compiler)', correct: false}
+    -
+        question: 'In Twig which loader can you use to load templates from a database and the filesystem simultaneously?'
+        answers:
+            - {value: 'I can implement Twig_LoaderInterface, Twig_ExistsLoaderInterface into a combined loader and load everything at once', correct: false}
+            - {value: 'I can implement DatabaseTwigLoader extending Twig_LoaderInterface and Twig_ExistsLoaderInterface and load templates using TwigMainLoader', correct: false}
+            - {value: 'I can do as b but use the Twig_Loader_Chain to chain loaders and set it to the Context', correct: false}
+            - {value: 'I can do as c but rather than setting the loaders into Context I initialize Twig_Environment with the chain loader', correct: true}
+            - {value: 'is not currently possible but there is a PR for that', correct: false}
+    -
+        question: 'in Twig, name which one is not a method of the Twig_Filter class:'
+        answers:
+            - {value: 'needsLoader()', correct: true}
+            - {value: 'needsEnvironment()', correct: false}
+            - {value: 'needsContext()', correct: false}
+            - {value: 'getSafe() and getPreEscape()', correct: false}
+            - {value: 'b and d', correct: false}
+    -
+        question: 'In Twig, a visitor priority varies between:'
+        answers:
+            - {value: '-255 to 255', correct: false}
+            - {value: '-70 to 70', correct: false}
+            - {value: '0 - 40', correct: false}
+            - {value: '-10 to 10', correct: true}
+            - {value: 'it is fixed', correct: false}
+    -
+        question: 'In Twig, all these classes Escaper, Optimizer, SafeAnalysis, Sandbox share common methods :'
+        answers:
+            - {value: 'setArguments, getArguments', correct: false}
+            - {value: 'isValid()', correct: false}
+            - {value: 'setPriority(), getPriority()', correct: false}
+            - {value: 'a combination of a and c', correct: false}
+            - {value: 'none of the above', correct: true}
+    -
+        question: 'In Twig this statement is valid:'
+        answers:
+            - {value: 'first and last functions work in the same way as the random filter', correct: false}
+            - {value: 'first and last functions are great to extract the first and the last element of an array', correct: false}
+            - {value: 'random filter when used without arguments is like mt_rand', correct: false}
+            - {value: 'random function when passed a string splits the string and outputs a single character', correct: true}
+            - {value: 'when random function receives a number it treats it as the top value of the random series it outputs', correct: true}
+    -
+        question: 'in Twig, suppose you have an object person'
+        answers:
+            - {value: 'If person has a property address-main, I can access it with person.getAddressMain()', correct: false}
+            - {value: "If person has a property address_main, I better access it with person.['address_main']", correct: false}
+            - {value: 'a and b are possible', correct: false}
+            - {value: 'I have to create a special getter for accessing the property above', correct: false}
+            - {value: 'no, the [] operand works in any situation', correct: false}
+            - {value: "get_attribute(person, 'address-main') does it", correct: false}
+            - {value: 'none of the above, Twig comes with a special function for this', correct: true}
+    -
+        question: 'In Twig, what is the correct order with https://gist.github.com/cordoval/e8a98fe50481dcdace25 on view and knowing for convenience sake foo.bar does the following things on the PHP layer'
+        answers:
+            - {value: 'a', correct: false}
+            - {value: 'b', correct: false}
+            - {value: 'c', correct: true}
+            - {value: 'd', correct: false}
+    -
+        question: 'In Twig:'
+        answers:
+            - {value: 'you can chain filters with filters and functions with functions but not mix them', correct: false}
+            - {value: 'you can chain anything', correct: false}
+            - {value: 'you can access global vars only provided by Symfony on TwigBundle', correct: false}
+            - {value: 'there is only three global vars that come by default _self, _superglobals, _charset', correct: false}
+            - {value: 'if you want to use the c twig extension you have to change only a thing in your composer.json', correct: false}
+            - {value: 'Twig is not anymore on PEAR', correct: true}
+            - {value: 'Twig version 1.12.2 onwards are secure', correct: false}
+            - {value: 'Twig 1.13 has a buggy C extension', correct: true}

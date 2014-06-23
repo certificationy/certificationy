@@ -1,4 +1,4 @@
-category: Automated tests
+category: Tests
 questions:
     -
         question: 'Using PHPUnit, which method names are used to share test setup code?'

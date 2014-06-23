@@ -3,20 +3,42 @@ questions:
     -
         question: 'Which helper is not available in the Console component?'
         answers:
-            - {value: QuestionHelper, correct: false}
-            - {value: TableHelper,    correct: false}
-            - {value: FileHelper,     correct: true}
-            - {value: DialogHelper,   correct: false}
+            - {value: QuestionHelper,                correct: false}
+            - {value: TableHelper,                   correct: false}
+            - {value: FileHelper,                    correct: true}
+            - {value: DialogHelper,                  correct: false}
     -
         question: 'Which event is not available in the Console Component?'
         answers:
-            - {value: ConsoleEvents::COMMAND,   correct: false}
-            - {value: ConsoleEvents::TERMINATE, correct: false}
-            - {value: ConsoleEvents::EXCEPTION, correct: false}
-            - {value: ConsoleEvents::LAUNCH,    correct: true}
+            - {value: ConsoleEvents::COMMAND,        correct: false}
+            - {value: ConsoleEvents::TERMINATE,      correct: false}
+            - {value: ConsoleEvents::EXCEPTION,      correct: false}
+            - {value: ConsoleEvents::LAUNCH,         correct: true}
     -
         question: 'How to launch Console application in interactive mode?'
         answers:
             - {value: php app/console -s ,           correct: true}
             - {value: php app/console --interactive, correct: false}
             - {value: no one,                        correct: false}
+    -
+        question: 'Which mode do you use for an option that has a required value?'
+        answers:
+            - {value: InputOption::FORCED,           correct: false}
+            - {value: InputOption::IS_REQUIRED,      correct: false}
+            - {value: InputOption::VALUE_REQUIRED,   correct: true}
+            - {value: InputOption::REQUIRED,         correct: false}
+    -
+        question: 'Can you inject a container parameter into a ContainerAware command?'
+        answers:
+            - {value: 'Yes',                         correct: false}
+            - {value: 'No',                          correct: true}
+    -
+        question: 'Descriptors are objects to render documentation on Symfony Console Apps?'
+        answers:
+            - {value: 'Yes',                         correct: true}
+            - {value: 'No',                          correct: false}
+    -
+        question: 'Does the Symfony Console component needs PHP globals internals variables to work?'
+        answers:
+            - {value: 'Yes',                         correct: false}
+            - {value: 'No',                          correct: true}

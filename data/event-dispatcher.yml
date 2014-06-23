@@ -1,0 +1,7 @@
+category: Event Dispatchers
+questions:
+    -
+        question: 'In Symfony, all the instances of the event_dispatcher are container aware by default unless you register a new event_dispatcher that does inject your services.'
+        answers:
+            - {value: 'Yes', correct: true}
+            - {value: 'No',  correct: false}

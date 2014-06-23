@@ -1,23 +1,35 @@
 category: Doctrine
 questions:
     -
+        question: 'How do you get an entity to be persisted into the database?'
+            - {value: '$em->persist($entity), followed by $em->save()',  correct: false}
+            - {value: '$em->insert($entity), followed by $em->flush()',  correct: false}
+            - {value: '$em->persist($entity), followed by $em->flush()', correct: true}
+            - {value: '$em->insert($entity), followed by $em->save()',   correct: false}
+    -
+        question: 'How do you get an entity's changes to be updated in the database?'
+            - {value: '$em->persist($entity), followed by $em->save()',  correct: false}
+            - {value: '$em->update($entity), followed by $em->save()',   correct: false}
+            - {value: '$em->flush($entity)',                             correct: true}
+            - {value: '$em->update($entity)',                            correct: false}
+    -
         question: 'What is the console command to create a new entity?'
         answers:
-            - {value: php app/console doctrine:generate:entity, correct: true}
-            - {value: php app/console generate:entity,          correct: false}
-            - {value: php app/console database:create:entity,   correct: false}
-            - {value: php app/console doctrine:create:entity,   correct: false}
+            - {value: php app/console doctrine:generate:entity,          correct: true}
+            - {value: php app/console generate:entity,                   correct: false}
+            - {value: php app/console database:create:entity,            correct: false}
+            - {value: php app/console doctrine:create:entity,            correct: false}
     -
         question: 'What is the command to update the database from entities?'
         answers:
-            - {value: php app/console doctrine:schema:update,   correct: true}
-            - {value: php app/console doctrine:entity:update,   correct: false}
-            - {value: php app/console doctrine:entity --create, correct: false}
-            - {value: php app/console doctrine:schema:create,   correct: false}
+            - {value: php app/console doctrine:schema:update,            correct: true}
+            - {value: php app/console doctrine:entity:update,            correct: false}
+            - {value: php app/console doctrine:entity --create,          correct: false}
+            - {value: php app/console doctrine:schema:create,            correct: false}
     -
         question: 'What is the right command name to load Doctrine fixtures?'
         answers:
-            - {value: php app/console doctrine:fixtures:load,   correct: true}
-            - {value: php app/console doctrine:load:fixtures,   correct: false}
-            - {value: php app/console doctrine:fixtures,        correct: false}
-            - {value: php app/console doctrine:fixtures:import, correct: false}
+            - {value: php app/console doctrine:fixtures:load,            correct: true}
+            - {value: php app/console doctrine:load:fixtures,            correct: false}
+            - {value: php app/console doctrine:fixtures,                 correct: false}
+            - {value: php app/console doctrine:fixtures:import,          correct: false}
