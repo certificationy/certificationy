@@ -45,16 +45,16 @@ questions:
     -
         question: 'Which of the following statements is not true?'
         answers:
-            - {value: In PHP>=5.6 argument lists may include the ... token to denote that the function accepts a variable number of arguments,                  correct: false}
-            - {value: A function name, as other labels in PHP, must match the following regular expression: [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*,           correct: false}
-            - {value: Variable functions work with language constructs such as echo, print, unset(), isset(), empty(), include or require,                      correct: true}
-            - {value: Assigning a closure (anonymous function) to a variable uses the same syntax as any other assignment, including the trailing semicolon,    correct: false}
+            - {value: 'In PHP>=5.6 argument lists may include the ... token to denote that the function accepts a variable number of arguments',                  correct: false}
+            - {value: 'A function name, as other labels in PHP, must match the following regular expression: [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',           correct: false}
+            - {value: 'Variable functions work with language constructs such as echo, print, unset(), isset(), empty(), include or require',                    correct: true}
+            - {value: 'Assigning a closure (anonymous function) to a variable uses the same syntax as any other assignment, including the trailing semicolon',    correct: false}
     -
         question: 'Which of the following function declarations must be used to return a reference?'
         answers:
-            - {value: function &foo() {...},    correct: true}
-            - {value: function $foo() {...},    correct: false}
-            - {value: function %foo() {...},    correct: false}
-            - {value: function $$foo() {...},   correct: false}
+            - {value: 'function &foo() {...}',    correct: true}
+            - {value: 'function $foo() {...}',    correct: false}
+            - {value: 'function %foo() {...}',    correct: false}
+            - {value: 'function $$foo() {...}',   correct: false}
             
 
