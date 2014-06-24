@@ -18,6 +18,7 @@ use Certificationy\Certification\Question;
  * SetTest
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
+ * @author Cas Leentfaar <info@casleentfaar.com>
  */
 class SetTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,8 +51,6 @@ class SetTest extends \PHPUnit_Framework_TestCase
      */
     public function testGettersSetters()
     {
-        $this->assertCount(2, $this->set->getQuestions());
-
         foreach ($this->set->getQuestions() as $question) {
             $this->assertInstanceOf('Certificationy\Certification\Question', $question);
         }
@@ -63,16 +62,76 @@ class SetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Tests the number of questions in a question set
+     */
+    public function testCount()
+    {
+        $this->assertCount(2, $this->set->getQuestions(), 'Should return 2 questions');
+    }
+
+    /**
      * Tests answers methods
      */
     public function testAnswers()
     {
-        $this->set->addAnswer(0, 'my first answer');
-        $this->set->addAnswer(1, 'my second answer');
+        $answers = array(
+            0 => array('my first answer'),
+            1 => array('my second answer'),
+        );
+
+        $this->set->addAnswer(0, $answers[0]);
+        $this->set->addAnswer(1, $answers[1]);
 
         $this->assertCount(2, $this->set->getAnswers());
 
-        $this->assertEquals('my first answer', $this->set->getAnswer(0));
-        $this->assertEquals('my second answer', $this->set->getAnswer(1));
+        $this->assertEquals($answers[0], $this->set->getAnswer(0));
+        $this->assertEquals($answers[1], $this->set->getAnswer(1));
+    }
+
+    /**
+     * Tests the score calculated from a given set of answers
+     *
+     * @dataProvider getAnswersAndScores
+     */
+    public function testScore($actualAnswers, $expectedScore)
+    {
+        foreach ($actualAnswers as $x => $answer) {
+            $answers = $answer;
+            if (!is_array($answers)) {
+                $answers = array($answers);
+            }
+            $this->set->addAnswer($x, $answers);
+        }
+        $this->assertEquals($expectedScore, $this->set->getScore());
+    }
+
+    /**
+     * @return array
+     */
+    public function getAnswersAndScores()
+    {
+        return array(
+            array(
+                array(
+                    0 => 'my first answer',
+                    1 => 'my second answer',
+                ),
+                10.0
+            ),
+            array(
+                array(
+                    0 => 'my second answer',
+                    1 => 'my second answer',
+                ),
+                5.0
+            ),
+            array(
+                array(
+                    0 => 'my second answer',
+                    1 => 'my first answer',
+                ),
+                0.0
+            ),
+        );
     }
 }

@@ -11,11 +11,11 @@
 
 namespace Certificationy\Application;
 
+use Certificationy\Command\TestCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
-use Certificationy\Command\StartCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -30,7 +30,7 @@ class Certificationy extends Application
      */
     protected function getCommandName(InputInterface $input)
     {
-        return 'start';
+        return 'test';
     }
 
     /**
@@ -39,7 +39,7 @@ class Certificationy extends Application
     protected function getDefaultCommands()
     {
         $defaultCommands = parent::getDefaultCommands();
-        $defaultCommands[] = new StartCommand();
+        $defaultCommands[] = new TestCommand();
 
         return $defaultCommands;
     }
@@ -54,7 +54,7 @@ class Certificationy extends Application
 
         return $inputDefinition;
     }
-    
+
     /**
      * Gets the default input definition.
      *
