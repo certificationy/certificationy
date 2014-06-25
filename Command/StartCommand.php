@@ -54,15 +54,20 @@ class StartCommand extends Command
             $output->writeln(Loader::getCategories());
             return ;
         }
-        
-        $number = $input->getOption('number');
 
-        $set = Loader::init($number, $input->getArgument('categories'));
-        $output->writeln(sprintf('Starting a new set of <info>%s</info> questions', count($set->getQuestions())));
+        $categories = $input->getArgument('categories');
+        $number     = $input->getOption('number');
 
-        $this->askQuestions($set, $input, $output);
+        $set = Loader::init($number, $categories);
 
-        $this->displayResults($set, $output);
+        if ($set->getQuestions()) {
+            $output->writeln(sprintf('Starting a new set of <info>%s</info> questions', count($set->getQuestions())));
+
+            $this->askQuestions($set, $input, $output);
+            $this->displayResults($set, $output);
+        } else {
+            $output->writeln('<error>✗</error> No questions can be found.');
+        }
     }
 
     /**
@@ -123,16 +128,18 @@ class StartCommand extends Command
             );
         }
 
-        $tableHelper = $this->getHelper('table');
-        $tableHelper
-            ->setHeaders(array('Question', 'Correct answer', 'Result'))
-            ->setRows($results)
-        ;
+        if ($results) {
+            $tableHelper = $this->getHelper('table');
+            $tableHelper
+                ->setHeaders(array('Question', 'Correct answer', 'Result'))
+                ->setRows($results)
+            ;
 
-        $tableHelper->render($output);
+            $tableHelper->render($output);
 
-        $output->writeln(
-            sprintf('<comment>Results</comment>: <error>errors: %s</error> - <info>correct: %s</info>', $set->getErrorsNumber(), $set->getValidNumber())
-        );
+            $output->writeln(
+                sprintf('<comment>Results</comment>: <error>errors: %s</error> - <info>correct: %s</info>', $set->getErrorsNumber(), $set->getValidNumber())
+            );
+        }
     }
 }

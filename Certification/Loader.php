@@ -30,7 +30,12 @@ class Loader
      */
     static public function init($number, array $categories)
     {
-        $data    = self::prepareFromYaml($categories);
+        $data = self::prepareFromYaml($categories);
+
+        if (!$data) {
+            return new Set(array());
+        }
+
         $dataMax = count($data) - 1;
 
         $questions = array();
@@ -91,13 +96,13 @@ class Loader
      */
     static public function getCategories()
     {
-        $files = self::prepareFromYaml(array());
         $categories = array();
+        $files = self::prepareFromYaml(array());
+
         foreach($files as $file) {
             $categories[] = $file['category'];
         }
         
         return array_unique($categories);
-        
     }
 }
