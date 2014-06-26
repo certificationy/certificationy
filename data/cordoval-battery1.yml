@@ -142,8 +142,8 @@ questions:
         answers:
             - {value: 'GetSetMethodNormalizer is broken by design', correct: true}
             - {value: 'one can load normalizers and/or encoders by tagging them as serializer.normalizer and serializer.encoder respectively true makes the serializer available in the container and loads 3 encoders and 1 default normalizer', correct: true}
-            - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: false}
             - {value: 'JsonEncoder and XmlEncoder implement both EncoderInterface and DecoderInterface', correct: true}
+            - {value: 'JsonEncode and XmlEncode implement both EncoderInterface and DecoderInterface', correct: false}
             - {value: 'NormalizerInterface has methods normalize and supportsNormalization', correct: true}
             - {value: 'DenormalizerInterface has methods denormalize and supportsDenormalization but their methods have less arguments than the normalizer', correct: false}
 
