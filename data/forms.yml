@@ -35,3 +35,10 @@ questions:
             - {value: $formFactory->setExtension(new CsrfExtension($csrfProvider));,     correct: false}
             - {value: $formFactory->addCsrfExtension(new CsrfExtension($csrfProvider));, correct: false}
             - {value: $formFactory->addExtension(new Csrf($csrfProvider));,              correct: false}
+    -
+        question: 'Using Form component, which option will allow you to specify groups used for validation?'
+        answers:
+            - {value: validation_groups, correct: true}
+            - {value: groups_validation, correct: false}
+            - {value: validator_groups,  correct: false}
+            - {value: groups_validator,  correct: false}

@@ -28,3 +28,17 @@ questions:
             - {value: @ParamConverter, correct: true}
             - {value: @Security,       correct: true}
             - {value: @Post,           correct: false}
+    -
+        question: 'Which of these response objects does not exists?'
+        answers:
+            - {value: XmlResponse,        correct: true}
+            - {value: JsonResponse,       correct: false}
+            - {value: BinaryFileResponse, correct: false}
+            - {value: RedirectResponse,   correct: false}
+    -
+        question: 'Which class will you use to convert an action parameter?'
+        answers:
+            - {value: ParamConverter,     correct: true}
+            - {value: ParameterConverter, correct: false}
+            - {value: Converter,          correct: false}
+            - {value: ObjectConverter,    correct: false}

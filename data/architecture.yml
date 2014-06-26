@@ -63,3 +63,17 @@ questions:
             - {value: "yes",                 correct: true}
             - {value: "yes, but not always", correct: false}
             - {value: "yes, but only once",  correct: false}
+    -
+        question: 'Using FrameworkBundle configuration, what is the correct path to fill proxies IP?'
+        answers:
+            - {value: "trusted_proxies", correct: true}
+            - {value: "proxies_trusted", correct: false}
+            - {value: "proxies",         correct: false}
+            - {value: "proxies_list",    correct: false}
+    -
+        question: 'Using FrameworkBundle configuration, what is the default framework.templating.assets_version_format value?'
+        answers:
+            - {value: "%%s?%%s", correct: true}
+            - {value: "%s?%s",   correct: false}
+            - {value: "?%%s",    correct: false}
+            - {value: "?%s",     correct: false}

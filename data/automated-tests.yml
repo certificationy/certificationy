@@ -21,3 +21,17 @@ questions:
             - {value: Symfony\Component\Console\Tester\CommandTester,     correct: true}
             - {value: Symfony\Component\Console\Tester\CommandUnitTester, correct: false}
             - {value: Symfony\Component\Console\Tester\CommandUnit,       correct: false}
+    -
+        question: 'Using PHPUnit, which method allows to specify a mock response on second call?'
+        answers:
+            - {value: $mock->expects($this->at(2)),      correct: true}
+            - {value: $mock->expects($this->exactly(2)), correct: false}
+            - {value: $mock->expects($this->on(2)),      correct: false}
+            - {value: $mock->expects($this->call(2)),    correct: false}
+    -
+        question: 'Using PHPUnit, which method allows you to expect an exception to be thrown?'
+        answers:
+            - {value: $this->setExpectedException('MyException'), correct: true}
+            - {value: $this->setExceptionExpected('MyException'), correct: false}
+            - {value: $this->expectException('MyException'),      correct: false}
+            - {value: $this->setExpected('MyException'),          correct: false}
