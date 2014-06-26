@@ -16,13 +16,13 @@ This is a Symfony Console application to train on Symfony certification.
 ```
 $ curl -s http://box-project.org/installer.php | php
 $ php box.phar build
-$ php certificationy.phar [--number=5]
+$ php certificationy.phar [--number=20]
 ```
 
 ## Using Composer
 ```
 $ composer create-project eko/certificationy
-$ php certificationy.php [--number=5]
+$ php certificationy.php [--number=20]
 ```
 
 # Please, add your questions!
