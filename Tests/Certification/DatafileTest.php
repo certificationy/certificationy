@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This file is part of the Eko\FeedBundle Symfony bundle.
  *
  * (c) Vincent Composieux <vincent.composieux@gmail.com>
@@ -9,6 +9,7 @@
  */
 
 namespace Certification\Tests;
+
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Yaml\Yaml;
@@ -16,7 +17,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * DatafileTest
  *
- * @author Vincent Composieux <vincent.composieux@gmail.com>
+ * @author Martin Aarhof <martin.aarhof@gmail.com>
  */
 class DatafileTest extends \PHPUnit_Framework_TestCase
 {
@@ -71,6 +72,16 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
         foreach ($this->_files as $file) {
             /** @var SplFileInfo $file */
             $data = Yaml::parse($file->getContents());
+            
+            $this->assertArrayHasKey(
+                'questions',
+                $data,
+                sprintf(
+                    'File "%s" does not have questions',
+                    $file->getFilename()
+                )
+            );
+            
             foreach ($data['questions'] as $num => $question) {
                 $this->assertArrayHasKey(
                     'question',
@@ -136,8 +147,7 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
                         }
                     }
 
-                    $this->assertTrue(
-                        false,
+                    $this->fail(
                         sprintf(
                             'Question "%s" does not have a correct answer',
                             $question['question']
