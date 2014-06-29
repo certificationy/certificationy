@@ -77,3 +77,24 @@ questions:
             - {value: "%s?%s",   correct: false}
             - {value: "?%%s",    correct: false}
             - {value: "?%s",     correct: false}
+    -
+        question: 'Using ClassLoader component, which class can be used to autoload a static class map?'
+        answers:
+            - {value: "Symfony/Component/ClassLoader/MapClassLoader", correct: true}
+            - {value: "Symfony/Component/ClassLoader/ClassMapLoader", correct: false}
+            - {value: "Symfony/Component/ClassLoader/ClassLoader",    correct: false}
+            - {value: "Symfony/Component/ClassLoader/MapLoader",      correct: false}
+    -
+        question: 'Instanciating a new Symfony\Component\HttpKernel\Kernel, what are correct arguments order?'
+        answers:
+            - {value: "public function __construct($environment, $debug)",               correct: true}
+            - {value: "public function __construct($debug, $environment)",               correct: false}
+            - {value: "public function __construct($name, $environment, $debug)",        correct: false}
+            - {value: "public function __construct($environment, $debug, $name = null)", correct: false}
+    -
+        question: 'What is the prefix of environment variables used by Symfony?'
+        answers:
+            - {value: "SYMFONY__", correct: true}
+            - {value: "SF__",      correct: false}
+            - {value: "SYMFONY-",  correct: false}
+            - {value: "SF-",       correct: false}
