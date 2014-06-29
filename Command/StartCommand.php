@@ -31,6 +31,11 @@ use Symfony\Component\Console\Question\ChoiceQuestion;
 class StartCommand extends Command
 {
     /**
+     * @var integer
+     */
+    const WORDWRAP_NUMBER = 80;
+
+    /**
      * {@inheritdoc}
      */
     protected function configure()
@@ -61,7 +66,9 @@ class StartCommand extends Command
         $set = Loader::init($number, $categories);
 
         if ($set->getQuestions()) {
-            $output->writeln(sprintf('Starting a new set of <info>%s</info> questions', count($set->getQuestions())));
+            $output->writeln(
+                sprintf('Starting a new set of <info>%s</info> questions (available questions: <info>%s</info>)', count($set->getQuestions()), Loader::count())
+            );
 
             $this->askQuestions($set, $input, $output);
             $this->displayResults($set, $output);
@@ -118,12 +125,15 @@ class StartCommand extends Command
     {
         $results = array();
 
+        $questionCount = 1;
+
         foreach($set->getQuestions() as $key => $question) {
             $isCorrect = $set->isCorrect($key);
+            $label = wordwrap($question->getQuestion(), self::WORDWRAP_NUMBER, "\n");
 
             $results[] = array(
-                $question->getQuestion(),
-                implode(', ', $question->getCorrectAnswersValues()),
+                sprintf('<comment>#%d</comment> %s', $questionCount++, $label),
+                wordwrap(implode(', ', $question->getCorrectAnswersValues()), self::WORDWRAP_NUMBER, "\n"),
                 $isCorrect ? '<info>✔</info>' : '<error>✗</error>'
             );
         }

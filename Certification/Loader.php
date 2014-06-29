@@ -10,6 +10,7 @@
  */
 
 namespace Certificationy\Certification;
+
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Yaml;
 
@@ -21,10 +22,15 @@ use Symfony\Component\Yaml\Yaml;
 class Loader
 {
     /**
+     * @var integer
+     */
+    static public $count;
+
+    /**
      * Returns a new set of randomized questions
      *
      * @param integer $number
-     * @param array $categories
+     * @param array   $categories
      *
      * @return Set
      */
@@ -62,12 +68,23 @@ class Loader
     }
 
     /**
+     * Counts total of available questions
+     *
+     * @return integer
+     */
+    static public function count()
+    {
+        return self::$count ?: count(self::prepareFromYaml());
+    }
+
+    /**
      * Prepares data from Yaml files and returns an array of questions
      *
      * @param array $categories : List of categories which should be included, empty array = all
+     *
      * @return array
      */
-    static protected function prepareFromYaml(array $categories)
+    static protected function prepareFromYaml(array $categories = array())
     {
         $files = Finder::create()->files()->in(__DIR__ . '/../data/')->name('*.yml');
 
@@ -86,6 +103,8 @@ class Loader
             }
         }
 
+        self::$count = count($data);
+
         return $data;
     }
     
@@ -97,7 +116,7 @@ class Loader
     static public function getCategories()
     {
         $categories = array();
-        $files = self::prepareFromYaml(array());
+        $files      = self::prepareFromYaml();
 
         foreach($files as $file) {
             $categories[] = $file['category'];
