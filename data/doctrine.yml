@@ -10,7 +10,6 @@ questions:
             - {value: '$em->persist($entity), followed by $em->flush()', correct: true}
     -
         question: 'Where are the ORM classes generally found in a Symfony bundle?'
-        weight: 0.25
         answers:
             - {value: 'Acme/DemoBundle/Models/...',   correct: false}
             - {value: 'Acme/DemoBundle/Entities/...', correct: false}
@@ -18,7 +17,6 @@ questions:
             - {value: 'Acme/DemoBundle/Entity/...',   correct: true}
     -
         question: 'What is the console command to create a new entity?'
-        weight: 0.5
         answers:
             - {value: php app/console doctrine:generate:entity, correct: true}
             - {value: php app/console generate:entity,          correct: false}
@@ -26,7 +24,6 @@ questions:
             - {value: php app/console doctrine:create:entity,   correct: false}
     -
         question: 'What is the command to update the database from entities?'
-        weight: 0.5
         answers:
             - {value: php app/console doctrine:schema:update,   correct: true}
             - {value: php app/console doctrine:entity:update,   correct: false}
@@ -34,7 +31,6 @@ questions:
             - {value: php app/console doctrine:schema:create,   correct: false}
     -
         question: 'What is the right command name to load Doctrine fixtures?'
-        weight: 0.75
         answers:
             - {value: php app/console doctrine:fixtures:load,   correct: true}
             - {value: php app/console doctrine:load:fixtures,   correct: false}

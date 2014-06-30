@@ -49,7 +49,7 @@ class SetFactory
             throw new \InvalidArgumentException(sprintf('Must supply a (positive) numeric value for the number of questions, %s given', $number));
         }
 
-        $questions = $this->createQuestions($categories);
+        $questions = $this->createQuestions($categories, $randomized);
 
         // check if we have enough questions to meet the required number
         $numberOfQuestions = count($questions);
@@ -63,7 +63,7 @@ class SetFactory
 
         $questions = array_slice($questions, 0, $number, true);
         if ($randomized === true) {
-            $questions = $this->randomizeQuestions($questions);
+            shuffle($questions);
         }
 
         return new Set($questions);
@@ -74,10 +74,11 @@ class SetFactory
      *
      * @param array $categories Categories to include in this set (case-insensitive),
      *                          leave empty to include all categories
+     * @param bool  $randomized If true, the questions in the set will be randomized for a bigger challenge
      *
      * @return array
      */
-    protected function createQuestions(array $categories = array())
+    protected function createQuestions(array $categories = array(), $randomized = false)
     {
         $filteredQuestions = array();
         $categories        = array_map('strtolower', $categories);
@@ -86,36 +87,14 @@ class SetFactory
         foreach ($this->loader->getData() as $category => $categoryData) {
             if (empty($categories) || in_array(strtolower($category), $categories)) {
                 foreach ($categoryData['questions'] as $questionData) {
+                    if ($randomized === true) {
+                        shuffle($questionData['answers']);
+                    }
                     $filteredQuestions[] = new Question($questionData['question'], $category, $questionData['answers'], $questionData['weight']);
                 }
             }
         }
 
         return $filteredQuestions;
-    }
-
-    /**
-     * Randomizes a given array of questions
-     *
-     * @param array $questions
-     *
-     * @return array
-     *
-     * @throws \LogicException
-     */
-    protected function randomizeQuestions(array $questions)
-    {
-        $randomQuestions = array();
-        $total = count($questions);
-        for ($i = 0; $i < $total; $i++) {
-            if (empty($questions)) {
-                throw new \LogicException('There are no more questions to randomize, this should never happen');
-            }
-            $randomQuestionKey = array_rand($questions);
-            $randomQuestions[] = $questions[$randomQuestionKey];
-            unset($questions[$randomQuestionKey]);
-        }
-
-        return $randomQuestions;
     }
 }
