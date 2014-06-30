@@ -47,3 +47,10 @@ questions:
             - {value: "{{ }}",  correct: false}
             - {value: "{# #}",  correct: false}
             - {value: "{ }",    correct: false}
+    -
+        question: 'Using Twig, how to check if current user has role "ROLE_TEST"?'
+        answers:
+            - {value: "{% if is_granted('ROLE_TEST') %}",    correct: true}
+            - {value: "{% if is_authorized('ROLE_TEST') %}", correct: false}
+            - {value: "{% if has_role('ROLE_TEST') %}",      correct: false}
+            - {value: "{% if has_access('ROLE_TEST') %}",    correct: false}

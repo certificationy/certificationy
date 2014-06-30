@@ -98,3 +98,10 @@ questions:
             - {value: "SF__",      correct: false}
             - {value: "SYMFONY-",  correct: false}
             - {value: "SF-",       correct: false}
+    -
+        question: 'In Kernel class, which method do you need to redefine if you want to have multiple configuration files (config_dev.yml, config_test.yml, ...)?'
+        answers:
+            - {value: "public function registerContainerConfiguration(LoaderInterface $loader)", correct: true}
+            - {value: "public function registerConfigurationContainer(LoaderInterface $loader)", correct: false}
+            - {value: "public function registerConfiguration(LoaderInterface $loader)",          correct: false}
+            - {value: "public function registerConfigurationPath(LoaderInterface $loader)",      correct: false}

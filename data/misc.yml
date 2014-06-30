@@ -14,3 +14,17 @@ questions:
             - {value: Psr\Log\LoggerInterface,                    correct: true}
             - {value: Symfony\Bridge\Monolog\LoggerInterface,     correct: false}
             - {value: Symfony\Bridge\Monolog\Log\LoggerInterface, correct: false}
+    -
+        question: 'Using a dev environment, what is the correct cached file name of the dependency injection container?'
+        answers:
+            - {value: "app/cache/dev/appDevDebugProjectContainer.php", correct: true}
+            - {value: "app/cache/dev/appDebugProjectContainer.php",    correct: false}
+            - {value: "app/cache/dev/appDevProjectDebugContainer.php", correct: false}
+            - {value: "app/cache/dev/appProjectContainer.php",         correct: false}
+    -
+        question: 'Using a dev environment, what is the correct cached file name of the generated configuration routes?'
+        answers:
+            - {value: "app/cache/dev/appDevUrlGenerator.php", correct: true}
+            - {value: "app/cache/dev/appDevGeneratorUrl.php", correct: false}
+            - {value: "app/cache/dev/appDevUrlDump.php",      correct: false}
+            - {value: "app/cache/dev/appDevDumpedUrl.php",    correct: false}
