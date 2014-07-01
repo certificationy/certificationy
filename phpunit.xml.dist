@@ -13,8 +13,6 @@
             <exclude>
                 <directory>./Tests</directory>
                 <directory>./vendor</directory>
-                <file>./Application/Certificationy.php</file>
-                <file>./certificationy.php</file>
             </exclude>
         </whitelist>
     </filter>
