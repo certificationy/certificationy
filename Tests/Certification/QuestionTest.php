@@ -17,6 +17,7 @@ use Certificationy\Certification\Answer;
  * QuestionTest
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
+ * @author Cas Leentfaar <info@casleentfaar.com>
  */
 class QuestionTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,7 +43,7 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
             new Answer('my fourth answer', false)
         );
 
-        $this->question = new Question('my question', 'my category', $this->answers);
+        $this->question = new Question('my question', 'my category', $this->answers, 0.75);
     }
 
     /**
@@ -53,10 +54,12 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('my category', $this->question->getCategory());
         $this->assertEquals('my question', $this->question->getQuestion());
 
+        $this->assertEquals(0.75, $this->question->getWeight());
+
         $this->assertEquals($this->answers, $this->question->getAnswers());
 
         $this->assertEquals(
-            array('my first answer', 'my second answer', 'my third answer', 'my fourth answer'),
+            array(1 => 'my first answer', 2 => 'my second answer', 3 => 'my third answer', 4 => 'my fourth answer'),
             $this->question->getAnswersLabels()
         );
         $this->assertEquals(
@@ -85,7 +88,7 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->question->areCorrectAnswers(
             array('my second answer')
         ));
-        
+
         $this->assertFalse($this->question->areCorrectAnswers(
             array('my second answer', 'my third answer')
         ));
@@ -100,7 +103,7 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsMultipleChoice()
     {
-        $multipleChoiceAnswers = array(
+        $multipleChoiceAnswers    = array(
             new Answer('my first answer', true),
             new Answer('my second answer', true),
             new Answer('my third answer', false)

@@ -64,11 +64,11 @@ class Set
      * Add a user answer
      *
      * @param int   $key    An identifier
-     * @param array $answer A user answers array
+     * @param array $answers A user answers array
      */
-    public function addAnswer($key, $answer)
+    public function addAnswer($key, array $answers)
     {
-        $this->answers[$key] = $answer;
+        $this->answers[$key] = $answers;
     }
 
     /**
@@ -113,7 +113,7 @@ class Set
      *
      * @return int
      */
-    public function getValidNumber()
+    public function getCorrectNumber()
     {
         $count = 0;
 
@@ -132,12 +132,46 @@ class Set
     }
 
     /**
-     * Returns errors questions set number
+     * Returns the number of questions in this set
      *
      * @return int
      */
-    public function getErrorsNumber()
+    public function count()
     {
-        return count($this->getQuestions()) - $this->getValidNumber();
+        return count($this->getQuestions());
+    }
+
+    /**
+     * Returns number of questions that were answered incorrectly
+     *
+     * @return int
+     */
+    public function getIncorrectNumber()
+    {
+        return $this->count() - $this->getCorrectNumber();
+    }
+
+    /**
+     * Returns total score by calculating the number of questions correctly,
+     * multiplied by their weight-value.
+     *
+     * @return float The achieved score, number between 0 and 10
+     */
+    public function getScore()
+    {
+        $score            = 0.0;
+        $maxPossibleScore = 0.0;
+        foreach ($this->getQuestions() as $x => $question) {
+            $maxPossibleScore += $question->getWeight() * 1;
+            if ($this->isCorrect($x) === true) {
+                $score += $question->getWeight() * 1;
+            }
+        }
+
+        if ($score > 0) {
+            $score = ($score / $maxPossibleScore) * 10;
+        }
+
+        return $score;
     }
 }

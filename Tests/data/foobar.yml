@@ -1,0 +1,29 @@
+category: Foobar
+questions:
+    -
+        question: 'Do you know the meaning of life?'
+        weight: 0.75
+        answers:
+            - {value: 'Of course!',              correct: false}
+            - {value: 'Not sure',                correct: false}
+            - {value: 'The meaning of... what?', correct: true}
+    -
+        question: 'What did you eat for dinnner yesterday?'
+        weight: 0.25
+        answers:
+            - {value: 'Mac and cheese, baby!',   correct: false}
+            - {value: 'Filet mignon',            correct: false}
+            - {value: 'What''s dinner?',         correct: true}
+    -
+        question: 'Why are you still reading these?'
+        weight: 1.0
+        answers:
+            - {value: 'I find them fascinating', correct: false}
+            - {value: 'Reading what?',           correct: false}
+            - {value: 'Why did you write them?', correct: true}
+    -
+        question: 'Who am I?'
+        answers:
+            - {value: 'Somebody who actually went as far as to write these silly questions',       correct: true}
+            - {value: 'Seriously... Are you just writing these to test questions without weight?', correct: true}
+            - {value: 'Is this a joke?',                                                           correct: true}

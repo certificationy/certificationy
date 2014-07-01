@@ -15,6 +15,7 @@ namespace Certificationy\Certification;
  * Class Question
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
+ * @author Cas Leentfaar <info@casleentfaar.com>
  */
 class Question
 {
@@ -34,6 +35,11 @@ class Question
     protected $answers;
 
     /**
+     * @var float
+     */
+    protected $weight;
+
+    /**
      * @var bool
      */
     protected $multipleChoice;
@@ -41,15 +47,17 @@ class Question
     /**
      * Constructor
      *
-     * @param string $question
-     * @param string $category
-     * @param array  $answers
+     * @param string $question The question string itself
+     * @param string $category Category of the question
+     * @param array  $answers  An array of the possible answers
+     * @param float  $weight   Value between 0.0 and 1.0
      */
-    public function __construct($question, $category, array $answers)
+    public function __construct($question, $category, array $answers, $weight = 1.0)
     {
         $this->question       = $question;
         $this->category       = $category;
         $this->answers        = $answers;
+        $this->weight         = $weight;
         $this->multipleChoice = count($this->getCorrectAnswersValues()) > 1 ? true : false;
     }
 
@@ -74,9 +82,19 @@ class Question
     }
 
     /**
+     * Returns the weight of this question
+     *
+     * @return float
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
      * Returns question available answers
      *
-     * @return array
+     * @return Answer[]
      */
     public function getAnswers()
     {
@@ -130,25 +148,23 @@ class Question
     }
 
     /**
-     * Returns question available answers labels
+     * Returns the labels for this question's answers
      *
      * @return array
      */
     public function getAnswersLabels()
     {
         $answers = array();
-
+        $i       = 0;
         foreach ($this->getAnswers() as $answer) {
-            $answers[] = $answer->getValue();
+            $answers[++$i] = $answer->getValue();
         }
 
         return $answers;
     }
 
     /**
-     * Returns whether multiple answers are correct for this question
-     *
-     * @return bool
+     * @return bool True if multiple answers are correct, false otherwise
      */
     public function isMultipleChoice()
     {

@@ -1,6 +1,21 @@
 category: Doctrine
 questions:
     -
+        question: 'How can you use the entity manager to persist entities into the database?'
+        weight: 0.75
+        answers:
+            - {value: '$em->insert($entity), followed by $em->save()', correct: false}
+            - {value: '$em->persist($entity), followed by $em->save()', correct: false}
+            - {value: '$em->insert($entity), followed by $em->flush()', correct: false}
+            - {value: '$em->persist($entity), followed by $em->flush()', correct: true}
+    -
+        question: 'Where are the ORM classes generally found in a Symfony bundle?'
+        answers:
+            - {value: 'Acme/DemoBundle/Models/...',   correct: false}
+            - {value: 'Acme/DemoBundle/Entities/...', correct: false}
+            - {value: 'Acme/DemoBundle/Model/...',    correct: false}
+            - {value: 'Acme/DemoBundle/Entity/...',   correct: true}
+    -
         question: 'What is the console command to create a new entity?'
         answers:
             - {value: php app/console doctrine:generate:entity, correct: true}
