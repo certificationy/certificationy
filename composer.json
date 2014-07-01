@@ -1,9 +1,9 @@
 {
-    "name": "eko/certificationy",
+    "name": "certificationy/certificationy",
     "type": "library",
-    "description": "A Symfony Console application to train on certification",
-    "keywords": ["symfony", "certification", "quizz"],
-    "homepage": "http://github.com/eko/certificationy",
+    "description": "A library to train on Symfony certification",
+    "keywords": ["symfony", "certification", "test", "exam"],
+    "homepage": "http://github.com/certificationy/certificationy",
     "license": "MIT",
     "authors": [
         {

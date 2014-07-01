@@ -1,7 +1,7 @@
 Certificationy
 ==============
 
-[![Build Status](https://secure.travis-ci.org/eko/certificationy.png?branch=master)](http://travis-ci.org/eko/certificationy)
+[![Build Status](https://secure.travis-ci.org/certificationy/certificationy.png?branch=master)](http://travis-ci.org/certificationy/certificationy)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc/mini.png)](https://insight.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc)
 
 This is a Symfony Console application to train on Symfony certification.
@@ -21,7 +21,7 @@ $ php certificationy.phar [--number=20]
 
 ## Using Composer
 ```
-$ composer create-project eko/certificationy
+$ composer create-project certificationy/certificationy
 $ php certificationy.php [--number=20]
 ```
 

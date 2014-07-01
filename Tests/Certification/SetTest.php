@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the Eko\FeedBundle Symfony bundle.
+ * This file is part of the Certificationy application.
  *
  * (c) Vincent Composieux <vincent.composieux@gmail.com>
  *
