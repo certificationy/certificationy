@@ -6,7 +6,7 @@ questions:
             - {value: "MyTestCommand.php",        correct: true}
             - {value: "CommandMyTest.php",        correct: false}
             - {value: "MyTestConsoleCommand.php", correct: false}
-            - {value: "MyTestCommand.php",        correct: false}
+            - {value: "MyTestCommand.php",        correct: true}
     -
         question: 'How to render properly template located in src/Acme/TestBundle/Resources/views/Question/Item/list.html.twig?'
         answers:
