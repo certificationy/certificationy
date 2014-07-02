@@ -21,3 +21,17 @@ questions:
             - {value: php app/console twig:check,    correct: false}
             - {value: php app/console twig:validate, correct: false}
             - {value: php app/console twig:syntax,   correct: false}
+    -
+        question: 'What is the console command to clear cache?'
+        answers:
+            - {value: php app/console cache:clear,      correct: true}
+            - {value: php app/console clear:cache,      correct: false}
+            - {value: php app/console cache:clean,      correct: false}
+            - {value: php app/console cache:invalidate, correct: false}
+    -
+        question: 'Which tag name you should use when you register command as service?'
+        answers:
+            - {value: command.console,      correct: false}
+            - {value: console.command,      correct: true}
+            - {value: console,              correct: false}
+            - {value: command,              correct: false}

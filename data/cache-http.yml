@@ -14,3 +14,19 @@ questions:
             - {value: esi_cache(),  correct: false}
             - {value: esi_render(), correct: false}
             - {value: render_esi(), correct: true}
+    -
+        question: 'Which HTTP headers belongs to expiration cache model?'
+        answers:
+            - {value: Expires,       correct: true}
+            - {value: Last-Modified, correct: false}
+            - {value: ETag,          correct: false}
+            - {value: Cache-Control, correct: true}
+            - {value: Cookie,        correct: false}
+    -
+        question: 'Which HTTP headers belongs to validation cache model?'
+        answers:
+            - {value: Expires,       correct: false}
+            - {value: Last-Modified, correct: true}
+            - {value: ETag,          correct: true}
+            - {value: Cache-Control, correct: false}
+            - {value: Cookie,        correct: false}
