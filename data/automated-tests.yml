@@ -35,3 +35,17 @@ questions:
             - {value: $this->setExceptionExpected('MyException'), correct: false}
             - {value: $this->expectException('MyException'),      correct: false}
             - {value: $this->setExpected('MyException'),          correct: false}
+    -
+        question: 'What command used for run all of your application tests by default?'
+        answers:
+            - {value: phpunit -c app/,  correct: true}
+            - {value: phpunit app/,     correct: false}
+            - {value: phpunit -c,       correct: false}
+            - {value: phpunit,          correct: false}
+    -
+        question: 'Where live functional tests in Symfony (inside a bundle structure)?'
+        answers:
+            - {value: Tests/,               correct: false}
+            - {value: Tests/Controller/,    correct: true}
+            - {value: Tests/Controllers/,   correct: false}
+            - {value: Controller/,          correct: false}
