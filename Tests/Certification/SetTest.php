@@ -67,8 +67,8 @@ class SetTest extends \PHPUnit_Framework_TestCase
      */
     public function testAnswers()
     {
-        $this->set->addAnswer(0, 'my first answer');
-        $this->set->addAnswer(1, 'my second answer');
+        $this->set->setAnswer(0, 'my first answer');
+        $this->set->setAnswer(1, 'my second answer');
 
         $this->assertCount(2, $this->set->getAnswers());
 

@@ -61,12 +61,12 @@ class Set
     }
 
     /**
-     * Add a user answer
+     * Sets a user answer
      *
      * @param int   $key    An identifier
      * @param array $answer A user answers array
      */
-    public function addAnswer($key, $answer)
+    public function setAnswer($key, $answer)
     {
         $this->answers[$key] = $answer;
     }
