@@ -36,6 +36,18 @@ questions:
             - {value: $formFactory->addCsrfExtension(new CsrfExtension($csrfProvider));, correct: false}
             - {value: $formFactory->addExtension(new Csrf($csrfProvider));,              correct: false}
     -
+        question: 'Using Form component, which option can you use into setDefaultOptions() method to define CSRF field name?'
+        answers:
+            - {value: csrf_field_name, correct: true}
+            - {value: csrf_fieldname,  correct: false}
+            - {value: csrf_field,      correct: false}
+            - {value: csrf_name,       correct: false}
+    -
+        question: 'Using Form component, option csrf_error_message can be use in setDefaultOptions() to define a custom CSRF error message?'
+        answers:
+            - {value: Yes, correct: false}
+            - {value: No,  correct: true}
+    -
         question: 'Using Form component, which option will allow you to specify groups used for validation?'
         answers:
             - {value: validation_groups, correct: true}

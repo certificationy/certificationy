@@ -22,3 +22,11 @@ questions:
             - {value: $response->isRevalidated(),     correct: false}
             - {value: $response->getRevalidated(),    correct: false}
             - {value: $response->mustBeRevalidated(), correct: false}
+    -
+        question: 'Using a Response instance, which of these methods are available to check status code?'
+        answers:
+            - {value: $response->isInformational(), correct: true}
+            - {value: $response->isSuccessful(),    correct: true}
+            - {value: $response->isRedirection(),   correct: true}
+            - {value: $response->isInvalid(),       correct: true}
+            - {value: $response->isError(),         correct: false}

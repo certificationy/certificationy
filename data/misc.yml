@@ -28,3 +28,10 @@ questions:
             - {value: "app/cache/dev/appDevGeneratorUrl.php", correct: false}
             - {value: "app/cache/dev/appDevUrlDump.php",      correct: false}
             - {value: "app/cache/dev/appDevDumpedUrl.php",    correct: false}
+    -
+        question: 'Using Symfony\Component\Debug\Debug static class, what is the only method available?'
+        answers:
+            - {value: public static function enable($errorReportingLevel = null, $displayErrors = true), correct: true}
+            - {value: public static function create($errorReportingLevel = null, $displayErrors = true), correct: false}
+            - {value: public static function load($errorReportingLevel = null, $displayErrors = true),   correct: false}
+            - {value: public static function start($errorReportingLevel = null, $displayErrors = true),  correct: false}
