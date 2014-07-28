@@ -4,6 +4,12 @@ Certificationy
 [![Build Status](https://secure.travis-ci.org/certificationy/certificationy.png?branch=master)](http://travis-ci.org/certificationy/certificationy)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc/mini.png)](https://insight.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc)
 
+---
+
+**Important**: Certificationy is not affiliated with SensioLabs or Symfony and you must not contribute if you have ever tried to pass the exam.
+
+---
+
 This is the Certificationy (a library to train on Symfony Certification) core library.
 
 # How to use it?
