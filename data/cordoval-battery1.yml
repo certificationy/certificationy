@@ -19,7 +19,7 @@ questions:
             - {value: raw,                                 correct: false}
 
     -
-        question: 'In Twig, the batch function:'
+        question: 'In Twig, the batch filter:'
         answers:
             - {value: 'is used to fill strings with random characters in a batch', correct: false}
             - {value: 'renders a vector out of an element value given',            correct: false}
