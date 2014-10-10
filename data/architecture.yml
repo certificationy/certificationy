@@ -85,7 +85,7 @@ questions:
             - {value: "Symfony/Component/ClassLoader/ClassLoader",    correct: false}
             - {value: "Symfony/Component/ClassLoader/MapLoader",      correct: false}
     -
-        question: 'Instanciating a new Symfony\Component\HttpKernel\Kernel, what are correct arguments order?'
+        question: 'Instantiating a new Symfony\Component\HttpKernel\Kernel, what is the correct arguments order?'
         answers:
             - {value: "public function __construct($environment, $debug)",               correct: true}
             - {value: "public function __construct($debug, $environment)",               correct: false}
