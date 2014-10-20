@@ -189,7 +189,7 @@ questions:
             - {value: 'Yes', correct: true}
             - {value: 'No',  correct: false}
     -
-        question: 'Syfmony Translator component follows the same architecture for loaders than Twig does.'
+        question: 'Symfony Translator component follows the same architecture for loaders than Twig does.'
         answers:
             - {value: 'Yes', correct: true}
             - {value: 'No',  correct: false}
