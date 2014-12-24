@@ -36,6 +36,7 @@ questions:
 
     -
         question: 'In Twig which loader can you use to load templates from a database and the filesystem simultaneously?'
+        shuffle: false
         answers:
             - {value: 'I can implement Twig_LoaderInterface, Twig_ExistsLoaderInterface into a combined loader and load everything at once', correct: false}
             - {value: 'I can implement DatabaseTwigLoader extending Twig_LoaderInterface and Twig_ExistsLoaderInterface and load templates using TwigMainLoader', correct: false}
@@ -45,6 +46,7 @@ questions:
 
     -
         question: 'in Twig, name which one is not a method of the Twig_Filter class:'
+        shuffle: false
         answers:
             - {value: 'needsLoader()', correct: true}
             - {value: 'needsEnvironment()', correct: false}
@@ -81,6 +83,7 @@ questions:
 
     -
         question: 'in Twig, suppose you have an object person'
+        shuffle: false
         answers:
             - {value: 'If person has a property address-main, I can access it with person.getAddressMain()', correct: false}
             - {value: "If person has a property address_main, I better access it with person.['address_main']", correct: false}
