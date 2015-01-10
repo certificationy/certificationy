@@ -59,7 +59,9 @@ class Loader
                 $answers[] = new Answer($dataAnswer['value'], $dataAnswer['correct']);
             }
 
-            shuffle($answers);
+            if (!isset($item['shuffle']) || $item['shuffle'] == true) {
+                shuffle($answers);
+            }
 
             $questions[$random] = new Question($item['question'], $item['category'], $answers);
         }
