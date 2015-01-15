@@ -35,7 +35,7 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $finder = new Finder();
-        $this->_files = $finder->files()->in(__DIR__ . '/../../data')->name('*.yml');
+        $this->_files = $finder->files()->in(__DIR__ . '/../../vendor/certificationy/symfony-pack/data')->name('*.yml');
     }
 
     /**
@@ -72,7 +72,7 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
         foreach ($this->_files as $file) {
             /** @var SplFileInfo $file */
             $data = Yaml::parse($file->getContents());
-            
+
             $this->assertArrayHasKey(
                 'questions',
                 $data,
@@ -81,7 +81,7 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
                     $file->getFilename()
                 )
             );
-            
+
             foreach ($data['questions'] as $num => $question) {
                 $this->assertArrayHasKey(
                     'question',
