@@ -35,3 +35,18 @@ questions:
             - {value: console.command,      correct: true}
             - {value: console,              correct: false}
             - {value: command,              correct: false}
+    -
+        question: 'What is the command line to list all known entities by doctrine 2 in your project ?'
+        answers:
+            - {value: 'php app/console doctrine:mapping:info',         correct: true}
+            - {value: 'php app/console doctrine:mapping:import',       correct: false}
+            - {value: 'php app/console doctrine:mapping:info --all',   correct: false}
+            - {value: 'php app/console doctrine:mapping:import --all', correct: false}
+    -
+        question: 'What is the command line to validate the doctrine mapping files ?'
+        answers:
+            - {value: 'php app/console doctrine:schema:validate',          correct: true}
+            - {value: 'php app/console doctrine:schema:update --dump-sql', correct: false}
+            - {value: 'php app/console doctrine:schema:update --force',    correct: false}
+            - {value: 'php app/console doctrine:mapping:convert',          correct: false}
+            - {value: 'php app/console doctrine:mapping:import',           correct: false}
