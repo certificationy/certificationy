@@ -30,3 +30,11 @@ questions:
             - {value: $response->isRedirection(),   correct: true}
             - {value: $response->isInvalid(),       correct: true}
             - {value: $response->isError(),         correct: false}
+    -
+        question: 'Which HTTP status code must be returned if the cache is still valid ?'
+        answers:
+            - {value: '304', correct: true}
+            - {value: '200', correct: false}
+            - {value: '202', correct: false}
+            - {value: '300', correct: false}
+            - {value: '305', correct: false}

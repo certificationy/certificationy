@@ -54,3 +54,10 @@ questions:
             - {value: "{% if is_authorized('ROLE_TEST') %}", correct: false}
             - {value: "{% if has_role('ROLE_TEST') %}",      correct: false}
             - {value: "{% if has_access('ROLE_TEST') %}",    correct: false}
+    -
+        question: 'Which Twig syntax allow to get the authenticated user name ?'
+        answers:
+            - {value: "{{ app.user.username }}", correct: true}
+            - {value: "{{ app.user.name }}",     correct: false}
+            - {value: "{{ app.user.id }}",       correct: false}
+            - {value: "{{ app.user }}",          correct: false}
