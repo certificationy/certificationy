@@ -18,9 +18,9 @@ questions:
         question: 'If function foo() is defined in the namespace myapp\utils\bar and your code is in namespace myapp, what is the correct way to import the bar namespace so you can use the foo() function?'
         answers:
             - {value: "use bar",                 correct: false}
-            - {value: "use myapp\utils\bar",     correct: true}
-            - {value: "use utils\bar",           correct: false}
-            - {value: "use myapp\utils\bar\foo", correct: false}
+            - {value: "use myapp\utils\\bar",     correct: true}
+            - {value: "use utils\\bar",           correct: false}
+            - {value: "use myapp\utils\\bar\\foo", correct: false}
     -
         question: 'Which web services are supported natively in PHP?'
         answers:
