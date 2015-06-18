@@ -52,8 +52,8 @@ questions:
     -
         question: 'What is the correct load() method definition in Symfony\Component\DependencyInjection\Extension\ExtensionInterface?'
         answers:
-            - {value: "public function load(array $configs, ContainerBuilder $container)", correct: true}
-            - {value: "public function load(array $config, ContainerBuilder $container)",  correct: false}
+            - {value: "public function load(array $configs, ContainerBuilder $container)", correct: false}
+            - {value: "public function load(array $config, ContainerBuilder $container)",  correct: true}
             - {value: "public function load(ContainerBuilder $container, array $configs)", correct: false}
             - {value: "public function load(ContainerBuilder $container, array $config)",  correct: false}
     -
