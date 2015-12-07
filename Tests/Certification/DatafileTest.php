@@ -12,7 +12,7 @@ namespace Certification\Tests;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * DatafileTest
@@ -28,6 +28,11 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
     private $_files = array();
 
     /**
+     * @var Parser $parser
+     */
+    private $_parser;
+
+    /**
      * Setup files
      *
      * @return void
@@ -36,6 +41,7 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
     {
         $finder = new Finder();
         $this->_files = $finder->files()->in(__DIR__ . '/../../vendor/certificationy/symfony-pack/data')->name('*.yml');
+        $this->_parser = new Parser();
     }
 
     /**
@@ -47,7 +53,7 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
     {
         foreach ($this->_files as $file) {
             /** @var SplFileInfo $file */
-            $data = Yaml::parse($file->getContents());
+            $data = $this->_parser->parse($file->getContents());
             $this->assertArrayHasKey(
                 'category',
                 $data,
@@ -71,8 +77,7 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
     {
         foreach ($this->_files as $file) {
             /** @var SplFileInfo $file */
-            $data = Yaml::parse($file->getContents());
-
+            $data = $this->_parser->parse($file->getContents());
             $this->assertArrayHasKey(
                 'questions',
                 $data,
@@ -81,7 +86,6 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
                     $file->getFilename()
                 )
             );
-
             foreach ($data['questions'] as $num => $question) {
                 $this->assertArrayHasKey(
                     'question',
@@ -115,7 +119,7 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
     {
         foreach ($this->_files as $file) {
             /** @var SplFileInfo $file */
-            $data = Yaml::parse($file->getContents());
+            $data = $this->_parser->parse($file->getContents());
             foreach ($data['questions'] as $question) {
                 if (isset($question['answers'])) {
                     foreach ($question['answers'] as $num => $answer) {
