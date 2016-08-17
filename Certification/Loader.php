@@ -21,50 +21,28 @@ use Symfony\Component\Yaml\Yaml;
  */
 class Loader
 {
+
     /**
-     * @var integer
+     * Total questions count
+     * @var int
      */
-    static public $count;
+    private static $count = null;
 
     /**
      * Returns a new set of randomized questions
      *
      * @param integer $number
-     * @param array   $categories
+     * @param array $categories
      *
      * @return Set
      */
-    static public function init($number, array $categories, $path)
+    public static function init($number, array $categories, $path)
     {
+        /** @var array $data */
         $data = self::prepareFromYaml($categories, $path);
-
-        if (!$data) {
-            return new Set(array());
-        }
-
-        $dataMax = count($data) - 1;
-
-        $questions = array();
-
-        for ($i = 0; $i < $number; $i++) {
-            do {
-                $random = rand(0, $dataMax);
-            } while (isset($questions[$random]) && count($questions) < $dataMax);
-
-            $item = $data[$random];
-
-            $answers = array();
-
-            foreach ($item['answers'] as $dataAnswer) {
-                $answers[] = new Answer($dataAnswer['value'], $dataAnswer['correct']);
-            }
-
-            if (!isset($item['shuffle']) || true === $item['shuffle']) {
-                shuffle($answers);
-            }
-
-            $questions[$random] = new Question($item['question'], $item['category'], $answers);
-        }
+        self::$count = count($data);
+        shuffle($data);
+        $questions = self::mapQuestions(array_slice($data, 0, $number));
 
         return new Set($questions);
     }
@@ -74,9 +52,77 @@ class Loader
      *
      * @return integer
      */
-    static public function count()
+    public static function count($path = null)
     {
-        return self::$count ?: count(self::prepareFromYaml());
+        if (!is_null(self::$count)) {
+            return self::$count;
+        } elseif ($path) {
+            return count(self::prepareFromYaml([], $path));
+        } else {
+            throw new \ErrorException('Provide $path to config file');
+        }
+    }
+
+     /**
+     * Get list of all categories
+     *
+     * @return array
+     */
+    public static function getCategories($path)
+    {
+        $categories = array();
+        $files = self::prepareFromYaml(array(), $path);
+        foreach ($files as $file) {
+            $categories[] = $file['category'];
+        }
+
+        return array_unique($categories);
+    }
+
+    /**
+     * Converts array data from yaml to Question objects
+     *
+     * @param array $data
+     *
+     * @return Question[]
+     */
+    protected static function mapQuestions(array $data)
+    {
+        $mapAnswer = function ($answerData) {
+            return self::createAnswer($answerData['value'], $answerData['correct']);
+        };
+        $mapQuestion = function ($questionData) use ($mapAnswer) {
+            try {
+                $answers = array_map($mapAnswer, $questionData['answers']);
+            } catch (\InvalidArgumentException $e) {
+                throw new \ErrorException(
+                    sprintf(
+                        'Invalid answer format in question [%s]: %s',
+                        $questionData['category'],
+                        $questionData['question']
+                    )
+                );
+            }
+
+            return new Question(
+                $questionData['question'],
+                $questionData['category'],
+                $answers
+            );
+        };
+
+        return array_map($mapQuestion, $data);
+    }
+
+    protected static function createAnswer($value, $correct)
+    {
+        if (!is_bool($correct)) {
+            throw new \InvalidArgumentException(
+                sprintf('correct must be boolean in answer "%s"', $value)
+            );
+        }
+
+        return new Answer($value, $correct);
     }
 
     /**
@@ -86,48 +132,24 @@ class Loader
      *
      * @return array
      */
-    static protected function prepareFromYaml(array $categories = array(), $path)
+    protected static function prepareFromYaml(array $categories, $configPath)
     {
         $data = array();
-        self::$count = 0;
-        $paths = Yaml::parse(file_get_contents($path))['paths'];
-
-        foreach($paths as $path) {
+        $paths = Yaml::parse(file_get_contents($configPath))['paths'];
+        foreach ($paths as $path) {
             $files = Finder::create()->files()->in($path)->name('*.yml');
-
             foreach ($files as $file) {
                 $fileData = Yaml::parse($file->getContents());
-
                 $category = $fileData['category'];
                 if (count($categories) == 0 || in_array($category, $categories)) {
                     array_walk($fileData['questions'], function (&$item, $key) use ($category) {
                         $item['category'] = $category;
                     });
-
                     $data = array_merge($data, $fileData['questions']);
                 }
             }
-
-            self::$count += count($data);
         }
 
         return $data;
-    }
-
-    /**
-     * Get list of all categories
-     *
-     * @return array
-     */
-    static public function getCategories($path)
-    {
-        $categories = array();
-        $files      = self::prepareFromYaml(array(), $path);
-
-        foreach($files as $file) {
-            $categories[] = $file['category'];
-        }
-
-        return array_unique($categories);
     }
 }

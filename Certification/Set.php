@@ -16,7 +16,7 @@ namespace Certificationy\Certification;
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
-class Set
+class Set implements \Countable
 {
     /**
      * @var Question[]
@@ -63,7 +63,7 @@ class Set
     /**
      * Sets a user answer
      *
-     * @param int   $key    An identifier
+     * @param int $key An identifier
      * @param array $answer A user answers array
      */
     public function setAnswer($key, $answer)
@@ -103,7 +103,7 @@ class Set
     public function isCorrect($key)
     {
         $question = $this->getQuestion($key);
-        $answers  = $this->getAnswer($key);
+        $answers = $this->getAnswer($key);
 
         return $question->areCorrectAnswers($answers);
     }
@@ -119,7 +119,7 @@ class Set
 
         foreach ($this->getQuestions() as $key => $question) {
             $question = $this->getQuestion($key);
-            $answers  = $this->getAnswer($key);
+            $answers = $this->getAnswer($key);
 
             if ($answers !== null) {
                 if ($question->areCorrectAnswers($answers)) {
@@ -139,5 +139,10 @@ class Set
     public function getErrorsNumber()
     {
         return count($this->getQuestions()) - $this->getValidNumber();
+    }
+
+    public function count()
+    {
+        return count($this->questions);
     }
 }
