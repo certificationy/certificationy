@@ -23,20 +23,47 @@ class Loader
 {
 
     /**
-     * Loads questions from yaml path
+     * Total questions count
+     * @var int
+     */
+    private static $count = null;
+
+    /**
+     * Returns a new set of randomized questions
      *
+     * @param integer $number
      * @param array $categories
      *
-     * @return Question[]
+     * @return Set
      */
-    public static function load(array $categories, $path)
+    public static function init($number, array $categories, $path)
     {
-        return self::mapQuestions(
-            self::prepareFromYaml($categories, $path)
-        );
+        /** @var array $data */
+        $data = self::prepareFromYaml($categories, $path);
+        self::$count = count($data);
+        shuffle($data);
+        $questions = self::mapQuestions(array_slice($data, 0, $number));
+
+        return new Set($questions);
     }
 
     /**
+     * Counts total of available questions
+     *
+     * @return integer
+     */
+    public static function count($path = null)
+    {
+        if (!is_null(self::$count)) {
+            return self::$count;
+        } elseif ($path) {
+            return count(self::prepareFromYaml([], $path));
+        } else {
+            throw new \ErrorException('Provide $path to config file');
+        }
+    }
+
+     /**
      * Get list of all categories
      *
      * @return array
@@ -105,10 +132,10 @@ class Loader
      *
      * @return array
      */
-    protected static function prepareFromYaml(array $categories, $path)
+    protected static function prepareFromYaml(array $categories, $configPath)
     {
         $data = array();
-        $paths = Yaml::parse(file_get_contents($path))['paths'];
+        $paths = Yaml::parse(file_get_contents($configPath))['paths'];
         foreach ($paths as $path) {
             $files = Finder::create()->files()->in($path)->name('*.yml');
             foreach ($files as $file) {
