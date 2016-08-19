@@ -24,17 +24,17 @@ class Loader
     /**
      * @var integer
      */
-    static public $count;
+    public static $count = null;
 
     /**
      * Returns a new set of randomized questions
      *
      * @param integer $number
-     * @param array   $categories
+     * @param array $categories
      *
      * @return Set
      */
-    static public function init($number, array $categories, $path)
+    public static function init($number, array $categories, $path)
     {
         $data = self::prepareFromYaml($categories, $path);
 
@@ -74,9 +74,29 @@ class Loader
      *
      * @return integer
      */
-    static public function count()
+    public static function count()
     {
-        return self::$count ?: count(self::prepareFromYaml());
+        if (is_null(self::$count)) {
+            throw new \ErrorException('Questions were not loaded');
+        }
+        return self::$count;
+    }
+
+    /**
+     * Get list of all categories
+     *
+     * @return array
+     */
+    public static function getCategories($path)
+    {
+        $categories = array();
+        $files = self::prepareFromYaml(array(), $path);
+
+        foreach ($files as $file) {
+            $categories[] = $file['category'];
+        }
+
+        return array_unique($categories);
     }
 
     /**
@@ -86,13 +106,13 @@ class Loader
      *
      * @return array
      */
-    static protected function prepareFromYaml(array $categories = array(), $path)
+    protected static function prepareFromYaml(array $categories = array(), $path)
     {
         $data = array();
         self::$count = 0;
         $paths = Yaml::parse(file_get_contents($path))['paths'];
 
-        foreach($paths as $path) {
+        foreach ($paths as $path) {
             $files = Finder::create()->files()->in($path)->name('*.yml');
 
             foreach ($files as $file) {
@@ -107,27 +127,9 @@ class Loader
                     $data = array_merge($data, $fileData['questions']);
                 }
             }
-
-            self::$count += count($data);
         }
+        self::$count = count($data);
 
         return $data;
-    }
-
-    /**
-     * Get list of all categories
-     *
-     * @return array
-     */
-    static public function getCategories($path)
-    {
-        $categories = array();
-        $files      = self::prepareFromYaml(array(), $path);
-
-        foreach($files as $file) {
-            $categories[] = $file['category'];
-        }
-
-        return array_unique($categories);
     }
 }
