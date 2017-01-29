@@ -39,18 +39,32 @@ class Question
     protected $multipleChoice;
 
     /**
+     * @var array
+     */
+    protected $versions;
+
+    /**
+     * @var string
+     */
+    protected $help;
+
+    /**
      * Constructor
      *
-     * @param string $question
-     * @param string $category
-     * @param array  $answers
+     * @param string      $question
+     * @param string      $category
+     * @param array       $answers
+     * @param array       $versions
+     * @param string|null $help
      */
-    public function __construct($question, $category, array $answers)
+    public function __construct($question, $category, array $answers, array $versions = array(), $help = null)
     {
         $this->question       = $question;
         $this->category       = $category;
         $this->answers        = $answers;
         $this->multipleChoice = count($this->getCorrectAnswersValues()) > 1 ? true : false;
+        $this->help           = $help;
+        $this->versions       = $versions;
     }
 
     /**
@@ -153,5 +167,25 @@ class Question
     public function isMultipleChoice()
     {
         return $this->multipleChoice;
+    }
+
+    /**
+     * Returns versions
+     *
+     * @return array
+     */
+    public function getVersions()
+    {
+        return $this->versions;
+    }
+
+    /**
+     * Returns help
+     *
+     * @return string
+     */
+    public function getHelp()
+    {
+        return $this->help;
     }
 }
