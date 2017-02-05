@@ -64,10 +64,9 @@ class Loader
                 shuffle($answers);
             }
 
-            $versions = isset($item['versions']) ? $item['versions']: array();
             $help = isset($item['help']) ? $item['help']: null;
 
-            $questions[$random] = new Question($item['question'], $item['category'], $answers, $versions, $help);
+            $questions[$random] = new Question($item['question'], $item['category'], $answers, $help);
         }
 
         return new Set($questions);
