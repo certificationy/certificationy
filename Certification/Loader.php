@@ -30,7 +30,8 @@ class Loader
      * Returns a new set of randomized questions
      *
      * @param integer $number
-     * @param array $categories
+     * @param array   $categories
+     * @param string  $path
      *
      * @return Set
      */
@@ -63,7 +64,9 @@ class Loader
                 shuffle($answers);
             }
 
-            $questions[$random] = new Question($item['question'], $item['category'], $answers);
+            $help = isset($item['help']) ? $item['help']: null;
+
+            $questions[$random] = new Question($item['question'], $item['category'], $answers, $help);
         }
 
         return new Set($questions);
@@ -73,17 +76,21 @@ class Loader
      * Counts total of available questions
      *
      * @return integer
+     * @throws \ErrorException
      */
     public static function count()
     {
         if (is_null(self::$count)) {
             throw new \ErrorException('Questions were not loaded');
         }
+
         return self::$count;
     }
 
     /**
      * Get list of all categories
+     *
+     * @param string $path
      *
      * @return array
      */
