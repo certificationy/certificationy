@@ -161,4 +161,14 @@ class Question
     {
         return $this->multipleChoice;
     }
+
+    /**
+     * Returns help
+     *
+     * @return string
+     */
+    public function getHelp()
+    {
+        return $this->help;
+    }
 }
