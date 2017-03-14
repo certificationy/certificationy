@@ -1,90 +1,96 @@
 <?php
 
 /*
- * This file is part of the Certificationy application.
+ * This file is part of the Certificationy library.
  *
  * (c) Vincent Composieux <vincent.composieux@gmail.com>
+ * (c) Mickaël Andrieu <andrieu.travail@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Certificationy\Certification;
+namespace Certificationy\Loaders;
 
+use Certificationy\Interfaces\LoaderInterface;
+use Certificationy\Collections\Questions;
+use Certificationy\Collections\Answers;
+use Certificationy\Answer;
+use Certificationy\Question;
+use Certificationy\Set;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Yaml;
 
-/**
- * Class Loader
- *
- * @author Vincent Composieux <vincent.composieux@gmail.com>
- */
-class Loader
+class YamlLoader implements LoaderInterface
 {
     /**
-     * @var integer
+     * @var Questions
      */
-    public static $count = null;
+    private $questions;
 
     /**
-     * Returns a new set of randomized questions
-     *
-     * @param integer $number
-     * @param array   $categories
-     * @param string  $path
-     *
-     * @return Set
+     * @var string
      */
-    public static function init($number, array $categories, $path)
+    private $paths;
+
+    public function __construct(array $paths)
     {
-        $data = self::prepareFromYaml($categories, $path);
+        $this->paths = $paths;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function initSet(int $nbQuestions, array $categories) : Set
+    {
+        $data = $this->prepareFromYaml($categories, $this->paths);
 
         if (!$data) {
+            // throw an exception
             return new Set(array());
         }
 
         $dataMax = count($data) - 1;
 
-        $questions = array();
+        $questions = new Questions();
 
-        for ($i = 0; $i < $number; $i++) {
+        for ($i = 0; $i < $nbQuestions; $i++) {
             do {
                 $random = rand(0, $dataMax);
-            } while (isset($questions[$random]) && count($questions) < $dataMax);
+            } while ($questions->has($random) && $questions->count() < $dataMax);
 
             $item = $data[$random];
 
-            $answers = array();
+            $answers = new Answers();
 
-            foreach ($item['answers'] as $dataAnswer) {
-                $answers[] = new Answer($dataAnswer['value'], $dataAnswer['correct']);
+            foreach ($item['answers'] as $key => $dataAnswer) {
+                $answers->addAnswer($key, new Answer($dataAnswer['value'], $dataAnswer['correct']));
             }
 
             if (!isset($item['shuffle']) || true === $item['shuffle']) {
-                shuffle($answers);
+                $answers->shuffle();
             }
 
-            $help = isset($item['help']) ? $item['help']: null;
+            $help = isset($item['help']) ? $item['help'] : null;
 
-            $questions[$random] = new Question($item['question'], $item['category'], $answers, $help);
+            $questions->add($random, new Question($item['question'], $item['category'], $answers, $help));
         }
 
         return new Set($questions);
     }
 
     /**
-     * Counts total of available questions
+     * @inheritdoc
      *
-     * @return integer
      * @throws \ErrorException
      */
-    public static function count()
+    public function all() : Questions
     {
-        if (is_null(self::$count)) {
+        if (is_null($this->questions)) {
             throw new \ErrorException('Questions were not loaded');
         }
 
-        return self::$count;
+        return $this->questions;
     }
 
     /**
@@ -94,10 +100,10 @@ class Loader
      *
      * @return array
      */
-    public static function getCategories($path)
+    public function getCategories()
     {
         $categories = array();
-        $files = self::prepareFromYaml(array(), $path);
+        $files = $this->prepareFromYaml(array());
 
         foreach ($files as $file) {
             $categories[] = $file['category'];
@@ -113,13 +119,11 @@ class Loader
      *
      * @return array
      */
-    protected static function prepareFromYaml(array $categories = array(), $path)
+    protected function prepareFromYaml(array $categories = array())
     {
         $data = array();
-        self::$count = 0;
-        $paths = Yaml::parse(file_get_contents($path))['paths'];
 
-        foreach ($paths as $path) {
+        foreach ($this->paths as $path) {
             $files = Finder::create()->files()->in($path)->name('*.yml');
 
             foreach ($files as $file) {
@@ -127,7 +131,7 @@ class Loader
 
                 $category = $fileData['category'];
                 if (count($categories) == 0 || in_array($category, $categories)) {
-                    array_walk($fileData['questions'], function (&$item, $key) use ($category) {
+                    array_walk($fileData['questions'], function (&$item) use ($category) {
                         $item['category'] = $category;
                     });
 
@@ -135,7 +139,6 @@ class Loader
                 }
             }
         }
-        self::$count = count($data);
 
         return $data;
     }

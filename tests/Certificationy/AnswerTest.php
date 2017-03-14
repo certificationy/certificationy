@@ -1,27 +1,21 @@
 <?php
+
 /*
- * This file is part of the Certificationy application.
+ * This file is part of the Certificationy library.
  *
  * (c) Vincent Composieux <vincent.composieux@gmail.com>
+ * (c) Mickaël Andrieu <andrieu.travail@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Certificationy\Tests;
+namespace Tests\Certificationy;
 
-use Certificationy\Certification\Answer;
+use Certificationy\Answer;
 
-/**
- * AnswerTest
- *
- * @author Vincent Composieux <vincent.composieux@gmail.com>
- */
 class AnswerTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * Tests getters and setters
-     */
     public function testGettersSetters()
     {
         $correctAnswer = new Answer('my first value', true);

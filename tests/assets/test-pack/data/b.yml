@@ -1,0 +1,23 @@
+category: B
+questions:
+    -
+        question: 'Foo?'
+        answers:
+            - {value: 'foo',         correct: false}
+            - {value: 'bar',         correct: false}
+            - {value: 'baz',         correct: true}
+            - {value: 'bazinga',     correct: false}
+    -
+        question: 'Bar?'
+        answers:
+            - {value: 'bar',         correct: true}
+            - {value: 'bar',         correct: false}
+            - {value: 'baz',         correct: false}
+            - {value: 'bazinga',     correct: false}
+    -
+        question: 'Baz?'
+        answers:
+            - {value: 'foo',         correct: false}
+            - {value: 'bar',         correct: false}
+            - {value: 'baz',         correct: true}
+            - {value: 'bazinga',     correct: false}

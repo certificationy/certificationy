@@ -1,23 +1,20 @@
 <?php
+
 /*
- * This file is part of the Certificationy application.
+ * This file is part of the Certificationy library.
  *
  * (c) Vincent Composieux <vincent.composieux@gmail.com>
+ * (c) Mickaël Andrieu <andrieu.travail@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Certificationy\Tests;
+namespace Tests\Certificationy;
 
-use Certificationy\Certification\Question;
-use Certificationy\Certification\Answer;
+use Certificationy\Question;
+use Certificationy\Answer;
 
-/**
- * QuestionTest
- *
- * @author Vincent Composieux <vincent.composieux@gmail.com>
- */
 class QuestionTest extends \PHPUnit_Framework_TestCase
 {
     /**

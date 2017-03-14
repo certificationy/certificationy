@@ -1,24 +1,21 @@
 <?php
+
 /*
- * This file is part of the Certificationy application.
+ * This file is part of the Certificationy library.
  *
  * (c) Vincent Composieux <vincent.composieux@gmail.com>
+ * (c) Mickaël Andrieu <andrieu.travail@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Certificationy\Tests;
+namespace Tests\Certificationy;
 
-use Certificationy\Certification\Answer;
-use Certificationy\Certification\Set;
-use Certificationy\Certification\Question;
+use Certificationy\Answer;
+use Certificationy\Set;
+use Certificationy\Question;
 
-/**
- * SetTest
- *
- * @author Vincent Composieux <vincent.composieux@gmail.com>
- */
 class SetTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -53,10 +50,10 @@ class SetTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $this->set->getQuestions());
 
         foreach ($this->set->getQuestions() as $question) {
-            $this->assertInstanceOf('Certificationy\Certification\Question', $question);
+            $this->assertInstanceOf('Certificationy\Question', $question);
         }
 
-        $this->assertInstanceOf('Certificationy\Certification\Question', $this->set->getQuestion(0));
+        $this->assertInstanceOf('Certificationy\Question', $this->set->getQuestion(0));
 
         $this->assertEquals('my first question', $this->set->getQuestion(0)->getQuestion());
         $this->assertEquals('my second question', $this->set->getQuestion(1)->getQuestion());
