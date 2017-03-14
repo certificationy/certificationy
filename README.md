@@ -21,11 +21,6 @@ CLI tool
 
 A CLI tool is available under the following repository: http://www.github.com/certificationy/certificationy-cli.
 
-Web platform
-------------
-
-Test yourself on the web platform (soon available) on the following website: http://www.certificationy.com
-
 # Please, add your questions!
 
 You can submit PR with your own questions into the `data/` directory to extends questions database.
