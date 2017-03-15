@@ -27,7 +27,7 @@ final class Answers
     public function __construct(array $answers = [])
     {
         foreach($answers as $index => $answer) {
-            $this->addAnswers($index, $answer);
+            $this->addAnswer($index, $answer);
         }
     }
 
@@ -36,7 +36,7 @@ final class Answers
         return $this->answers;
     }
 
-    public function addAnswers(int $index, Answers $answers)
+    public function addAnswers(int $index, array $answers)
     {
         foreach($answers as $answer) {
             $this->addAnswer($index, $answer);
@@ -69,5 +69,14 @@ final class Answers
         shuffle($this->answers);
 
         return $this;
+    }
+
+    public function get(int $key) : Answer
+    {
+        if (!isset($this->answers[$key])) {
+            NotReachableEntry::create($key);
+        }
+
+        return $this->answers[$key];
     }
 }

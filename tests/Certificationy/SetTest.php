@@ -12,11 +12,13 @@
 
 namespace Tests\Certificationy;
 
+use Certificationy\Collections\Answers;
+use Certificationy\Collections\Questions;
 use Certificationy\Answer;
 use Certificationy\Set;
 use Certificationy\Question;
 
-class SetTest extends \PHPUnit_Framework_TestCase
+class SetTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Set
@@ -30,16 +32,16 @@ class SetTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        return $this->set = new Set(array(
-            new Question('my first question', 'my first category', array(
+        return $this->set = new Set(new Questions([
+            new Question('my first question', 'my first category', new Answers([
                 new Answer('my first answer', true),
                 new Answer('my second answer', false)
-            )),
-            new Question('my second question', 'my second category', array(
+            ])),
+            new Question('my second question', 'my second category', new Answers([
                 new Answer('my first answer', false),
                 new Answer('my second answer', true)
-            ))
-        ));
+            ]))
+        ]));
     }
 
     /**
@@ -47,7 +49,7 @@ class SetTest extends \PHPUnit_Framework_TestCase
      */
     public function testGettersSetters()
     {
-        $this->assertCount(2, $this->set->getQuestions());
+        $this->assertSame(2, $this->set->getQuestions()->count());
 
         foreach ($this->set->getQuestions() as $question) {
             $this->assertInstanceOf('Certificationy\Question', $question);
@@ -64,12 +66,12 @@ class SetTest extends \PHPUnit_Framework_TestCase
      */
     public function testAnswers()
     {
-        $this->set->setAnswer(0, 'my first answer');
-        $this->set->setAnswer(1, 'my second answer');
+        $this->set->setAnswers(0, ['my first answer']);
+        $this->set->setAnswers(1, ['my second answer']);
 
-        $this->assertCount(2, $this->set->getAnswers());
+        $this->assertCount(2, $this->set->getAnswers()->all());
 
-        $this->assertEquals('my first answer', $this->set->getAnswer(0));
-        $this->assertEquals('my second answer', $this->set->getAnswer(1));
+        $this->assertEquals('my first answer', $this->set->getAnswer(0)->getValue());
+        $this->assertEquals('my second answer', $this->set->getAnswer(1)->getValue());
     }
 }

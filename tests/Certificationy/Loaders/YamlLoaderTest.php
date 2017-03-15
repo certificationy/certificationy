@@ -14,7 +14,7 @@ namespace Tests\Certificationy\Loaders;
 
 use Certificationy\Loaders\YamlLoader;
 
-class YamlLoaderTest extends \PHPUnit_Framework_TestCase
+class YamlLoaderTest extends \PHPUnit\Framework\TestCase
 {
     private $configFile;
     private $yamlLoader;

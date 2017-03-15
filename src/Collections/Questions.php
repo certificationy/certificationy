@@ -14,6 +14,7 @@ namespace Certificationy\Collections;
 
 use Certificationy\Exceptions\NotReachableEntry;
 use Certificationy\Interfaces\QuestionInterface;
+use Certificationy\Question;
 
 /**
  * Class Questions

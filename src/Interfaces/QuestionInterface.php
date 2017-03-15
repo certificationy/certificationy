@@ -39,7 +39,7 @@ interface QuestionInterface
     /**
      * Returns if given answers are correct answers
      */
-    public function areCorrectAnswers(Answers $answers) : bool;
+    public function areCorrectAnswers(array $answers) : bool;
 
     /**
      * Returns question available answers labels

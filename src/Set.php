@@ -14,7 +14,10 @@ namespace Certificationy;
 
 use Certificationy\Collections\Answers;
 use Certificationy\Collections\Questions;
+use Certificationy\Collections\UserAnswers;
+use Certificationy\Interfaces\AnswerInterface;
 use Certificationy\Interfaces\QuestionInterface;
+use Certificationy\Interfaces\UserAnswerInterface;
 use Certificationy\Interfaces\SetInterface;
 
 class Set implements SetInterface
@@ -32,7 +35,7 @@ class Set implements SetInterface
     public function __construct(Questions $questions)
     {
         $this->questions = $questions;
-        $this->answers = new Answers();
+        $this->answers = new UserAnswers();
     }
 
     /**
@@ -54,9 +57,11 @@ class Set implements SetInterface
     /**
      * @inheritdoc
      */
-    public function setAnswers(int $key, Answers $answers) : SetInterface
+    public function setAnswers(int $questionKey, array $answers) : SetInterface
     {
-        $this->answers->add($key, $answers);
+        $this->answers->addAnswers($questionKey, $answers);
+    
+        return $this;
     }
 
     /**
@@ -64,13 +69,21 @@ class Set implements SetInterface
      */
     public function getQuestionAnswers(int $key) : Answers
     {
-        return $this->answers->get($key);
+        return $this->question->getAnswers()->get($key);
     }
 
     /**
      * @inheritdoc
      */
-    public function getAnswers() : Answers
+    public function getAnswer(int $questionKey) : UserAnswerInterface
+    {
+        return $this->answers->get($questionKey);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getAnswers() : UserAnswers
     {
         return $this->answers;
     }

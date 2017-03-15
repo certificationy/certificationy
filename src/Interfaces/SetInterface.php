@@ -14,6 +14,7 @@ namespace Certificationy\Interfaces;
 
 use Certificationy\Collections\Answers;
 use Certificationy\Collections\Questions;
+use Certificationy\Collections\UserAnswers;
 
 interface SetInterface
 {
@@ -33,14 +34,19 @@ interface SetInterface
     public function getQuestionAnswers(int $key) : Answers;
 
     /**
+     * Returns user answer by question key
+     */
+    public function getAnswer(int $questionKey) : UserAnswerInterface;
+    
+    /**
      * Returns user answers
      */
-    public function getAnswers() : Answers;
+    public function getAnswers() : UserAnswers;
 
     /**
      * Sets a user answer
      */
-    public function setAnswers(int $key, Answers $answers): SetInterface;
+    public function setAnswers(int $questionKey, array $answers): SetInterface;
 
     /**
      * Returns if given question key user answers are correct

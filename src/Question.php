@@ -101,7 +101,7 @@ class Question implements QuestionInterface
     /**
      * @inheritdoc
      */
-    public function areCorrectAnswers(Answers $answers) : bool
+    public function areCorrectAnswers(array $answers) : bool
     {
         $correctAnswers = $this->getCorrectAnswersValues();
 

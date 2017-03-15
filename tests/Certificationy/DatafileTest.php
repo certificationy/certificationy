@@ -16,7 +16,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Yaml\Parser;
 
-class DatafileTest extends \PHPUnit_Framework_TestCase
+class DatafileTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

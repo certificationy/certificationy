@@ -14,7 +14,7 @@ namespace Tests\Certificationy;
 
 use Certificationy\Answer;
 
-class AnswerTest extends \PHPUnit_Framework_TestCase
+class AnswerTest extends \PHPUnit\Framework\TestCase
 {
     public function testGettersSetters()
     {

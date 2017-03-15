@@ -12,10 +12,11 @@
 
 namespace Tests\Certificationy;
 
+use Certificationy\Collections\Answers;
 use Certificationy\Question;
 use Certificationy\Answer;
 
-class QuestionTest extends \PHPUnit_Framework_TestCase
+class QuestionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Question
@@ -32,12 +33,12 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->answers = array(
+        $this->answers = new Answers([
             new Answer('my first answer', true),
             new Answer('my second answer', true),
             new Answer('my third answer', false),
             new Answer('my fourth answer', false)
-        );
+        ]);
 
         $this->question = new Question('my question', 'my category', $this->answers);
     }
@@ -54,7 +55,8 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             array('my first answer', 'my second answer', 'my third answer', 'my fourth answer'),
-            $this->question->getAnswersLabels()
+            $this->question->getAnswersLabels(),
+            var_dump($this->question->getAnswersLabels())
         );
         $this->assertEquals(
             array('my first answer', 'my second answer'),
@@ -97,16 +99,16 @@ class QuestionTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsMultipleChoice()
     {
-        $multipleChoiceAnswers = array(
+        $multipleChoiceAnswers = new Answers([
             new Answer('my first answer', true),
             new Answer('my second answer', true),
             new Answer('my third answer', false)
-        );
-        $nonMultipleChoiceAnswers = array(
+        ]);
+        $nonMultipleChoiceAnswers = new Answers([
             new Answer('my first answer', true),
             new Answer('my second answer', false),
             new Answer('my third answer', false)
-        );
+        ]);
 
         $multipleChoiceQuestion = new Question('my question', 'my category', $multipleChoiceAnswers);
         $this->assertTrue($multipleChoiceQuestion->isMultipleChoice());
