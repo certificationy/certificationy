@@ -43,16 +43,15 @@ class Loader
             return new Set(array());
         }
 
-        $dataMax = count($data) - 1;
+        $dataMax = count($data);
+
+        // Number must not be superior than the number of questions
+        $number = min($number, $dataMax);
 
         $questions = array();
 
         for ($i = 0; $i < $number; $i++) {
-            do {
-                $random = rand(0, $dataMax);
-            } while (isset($questions[$random]) && count($questions) < $dataMax);
-
-            $item = $data[$random];
+            $item = array_splice($data, array_rand($data), 1)[0];
 
             $answers = array();
 
@@ -66,7 +65,7 @@ class Loader
 
             $help = isset($item['help']) ? $item['help']: null;
 
-            $questions[$random] = new Question($item['question'], $item['category'], $answers, $help);
+            $questions[] = new Question($item['question'], $item['category'], $answers, $help);
         }
 
         return new Set($questions);
