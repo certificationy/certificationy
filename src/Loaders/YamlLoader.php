@@ -44,15 +44,15 @@ class YamlLoader implements LoaderInterface
     public function initSet(int $nbQuestions, array $categories) : Set
     {
         $data = $this->prepareFromYaml($categories, $this->paths);
-        $dataMax = count($data) - 1;
+        $dataMax = count($data);
+        $nbQuestions = min($nbQuestions, $dataMax);
+
         $questions = new Questions();
 
         for ($i = 0; $i < $nbQuestions; $i++) {
-            do {
-                $random = rand(0, $dataMax);
-            } while ($questions->has($random) && $questions->count() <= $dataMax);
-
-            $item = $data[$random];
+            $key = array_rand($data);
+            $item = $data[$key];
+            unset($data[$key]);
 
             $answers = new Answers();
 
@@ -66,7 +66,7 @@ class YamlLoader implements LoaderInterface
 
             $help = isset($item['help']) ? $item['help'] : null;
 
-            $questions->add($random, new Question($item['question'], $item['category'], $answers, $help));
+            $questions->add($key, new Question($item['question'], $item['category'], $answers, $help));
         }
 
         return new Set($questions);

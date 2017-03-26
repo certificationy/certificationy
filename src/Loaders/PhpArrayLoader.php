@@ -69,16 +69,17 @@ class PhpArrayLoader implements LoaderInterface
             });
         }
 
-        $dataMax = count($questionsData) - 1;
+        $dataMax = count($questionsData);
+        $nbQuestions = min($nbQuestions, $dataMax);
+
         $questions = new Questions();
 
         for ($i = 0; $i < $nbQuestions; $i++) {
-            do {
-                $random = rand(0, $dataMax);
-            } while ($questions->has($random) && $questions->count() <= $dataMax);
+             $key = array_rand($questionsData);
+             $item = $questionsData[$key];
+             unset($questionsData[$key]);
 
-            $item = $questionsData[$random];
-            $questions->add($random, $this->createFromEntry($item));
+            $questions->add($key, $this->createFromEntry($item));
         }
 
         return new Set($questions);
