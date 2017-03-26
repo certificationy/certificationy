@@ -1,22 +1,14 @@
 {
     "name": "certificationy/certificationy",
     "type": "library",
-    "description": "A library to train on Symfony certification",
-    "keywords": ["symfony", "certification", "test", "exam"],
+    "description": "A library to create certification system",
+    "keywords": ["symfony", "certification", "test", "exam", "php"],
     "homepage": "http://github.com/certificationy/certificationy",
     "license": "MIT",
     "authors": [
         {
             "name": "Mickaël Andrieu",
             "email": "andrieu.travail@gmail.com"
-        },
-        {
-            "name": "Vincent Composieux",
-            "email": "vincent.composieux@gmail.com"
-        },
-        {
-            "name": "Luis Cordova",
-            "email": "cordoval@gmail.com"
         }
     ],
     "require": {
