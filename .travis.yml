@@ -11,5 +11,4 @@ script: vendor/bin/phpunit
 
 notifications:
   email:
-    - vincent.composieux@gmail.com
     - andrieu.travail@gmail.com
