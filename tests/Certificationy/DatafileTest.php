@@ -37,7 +37,7 @@ class DatafileTest extends \PHPUnit\Framework\TestCase
     public function setUp()
     {
         $finder = new Finder();
-        $this->files = $finder->files()->in(__DIR__ . '/../assets/test-pack/data')->name('*.yml');
+        $this->files = $finder->files()->in(__DIR__ . '/../assets/test-yaml-pack/data')->name('*.yml');
         $this->parser = new Parser();
     }
 

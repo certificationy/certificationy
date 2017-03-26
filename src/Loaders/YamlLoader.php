@@ -44,27 +44,20 @@ class YamlLoader implements LoaderInterface
     public function initSet(int $nbQuestions, array $categories) : Set
     {
         $data = $this->prepareFromYaml($categories, $this->paths);
-
-        if (!$data) {
-            // throw an exception
-            return new Set(array());
-        }
-
         $dataMax = count($data) - 1;
-
         $questions = new Questions();
 
         for ($i = 0; $i < $nbQuestions; $i++) {
             do {
                 $random = rand(0, $dataMax);
-            } while ($questions->has($random) && $questions->count() < $dataMax);
+            } while ($questions->has($random) && $questions->count() <= $dataMax);
 
             $item = $data[$random];
 
             $answers = new Answers();
 
-            foreach ($item['answers'] as $key => $dataAnswer) {
-                $answers->addAnswer($key, new Answer($dataAnswer['value'], $dataAnswer['correct']));
+            foreach ($item['answers'] as $dataAnswer) {
+                $answers->addAnswer(new Answer($dataAnswer['value'], $dataAnswer['correct']));
             }
 
             if (!isset($item['shuffle']) || true === $item['shuffle']) {
@@ -94,16 +87,12 @@ class YamlLoader implements LoaderInterface
     }
 
     /**
-     * Get list of all categories
-     *
-     * @param string $path
-     *
-     * @return array
+     * @inheritdoc
      */
-    public function getCategories()
+    public function categories() : array
     {
-        $categories = array();
-        $files = $this->prepareFromYaml(array());
+        $categories = [];
+        $files = $this->prepareFromYaml([], $this->paths);
 
         foreach ($files as $file) {
             $categories[] = $file['category'];
@@ -119,7 +108,7 @@ class YamlLoader implements LoaderInterface
      *
      * @return array
      */
-    protected function prepareFromYaml(array $categories = array())
+    protected function prepareFromYaml(array $categories = []) : array
     {
         $data = array();
 

@@ -57,7 +57,7 @@ class Set implements SetInterface
     /**
      * @inheritdoc
      */
-    public function setAnswers(int $questionKey, array $answers) : SetInterface
+    public function setUserAnswers(int $questionKey, array $answers) : SetInterface
     {
         $this->answers->addAnswers($questionKey, $answers);
     

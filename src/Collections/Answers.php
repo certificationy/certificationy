@@ -12,7 +12,6 @@
 
 namespace Certificationy\Collections;
 
-use Certificationy\Exceptions\NotReachableEntry;
 use Certificationy\Interfaces\AnswerInterface;
 
 /**
@@ -26,9 +25,23 @@ final class Answers
 
     public function __construct(array $answers = [])
     {
-        foreach($answers as $index => $answer) {
-            $this->addAnswer($index, $answer);
+        foreach($answers as $answer) {
+            $this->addAnswer($answer);
         }
+    }
+
+    public function addAnswer(AnswerInterface $answer)
+    {
+        $this->answers[] = $answer;
+    }
+
+    public function addAnswers(array $answers)
+    {
+        foreach($answers as $answer) {
+            $this->addAnswer($answer);
+        }
+
+        return $this;
     }
 
     public function all()
@@ -36,32 +49,9 @@ final class Answers
         return $this->answers;
     }
 
-    public function addAnswers(int $index, array $answers)
-    {
-        foreach($answers as $answer) {
-            $this->addAnswer($index, $answer);
-        }
-
-        return $this;
-    }
-
     public function count() : int
     {
         return count($this->answers);
-    }
-
-    public function getAnswers(int $key) : Answers
-    {
-        if (!isset($this->answers[$key])) {
-            NotReachableEntry::create($key);
-        }
-
-        return $this->answers[$key];
-    }
-
-    public function addAnswer(int $index, AnswerInterface $answer)
-    {
-        $this->answers[$index][] = $answer;
     }
 
     public function shuffle()
@@ -69,14 +59,5 @@ final class Answers
         shuffle($this->answers);
 
         return $this;
-    }
-
-    public function get(int $key) : Answer
-    {
-        if (!isset($this->answers[$key])) {
-            NotReachableEntry::create($key);
-        }
-
-        return $this->answers[$key];
     }
 }

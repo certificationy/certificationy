@@ -25,7 +25,7 @@ class YamlLoaderTest extends \PHPUnit\Framework\TestCase
             . DIRECTORY_SEPARATOR . '..'
             . DIRECTORY_SEPARATOR . '..'
             . DIRECTORY_SEPARATOR . 'assets'
-            . DIRECTORY_SEPARATOR . 'test-pack'
+            . DIRECTORY_SEPARATOR . 'test-yaml-pack'
         ;
 
         $this->yamlLoader = new YamlLoader([$this->configFile]);
@@ -47,7 +47,8 @@ class YamlLoaderTest extends \PHPUnit\Framework\TestCase
 
     public function testCanGetCategoryList()
     {
-        $this->assertTrue(is_array($this->yamlLoader->getCategories()));
+        $this->assertTrue(is_array($this->yamlLoader->categories()));
+        $this->assertCount(2,$this->yamlLoader->categories());
     }
 
     public function tearDown()

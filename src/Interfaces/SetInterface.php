@@ -44,9 +44,9 @@ interface SetInterface
     public function getAnswers() : UserAnswers;
 
     /**
-     * Sets a user answer
+     * Sets a user answers
      */
-    public function setAnswers(int $questionKey, array $answers): SetInterface;
+    public function setUserAnswers(int $questionKey, array $answers): SetInterface;
 
     /**
      * Returns if given question key user answers are correct

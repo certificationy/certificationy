@@ -14,9 +14,8 @@ namespace Tests\Certificationy;
 
 use Certificationy\Collections\Answers;
 use Certificationy\Question;
-use Certificationy\Answer;
 
-class QuestionTest extends \PHPUnit\Framework\TestCase
+class QuestionTest extends TestCase
 {
     /**
      * @var Question
@@ -33,11 +32,11 @@ class QuestionTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp()
     {
-        $this->answers = new Answers([
-            new Answer('my first answer', true),
-            new Answer('my second answer', true),
-            new Answer('my third answer', false),
-            new Answer('my fourth answer', false)
+        $this->answers = self::answersFromArray([
+            ['my first answer', true],
+            ['my second answer', true],
+            ['my third answer', false],
+            ['my fourth answer', false],
         ]);
 
         $this->question = new Question('my question', 'my category', $this->answers);
@@ -54,13 +53,14 @@ class QuestionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->answers, $this->question->getAnswers());
 
         $this->assertEquals(
-            array('my first answer', 'my second answer', 'my third answer', 'my fourth answer'),
+            ['my first answer', 'my second answer', 'my third answer', 'my fourth answer'],
             $this->question->getAnswersLabels(),
-            var_dump($this->question->getAnswersLabels())
+            'Question should return all available answers labels'
         );
         $this->assertEquals(
-            array('my first answer', 'my second answer'),
-            $this->question->getCorrectAnswersValues()
+            ['my first answer', 'my second answer'],
+            $this->question->getCorrectAnswersValues(),
+            'Question should return all correct answers values'
         );
     }
 
@@ -70,28 +70,26 @@ class QuestionTest extends \PHPUnit\Framework\TestCase
     public function testAreCorrectAnswers()
     {
         $this->assertTrue($this->question->areCorrectAnswers(
-            array('my first answer', 'my second answer')
+            ['my first answer', 'my second answer']
         ));
 
         $this->assertTrue($this->question->areCorrectAnswers(
-            array('my second answer', 'my first answer')
+            ['my second answer', 'my first answer']
         ));
 
         $this->assertFalse($this->question->areCorrectAnswers(
-            array('my first answer')
+            ['my first answer']
         ));
 
         $this->assertFalse($this->question->areCorrectAnswers(
-            array('my second answer')
+            ['my second answer']
         ));
         
         $this->assertFalse($this->question->areCorrectAnswers(
-            array('my second answer', 'my third answer')
+            ['my second answer', 'my third answer']
         ));
 
-        $this->assertFalse($this->question->areCorrectAnswers(
-            array()
-        ));
+        $this->assertFalse($this->question->areCorrectAnswers([]));
     }
 
     /**
@@ -99,15 +97,15 @@ class QuestionTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsMultipleChoice()
     {
-        $multipleChoiceAnswers = new Answers([
-            new Answer('my first answer', true),
-            new Answer('my second answer', true),
-            new Answer('my third answer', false)
+        $multipleChoiceAnswers = self::answersFromArray([
+            ['my first answer', true],
+            ['my second answer', true],
+            ['my third answer', false],
         ]);
-        $nonMultipleChoiceAnswers = new Answers([
-            new Answer('my first answer', true),
-            new Answer('my second answer', false),
-            new Answer('my third answer', false)
+        $nonMultipleChoiceAnswers = self::answersFromArray([
+            ['my first answer', true],
+            ['my second answer', false],
+            ['my third answer', false],
         ]);
 
         $multipleChoiceQuestion = new Question('my question', 'my category', $multipleChoiceAnswers);

@@ -87,9 +87,9 @@ class Question implements QuestionInterface
      */
     public function getCorrectAnswersValues() : array
     {
-        $answersValues = array();
+        $answersValues = [];
 
-        foreach ($this->getAnswers() as $answer) {
+        foreach ($this->answers->all() as $answer) {
             if ($answer->isCorrect()) {
                 $answersValues[] = $answer->getValue();
             }
@@ -123,9 +123,9 @@ class Question implements QuestionInterface
      */
     public function getAnswersLabels() : array
     {
-        $answers = array();
+        $answers = [];
 
-        foreach ($this->getAnswers() as $answer) {
+        foreach ($this->answers->all() as $answer) {
             $answers[] = $answer->getValue();
         }
 

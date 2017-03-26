@@ -18,7 +18,7 @@ use Certificationy\Answer;
 use Certificationy\Set;
 use Certificationy\Question;
 
-class SetTest extends \PHPUnit\Framework\TestCase
+class SetTest extends TestCase
 {
     /**
      * @var Set
@@ -32,15 +32,23 @@ class SetTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp()
     {
-        return $this->set = new Set(new Questions([
-            new Question('my first question', 'my first category', new Answers([
-                new Answer('my first answer', true),
-                new Answer('my second answer', false)
-            ])),
-            new Question('my second question', 'my second category', new Answers([
-                new Answer('my first answer', false),
-                new Answer('my second answer', true)
-            ]))
+        return $this->set = new Set(self::questionsFromArray([
+            [
+                'my first question',
+                'my first category',
+                self::answersFromArray([
+                    ['my first answer', true],
+                    ['my second answer', false],
+                ])
+            ],
+            [
+                'my second question',
+                'my second category',
+                self::answersFromArray([
+                    ['my first answer', false],
+                    ['my second answer', true],
+                ])
+            ]
         ]));
     }
 
@@ -66,8 +74,8 @@ class SetTest extends \PHPUnit\Framework\TestCase
      */
     public function testAnswers()
     {
-        $this->set->setAnswers(0, ['my first answer']);
-        $this->set->setAnswers(1, ['my second answer']);
+        $this->set->setUserAnswers(0, ['my first answer']);
+        $this->set->setUserAnswers(1, ['my second answer']);
 
         $this->assertCount(2, $this->set->getAnswers()->all());
 
