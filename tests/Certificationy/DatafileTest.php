@@ -1,36 +1,33 @@
 <?php
+
 /*
- * This file is part of the Certificationy application.
+ * This file is part of the Certificationy library.
  *
  * (c) Vincent Composieux <vincent.composieux@gmail.com>
+ * (c) Mickaël Andrieu <andrieu.travail@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Certification\Tests;
+namespace Tests\Certificationy;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Yaml\Parser;
 
-/**
- * DatafileTest
- *
- * @author Martin Aarhof <martin.aarhof@gmail.com>
- */
-class DatafileTest extends \PHPUnit_Framework_TestCase
+class DatafileTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
      * @var array
      */
-    private $_files = array();
+    private $files = array();
 
     /**
      * @var Parser $parser
      */
-    private $_parser;
+    private $parser;
 
     /**
      * Setup files
@@ -40,8 +37,8 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $finder = new Finder();
-        $this->_files = $finder->files()->in(__DIR__ . '/../../vendor/certificationy/symfony-pack/data')->name('*.yml');
-        $this->_parser = new Parser();
+        $this->files = $finder->files()->in(__DIR__ . '/../assets/test-yaml-pack/data')->name('*.yml');
+        $this->parser = new Parser();
     }
 
     /**
@@ -51,9 +48,9 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
      */
     public function testDatafileIntegrity()
     {
-        foreach ($this->_files as $file) {
+        foreach ($this->files as $file) {
             /** @var SplFileInfo $file */
-            $data = $this->_parser->parse($file->getContents());
+            $data = $this->parser->parse($file->getContents());
             $this->assertArrayHasKey(
                 'category',
                 $data,
@@ -75,9 +72,9 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
      */
     public function testQuestionsHaveAnswers()
     {
-        foreach ($this->_files as $file) {
+        foreach ($this->files as $file) {
             /** @var SplFileInfo $file */
-            $data = $this->_parser->parse($file->getContents());
+            $data = $this->parser->parse($file->getContents());
             $this->assertArrayHasKey(
                 'questions',
                 $data,
@@ -117,9 +114,9 @@ class DatafileTest extends \PHPUnit_Framework_TestCase
      */
     public function testQuestionsHaveMinimumOneCorrectAnswer()
     {
-        foreach ($this->_files as $file) {
+        foreach ($this->files as $file) {
             /** @var SplFileInfo $file */
-            $data = $this->_parser->parse($file->getContents());
+            $data = $this->parser->parse($file->getContents());
             foreach ($data['questions'] as $question) {
                 if (isset($question['answers'])) {
                     foreach ($question['answers'] as $num => $answer) {

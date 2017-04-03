@@ -1,22 +1,20 @@
 <?php
 
 /*
- * This file is part of the Certificationy application.
+ * This file is part of the Certificationy library.
  *
  * (c) Vincent Composieux <vincent.composieux@gmail.com>
+ * (c) Mickaël Andrieu <andrieu.travail@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Certificationy\Certification;
+namespace Certificationy;
 
-/**
- * Class Answer
- *
- * @author Vincent Composieux <vincent.composieux@gmail.com>
- */
-class Answer
+use Certificationy\Interfaces\AnswerInterface;
+
+class Answer implements AnswerInterface
 {
     /**
      * @var string
@@ -41,21 +39,17 @@ class Answer
     }
 
     /**
-     * Returns answer value
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function getValue()
+    public function getValue() : string
     {
         return $this->value;
     }
 
     /**
-     * Returns if answer is correct
-     *
-     * @return bool
+     * @inheritdoc
      */
-    public function isCorrect()
+    public function isCorrect() : bool
     {
         return $this->correct;
     }

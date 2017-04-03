@@ -9,14 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Certificationy\Certification;
+namespace Certificationy;
 
-/**
- * Class Question
- *
- * @author Vincent Composieux <vincent.composieux@gmail.com>
- */
-class Question
+use Certificationy\Collections\Answers;
+use Certificationy\Interfaces\QuestionInterface;
+
+class Question implements QuestionInterface
 {
     /**
      * @var string
@@ -29,7 +27,7 @@ class Question
     protected $category;
 
     /**
-     * @var array
+     * @var Answers
      */
     protected $answers;
 
@@ -51,7 +49,7 @@ class Question
      * @param array       $answers
      * @param string|null $help
      */
-    public function __construct($question, $category, array $answers, $help = null)
+    public function __construct(string $question, string $category, Answers $answers, $help = null)
     {
         $this->question       = $question;
         $this->category       = $category;
@@ -61,66 +59,50 @@ class Question
     }
 
     /**
-     * Returns question label
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function getQuestion()
+    public function getQuestion() : string
     {
         return $this->question;
     }
 
     /**
-     * Returns question category name
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function getCategory()
+    public function getCategory() : string
     {
         return $this->category;
     }
 
     /**
-     * Returns question available answers
-     *
-     * @return array
+     * @inheritdoc
      */
-    public function getAnswers()
+    public function getAnswers() : Answers
     {
         return $this->answers;
     }
 
     /**
-     * Returns question correct answers values
-     *
-     * @return array
+     * @inheritdoc
      */
-    public function getCorrectAnswersValues()
+    public function getCorrectAnswersValues() : array
     {
-        $answers = array();
+        $answersValues = [];
 
-        foreach ($this->getAnswers() as $answer) {
+        foreach ($this->answers->all() as $answer) {
             if ($answer->isCorrect()) {
-                $answers[] = $answer->getValue();
+                $answersValues[] = $answer->getValue();
             }
         }
 
-        return $answers;
+        return $answersValues;
     }
 
     /**
-     * Returns if given answers are correct answers
-     *
-     * @param array $answers
-     *
-     * @return bool
+     * @inheritdoc
      */
-    public function areCorrectAnswers(array $answers)
+    public function areCorrectAnswers(array $answers) : bool
     {
-        if (!$answers) {
-            return false;
-        }
-
         $correctAnswers = $this->getCorrectAnswersValues();
 
         if (count($correctAnswers) != count($answers)) {
@@ -137,15 +119,13 @@ class Question
     }
 
     /**
-     * Returns question available answers labels
-     *
-     * @return array
+     * @inheritdoc
      */
-    public function getAnswersLabels()
+    public function getAnswersLabels() : array
     {
-        $answers = array();
+        $answers = [];
 
-        foreach ($this->getAnswers() as $answer) {
+        foreach ($this->answers->all() as $answer) {
             $answers[] = $answer->getValue();
         }
 
@@ -153,21 +133,17 @@ class Question
     }
 
     /**
-     * Returns whether multiple answers are correct for this question
-     *
-     * @return bool
+     * @inheritdoc
      */
-    public function isMultipleChoice()
+    public function isMultipleChoice() : bool
     {
         return $this->multipleChoice;
     }
 
     /**
-     * Returns help
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function getHelp()
+    public function getHelp() : string
     {
         return $this->help;
     }

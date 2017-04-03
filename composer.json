@@ -1,35 +1,33 @@
 {
     "name": "certificationy/certificationy",
     "type": "library",
-    "description": "A library to train on Symfony certification",
-    "keywords": ["symfony", "certification", "test", "exam"],
+    "description": "A library to create certification system",
+    "keywords": ["symfony", "certification", "test", "exam", "php"],
     "homepage": "http://github.com/certificationy/certificationy",
     "license": "MIT",
     "authors": [
         {
-            "name": "Vincent Composieux",
-            "email": "vincent.composieux@gmail.com"
-        },
-        {
-            "name": "Luis Cordova",
-            "email": "cordoval@gmail.com"
+            "name": "Mickaël Andrieu",
+            "email": "andrieu.travail@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.5",
-        "symfony/finder": "~2.5|~3.0",
-        "symfony/yaml": "~2.5|~3.0"
+        "php": ">=7.0",
+        "symfony/finder": "~3.0"
     },
     "require-dev": {
-        "certificationy/symfony-pack": "dev-master",
-        "phpunit/phpunit": "~4.1|~5.0"
+        "phpunit/phpunit": "~6.0",
+        "symfony/yaml": "~3.0"
     },
     "autoload": {
-        "psr-4": { "Certificationy\\": "" }
+        "psr-4": {
+            "Certificationy\\": "src",
+            "Tests\\": "tests"
+        }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }
