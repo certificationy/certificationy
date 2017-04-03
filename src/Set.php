@@ -15,7 +15,6 @@ namespace Certificationy;
 use Certificationy\Collections\Answers;
 use Certificationy\Collections\Questions;
 use Certificationy\Collections\UserAnswers;
-use Certificationy\Interfaces\AnswerInterface;
 use Certificationy\Interfaces\QuestionInterface;
 use Certificationy\Interfaces\UserAnswerInterface;
 use Certificationy\Interfaces\SetInterface;
