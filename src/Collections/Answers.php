@@ -25,7 +25,7 @@ final class Answers
 
     public function __construct(array $answers = [])
     {
-        foreach($answers as $answer) {
+        foreach ($answers as $answer) {
             $this->addAnswer($answer);
         }
     }
@@ -37,7 +37,7 @@ final class Answers
 
     public function addAnswers(array $answers)
     {
-        foreach($answers as $answer) {
+        foreach ($answers as $answer) {
             $this->addAnswer($answer);
         }
 

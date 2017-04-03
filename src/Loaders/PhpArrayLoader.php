@@ -64,7 +64,7 @@ class PhpArrayLoader implements LoaderInterface
         $questionsData = $this->questionsData;
 
         if (count($categories) > 0) {
-            $questionsData = array_filter($questionsData, function($questionData) use ($categories) {
+            $questionsData = array_filter($questionsData, function ($questionData) use ($categories) {
                 return in_array($questionData['category'], $categories);
             });
         }
