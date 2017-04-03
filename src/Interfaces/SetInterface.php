@@ -62,5 +62,4 @@ interface SetInterface
      * Returns errors questions set number
      */
     public function getWrongAnswers() : Questions;
-
 }

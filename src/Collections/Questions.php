@@ -27,7 +27,7 @@ final class Questions
 
     public function __construct(array $questions = [])
     {
-        foreach($questions as $index => $question) {
+        foreach ($questions as $index => $question) {
             $this->add($index, $question);
         }
     }

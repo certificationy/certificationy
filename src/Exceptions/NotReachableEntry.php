@@ -18,5 +18,4 @@ class NotReachableEntry extends \Exception
     {
         return new static("Element at position $key is not reachable.");
     }
-
 }
