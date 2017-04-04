@@ -46,7 +46,7 @@ class PhpArrayLoaderTest extends \PHPUnit\Framework\TestCase
     public function testCanGetCategoryList()
     {
         $this->assertTrue(is_array($this->arrayLoader->categories()));
-        $this->assertCount(2,$this->arrayLoader->categories());
+        $this->assertCount(2, $this->arrayLoader->categories());
     }
 
     public function testCategoriesAreFiltered()
@@ -57,7 +57,7 @@ class PhpArrayLoaderTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(3, $set->getQuestions()->count(), 'Should return only 3 questions from A category');
         $this->assertSame(0, $set->getAnswers()->count());
 
-        foreach($set->getQuestions()->all() as $question){
+        foreach ($set->getQuestions()->all() as $question) {
             $this->assertSame($question->getCategory(), 'A', 'Should return only the filtered category');
         }
     }

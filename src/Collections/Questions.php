@@ -21,9 +21,10 @@ use Certificationy\Question;
  *
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-final class Questions
+final class Questions implements \Iterator, \Countable
 {
     private $questions = [];
+    private $index = 0;
 
     public function __construct(array $questions = [])
     {
@@ -49,7 +50,7 @@ final class Questions
         return count($this->questions);
     }
 
-    public function get(int $key) : Question
+    public function get(int $key) : QuestionInterface
     {
         if (!isset($this->questions[$key])) {
             NotReachableEntry::create($key);
@@ -61,5 +62,45 @@ final class Questions
     public function has(int $key) : bool
     {
         return isset($this->questions[$key]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function current()
+    {
+        return $this->questions[$this->index];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function next()
+    {
+        ++$this->index;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function key()
+    {
+        return $this->index;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function valid()
+    {
+        return array_key_exists($this->index, $this->questions);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rewind()
+    {
+        $this->index = 0;
     }
 }

@@ -154,7 +154,6 @@ class DatafileTest extends \PHPUnit\Framework\TestCase
                             $question['question']
                         )
                     );
-
                 }
             }
         }
