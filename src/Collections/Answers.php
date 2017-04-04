@@ -19,9 +19,10 @@ use Certificationy\Interfaces\AnswerInterface;
  *
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-final class Answers
+final class Answers implements \Iterator, \Countable
 {
     private $answers = [];
+    private $index = 0;
 
     public function __construct(array $answers = [])
     {
@@ -59,5 +60,45 @@ final class Answers
         shuffle($this->answers);
 
         return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function current()
+    {
+        return $this->answers[$this->index];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function next()
+    {
+        ++$this->index;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function key()
+    {
+        return $this->index;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function valid()
+    {
+        return array_key_exists($this->index, $this->answers);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rewind()
+    {
+        $this->index = 0;
     }
 }

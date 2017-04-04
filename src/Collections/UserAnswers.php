@@ -12,6 +12,7 @@
 
 namespace Certificationy\Collections;
 
+use Certificationy\Interfaces\UserAnswerInterface;
 use Certificationy\UserAnswer;
 use Certificationy\Exceptions\NotReachableEntry;
 
@@ -20,9 +21,10 @@ use Certificationy\Exceptions\NotReachableEntry;
  *
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-final class UserAnswers
+final class UserAnswers implements \Countable, \Iterator
 {
     private $userAnswers;
+    private $index;
     
     public function addAnswers(int $questionKey, array $answerValues) : UserAnswers
     {
@@ -38,7 +40,7 @@ final class UserAnswers
         return $this->userAnswers;
     }
 
-    public function get(int $questionKey) : UserAnswer
+    public function get(int $questionKey) : UserAnswerInterface
     {
         if (!isset($this->userAnswers[$questionKey])) {
             NotReachableEntry::create($questionKey);
@@ -46,8 +48,48 @@ final class UserAnswers
         return $this->userAnswers[$questionKey];
     }
 
-    public function count()
+    public function count() : int
     {
         return count($this->userAnswers);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function current()
+    {
+        return $this->userAnswers[$this->index];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function next()
+    {
+        ++$this->index;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function key()
+    {
+        return $this->index;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function valid()
+    {
+        return array_key_exists($this->index, $this->userAnswers);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rewind()
+    {
+        $this->index = 0;
     }
 }

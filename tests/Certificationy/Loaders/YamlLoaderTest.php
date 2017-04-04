@@ -48,12 +48,11 @@ class YamlLoaderTest extends \PHPUnit\Framework\TestCase
     public function testCanGetCategoryList()
     {
         $this->assertTrue(is_array($this->yamlLoader->categories()));
-        $this->assertCount(2,$this->yamlLoader->categories());
+        $this->assertCount(2, $this->yamlLoader->categories());
     }
 
     public function tearDown()
     {
         $this->path = null;
     }
-
 }
