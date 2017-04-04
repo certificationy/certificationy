@@ -24,7 +24,7 @@ For instance, let's say you have created a Yaml file with some few questions:
 
 ```yaml
 # question.yaml
-category: basic question
+category: basics
 questions:
     -
         question: '2 + 2 = ?'
@@ -42,7 +42,7 @@ use Certificationy\Loaders\YamlLoader;
 
 $loader = new YamlLoader('path/to/question.yaml');
 $set = $loader->initSet(1, []); // (nbQuestions, fromCategories)
-$loader->categories(); // ['basic question']
+$loader->categories(); // ['basics']
 
 $questions = $set->getQuestions(); // receives a "Questions" collection with the question
 ```
