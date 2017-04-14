@@ -40,7 +40,7 @@ Then you can do:
 <?php
 use Certificationy\Loaders\YamlLoader;
 
-$loader = new YamlLoader('path/to/question.yaml');
+$loader = new YamlLoader(['path/to/question.yaml']);
 $set = $loader->initSet(1, []); // (nbQuestions, fromCategories)
 $loader->categories(); // ['basics']
 
