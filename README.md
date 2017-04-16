@@ -41,10 +41,10 @@ Then you can do:
 use Certificationy\Loaders\YamlLoader;
 
 $loader = new YamlLoader(['path/to/question.yaml']);
-$set = $loader->initSet(1, []); // (nbQuestions, fromCategories)
+$questions = $loader->load(1, []); // (nbQuestions, fromCategories)
 $loader->categories(); // ['basics']
 
-$questions = $set->getQuestions(); // receives a "Questions" collection with the question
+$set = Set::create($questions);
 ```
 
 Then, for each question you can set user answers (as answers can be multiple):

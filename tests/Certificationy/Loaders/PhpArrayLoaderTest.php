@@ -13,6 +13,7 @@
 namespace Tests\Certificationy\Loaders;
 
 use Certificationy\Loaders\PhpArrayLoader;
+use Certificationy\Set;
 
 class PhpArrayLoaderTest extends \PHPUnit\Framework\TestCase
 {
@@ -34,7 +35,7 @@ class PhpArrayLoaderTest extends \PHPUnit\Framework\TestCase
 
     public function testInitialization()
     {
-        $set = $this->arrayLoader->initSet(5, []);
+        $set = Set::create($this->arrayLoader->load(5, []));
 
         $this->assertInstanceOf('Certificationy\Set', $set, 'Should return an instance of set');
 
@@ -51,7 +52,7 @@ class PhpArrayLoaderTest extends \PHPUnit\Framework\TestCase
 
     public function testCategoriesAreFiltered()
     {
-        $set = $this->arrayLoader->initSet(5, ['A']);
+        $set = Set::create($this->arrayLoader->load(5, ['A']));
 
         $this->assertInstanceOf('Certificationy\Set', $set, 'Should return an instance of set');
         $this->assertSame(3, $set->getQuestions()->count(), 'Should return only 3 questions from A category');

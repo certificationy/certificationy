@@ -17,7 +17,6 @@ use Certificationy\Collections\Questions;
 use Certificationy\Collections\Answers;
 use Certificationy\Answer;
 use Certificationy\Question;
-use Certificationy\Set;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Yaml;
 
@@ -41,7 +40,7 @@ class YamlLoader implements LoaderInterface
     /**
      * @inheritdoc
      */
-    public function initSet(int $nbQuestions, array $categories) : Set
+    public function load(int $nbQuestions, array $categories) : Questions
     {
         $data = $this->prepareFromYaml($categories, $this->paths);
         $dataMax = count($data);
@@ -69,7 +68,7 @@ class YamlLoader implements LoaderInterface
             $questions->add($key, new Question($item['question'], $item['category'], $answers, $help));
         }
 
-        return new Set($questions);
+        return $questions;
     }
 
     /**
