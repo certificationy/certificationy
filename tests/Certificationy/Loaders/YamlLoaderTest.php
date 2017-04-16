@@ -13,6 +13,7 @@
 namespace Tests\Certificationy\Loaders;
 
 use Certificationy\Loaders\YamlLoader;
+use Certificationy\Set;
 
 class YamlLoaderTest extends \PHPUnit\Framework\TestCase
 {
@@ -36,7 +37,7 @@ class YamlLoaderTest extends \PHPUnit\Framework\TestCase
      */
     public function testInitialization()
     {
-        $set = $this->yamlLoader->initSet(5, []);
+        $set = Set::create($this->yamlLoader->load(5, []));
 
         $this->assertInstanceOf('Certificationy\Set', $set, 'Should return an instance of set');
 

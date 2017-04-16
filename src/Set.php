@@ -135,4 +135,9 @@ class Set implements SetInterface
 
         return $questions;
     }
+
+    public static function create(Questions $questions) : self
+    {
+        return new self($questions);
+    }
 }

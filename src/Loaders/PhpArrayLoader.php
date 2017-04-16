@@ -17,10 +17,9 @@ use Certificationy\Collections\Questions;
 use Certificationy\Collections\Answers;
 use Certificationy\Answer;
 use Certificationy\Question;
-use Certificationy\Set;
 
 /**
- * Able to import PHP array into a Set
+ * Able to import PHP array into a Questions collection
  *
  * [
  *   [
@@ -59,7 +58,7 @@ class PhpArrayLoader implements LoaderInterface
     /**
      * @inheritdoc
      */
-    public function initSet(int $nbQuestions, array $categories = []) : Set
+    public function load(int $nbQuestions, array $categories = []) : Questions
     {
         $questionsData = $this->questionsData;
 
@@ -82,7 +81,7 @@ class PhpArrayLoader implements LoaderInterface
             $questions->add($key, $this->createFromEntry($item));
         }
 
-        return new Set($questions);
+        return $questions;
     }
 
     /**

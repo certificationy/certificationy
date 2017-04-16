@@ -12,15 +12,14 @@
 
 namespace Certificationy\Interfaces;
 
-use Certificationy\Set;
 use Certificationy\Collections\Questions;
 
 interface LoaderInterface
 {
     /**
-     * Setup the Set of questions
+     * Load a filtered collection of Questions
      */
-    public function initSet(int $nbQuestions, array $categories) : Set;
+    public function load(int $nbQuestions, array $categories) : Questions;
 
     /**
      * Get list of all questions
