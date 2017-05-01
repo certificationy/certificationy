@@ -93,7 +93,7 @@ class Set implements SetInterface
     public function isCorrect(int $key) : bool
     {
         $question = $this->questions->get($key);
-        $answers  = $this->answers->getAnswers($key);
+        $answers  = $this->answers->getAnswersValues($key);
 
         return $question->areCorrectAnswers($answers);
     }

@@ -82,4 +82,16 @@ class SetTest extends TestCase
         $this->assertEquals('my first answer', $this->set->getAnswer(0)->getValue());
         $this->assertEquals('my second answer', $this->set->getAnswer(1)->getValue());
     }
+
+    public function testIsCorrect()
+    {
+        $this->set->setUserAnswers(0, ['my second answer']);
+        $this->assertFalse($this->set->isCorrect(0));
+
+        $this->set->setUserAnswers(0, ['my first answer']);
+        $this->assertTrue($this->set->isCorrect(0));
+
+        $this->set->setUserAnswers(0, ['my first answer', 'my second answer']);
+        $this->assertFalse($this->set->isCorrect(0));
+    }
 }
