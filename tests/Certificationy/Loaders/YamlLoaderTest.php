@@ -52,6 +52,14 @@ class YamlLoaderTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(2, $this->yamlLoader->categories());
     }
 
+    /**
+     * The total of questions is 6 in fixtures.
+     */
+    public function testAll()
+    {
+        $this->assertCount(6, $this->yamlLoader->all());
+    }
+
     public function tearDown()
     {
         $this->path = null;

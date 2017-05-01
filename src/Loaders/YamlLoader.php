@@ -79,7 +79,7 @@ class YamlLoader implements LoaderInterface
     public function all() : Questions
     {
         if (is_null($this->questions)) {
-            throw new \ErrorException('Questions were not loaded');
+            $this->questions = $this->load(PHP_INT_MAX, []);
         }
 
         return $this->questions;
