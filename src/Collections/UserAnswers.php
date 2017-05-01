@@ -13,8 +13,8 @@
 namespace Certificationy\Collections;
 
 use Certificationy\Interfaces\UserAnswerInterface;
-use Certificationy\UserAnswer;
 use Certificationy\Exceptions\NotReachableEntry;
+use Certificationy\UserAnswer;
 
 /**
  * Class Answers
@@ -23,11 +23,12 @@ use Certificationy\Exceptions\NotReachableEntry;
  */
 final class UserAnswers implements \Countable, \Iterator
 {
-    private $userAnswers;
+    private $userAnswers = [];
     private $index;
     
     public function addAnswers(int $questionKey, array $answerValues) : UserAnswers
     {
+        $this->removeByKey($questionKey);
         foreach ($answerValues as $answerValue) {
             $this->userAnswers[] = UserAnswer::create($questionKey, $answerValue);
         }
@@ -42,10 +43,39 @@ final class UserAnswers implements \Countable, \Iterator
 
     public function get(int $questionKey) : UserAnswerInterface
     {
-        if (!isset($this->userAnswers[$questionKey])) {
-            NotReachableEntry::create($questionKey);
+        foreach ($this->userAnswers as $userAnswer) {
+            if ($questionKey === $userAnswer->getKey()) {
+                return $userAnswer;
+            }
         }
-        return $this->userAnswers[$questionKey];
+
+        NotReachableEntry::create($questionKey);
+    }
+
+    public function getAnswersValues(int $questionKey) : array
+    {
+        $answers = [];
+
+        foreach ($this->userAnswers as $userAnswer) {
+            if ($questionKey === $userAnswer->getKey()) {
+                $answers[] = $userAnswer->getValue();
+            }
+        }
+
+        return $answers;
+    }
+
+    public function removeByKey(int $questionKey) : bool
+    {
+        $removed = false;
+        foreach ($this->userAnswers as $index => $userAnswer) {
+            if ($questionKey === $userAnswer->getKey()) {
+                $removed = true;
+                unset($this->userAnswers[$index]);
+            }
+        }
+
+        return $removed;
     }
 
     public function count() : int
