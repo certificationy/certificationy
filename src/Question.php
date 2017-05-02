@@ -49,7 +49,7 @@ class Question implements QuestionInterface
      * @param array       $answers
      * @param string|null $help
      */
-    public function __construct(string $question, string $category, Answers $answers, $help = null)
+    public function __construct(string $question, string $category, Answers $answers, string $help = null)
     {
         $this->question       = $question;
         $this->category       = $category;
@@ -145,6 +145,6 @@ class Question implements QuestionInterface
      */
     public function getHelp() : string
     {
-        return $this->help;
+        return $this->help ?? '';
     }
 }
