@@ -113,4 +113,9 @@ class QuestionTest extends TestCase
         $nonMultipleChoiceQuestion = new Question('my question', 'my category', $nonMultipleChoiceAnswers);
         $this->assertFalse($nonMultipleChoiceQuestion->isMultipleChoice());
     }
+
+    public function testGetHelp()
+    {
+        $this->assertInternalType('string', $this->question->getHelp());
+    }
 }
