@@ -59,7 +59,7 @@ class Set implements SetInterface
     public function setUserAnswers(int $questionKey, array $answers) : SetInterface
     {
         $this->answers->addAnswers($questionKey, $answers);
-    
+
         return $this;
     }
 
@@ -93,7 +93,7 @@ class Set implements SetInterface
     public function isCorrect(int $key) : bool
     {
         $question = $this->questions->get($key);
-        $answers  = $this->answers->getAnswersValues($key);
+        $answers  = $this->getAnswers()->getAnswersValues($key);
 
         return $question->areCorrectAnswers($answers);
     }
@@ -105,12 +105,12 @@ class Set implements SetInterface
     {
         $questions = new Questions();
 
-        foreach ($this->getQuestions() as $key => $question) {
+        foreach ($this->getQuestions()->all() as $key => $question) {
             $question = $this->getQuestion($key);
-            $answers  = $this->getAnswer($key);
+            $answers  =  $this->getAnswers()->getAnswersValues($key);
 
             if ($question->areCorrectAnswers($answers)) {
-                $questions->add($question);
+                $questions->add($key, $question);
             }
         }
 
@@ -124,12 +124,12 @@ class Set implements SetInterface
     {
         $questions = new Questions();
 
-        foreach ($this->getQuestions() as $key => $question) {
+        foreach ($this->getQuestions()->all() as $key => $question) {
             $question = $this->getQuestion($key);
-            $answers  = $this->getAnswer($key);
+            $answers  = $this->answers->getAnswersValues($key);
 
             if (!$question->areCorrectAnswers($answers)) {
-                $questions->add($question);
+                $questions->add($key, $question);
             }
         }
 
