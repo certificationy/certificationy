@@ -72,6 +72,4 @@ You can submit PR with your own questions into the packs located under the [Cert
 
 We provide packs for both [PHP5](https://github.com/certificationy/php-pack) and [Symfony](https://github.com/certificationy/symfony-pack) certifications.
 
-> As of today (03/04/2017), Certificationy CLI uses Certificationy library ``1.x`` branch.
-
 More we will have questions, the more powerful will be this tool!
