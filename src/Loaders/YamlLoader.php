@@ -116,15 +116,17 @@ class YamlLoader implements LoaderInterface
 
             foreach ($files as $file) {
                 $fileData = Yaml::parse($file->getContents());
-
                 $category = $fileData['category'];
-                if (count($categories) == 0 || in_array($category, $categories)) {
-                    array_walk($fileData['questions'], function (&$item) use ($category) {
-                        $item['category'] = $category;
-                    });
 
-                    $data = array_merge($data, $fileData['questions']);
+                if (count($categories) > 0 && !in_array($category, $categories)) {
+                    continue;
                 }
+
+                array_walk($fileData['questions'], function (&$item) use ($category) {
+                    $item['category'] = $category;
+                });
+
+                $data = array_merge($data, $fileData['questions']);
             }
         }
 
