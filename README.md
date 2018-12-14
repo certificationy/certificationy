@@ -10,10 +10,9 @@
 [![Build Status](https://secure.travis-ci.org/certificationy/certificationy.png?branch=master)](http://travis-ci.org/certificationy/certificationy) 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc/mini.png)](https://insight.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc)
 
-# How to use it?
+## How to use it?
 
-Inside any PHP application
---------------------------
+### Inside any PHP application
 
 As usual, use composer to install the library:
 
@@ -33,9 +32,9 @@ questions:
     -
         question: '2 + 2 = ?'
         answers:
-            - {value: 4,           correct: true}
-            - {value: 3,           correct: false}
-            - {value: 2,           correct: false}
+            - {value: 4, correct: true}
+            - {value: 3, correct: false}
+            - {value: 2, correct: false}
 ```
 
 Then you can do:
@@ -54,8 +53,7 @@ $set = Set::create($questions);
 Then, for each question you can set user answers (as answers can be multiple):
 
 ```php
-<?php
- $set->setUserAnswers(0, [4]); // (questionIndex, [values])
+$set->setUserAnswers(0, [4]); // (questionIndex, [values])
 ```
 
 At every moment, you can get the correct and wrong answers (non answered questions are wrong).
@@ -65,12 +63,11 @@ $set->getCorrectAnswers();
 $set->getWrongAnswers();
 ```
 
-CLI tool
---------
+## CLI tool
 
 A CLI tool is available under the following repository: http://www.github.com/certificationy/certificationy-cli.
 
-# Please, help us complete our official packs of questions!
+## Please, help us complete our official packs of questions!
 
 You can submit PR with your own questions into the packs located under the [Certificationy organization](https://github.com/certificationy).
 
