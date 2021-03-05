@@ -67,7 +67,7 @@ $set->getWrongAnswers();
 
 A CLI tool is available under the following repository: http://www.github.com/certificationy/certificationy-cli.
 
-## Please, help us complete our official packs of questions!
+## Please, help us to complete our official packs of questions!
 
 You can submit PR with your own questions into the packs located under the [Certificationy organization](https://github.com/certificationy).
 
