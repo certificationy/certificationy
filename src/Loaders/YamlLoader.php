@@ -112,7 +112,7 @@ class YamlLoader implements LoaderInterface
         $data = array();
 
         foreach ($this->paths as $path) {
-            $files = Finder::create()->files()->in($path)->name('*.yml');
+            $files = Finder::create()->files()->in($path)->name('*.yml')->name('*.yaml');
 
             foreach ($files as $file) {
                 $fileData = Yaml::parse($file->getContents());
