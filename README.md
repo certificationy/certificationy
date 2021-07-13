@@ -7,8 +7,7 @@
   or to make a certification website/training tool.
 
 [![Join the chat at https://gitter.im/certificationy/certificationy](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/certificationy/certificationy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-[![Build Status](https://secure.travis-ci.org/certificationy/certificationy.png?branch=master)](http://travis-ci.org/certificationy/certificationy) 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc/mini.png)](https://insight.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc)
+[![SensioLabsInsight](https://insight.symfony.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc/mini.png)](https://symfony.sensiolabs.com/projects/cd3b6bc1-632e-491a-abfc-43edc390e1cc)
 
 ## How to use it?
 
